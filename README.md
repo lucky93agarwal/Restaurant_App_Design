@@ -3,11 +3,9 @@
 A new Flutter project.
 
 ## Screen
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/9b005f0e-260b-4523-8fb3-d088309ffa7f" width="200"  title="Hybrid Map"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/a803babf-daaa-4df9-a6fd-bcd3df4a6428" width="200" title="Normal Map"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7c573c41-6c93-4ff7-bcb1-b9782b42c4cd" width="200" title="Circles"/>
-
-
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Hybrid Map"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/307d6d1c-cddd-4dae-a91c-7f27fa560ea3" width="200" title="Normal Map"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Circles"/>
 
 
 ## Folder Structure
