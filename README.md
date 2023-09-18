@@ -9,6 +9,7 @@ A new Flutter project.
 
 ## Features
 * Slider Screen
+* Sign in Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
