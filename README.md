@@ -40,7 +40,6 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * [google_fonts](https://pub.dev/packages/google_fonts)
 * [image_picker](https://pub.dev/packages/image_picker)
 * [firebase_auth](https://pub.dev/packages/firebase_auth)
-* [google_sign_in](https://pub.dev/packages/google_sign_in)
 * [firebase_analytics](https://pub.dev/packages/firebase_analytics)
 * [firebase_database](https://pub.dev/packages/firebase_database)
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
