@@ -1,6 +1,5 @@
-# restaurant_app_design
-
-A new Flutter project.
+## Frestaurant - Restaurant clone in flutter 
+A working Restaurant Mobile App clone built in Flutter using Firebase auth,realtime,firestore database and storage.
 
 ## Screen
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Slider Screen"/>
@@ -10,6 +9,9 @@ A new Flutter project.
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/e23440d9-5ec0-4eef-9300-fd06ff6d9423" width="200" title="Sign Up Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/fcb6bda3-e3e5-4ae4-b8ac-34d15b4339a0" width="200" title="Verify Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/10cabd75-200f-454f-ab43-fd7d1aea642a" width="200" title="Forgot Screen"/>
+
+## Download App
+<a href="https://play.google.com/store/apps/details?id=com.thealphamerc.flutter_twitter_clone"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a>
 
 
 
