@@ -14,6 +14,7 @@ A new Flutter project.
 * Custom Button
 * Custom Title
 * Custom AppBar
+* Custom Text Field
 ## Folder Structure
 
 
