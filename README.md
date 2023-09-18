@@ -8,8 +8,8 @@ A new Flutter project.
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Slider Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/5984d7a4-d949-464f-af5a-71e27b8ed61d" width="200" title="Slider Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/6b898c63-958d-4918-80d9-506609c025cd" width="200" title="Sign Up Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/26cec9f5-2a4e-4aa7-8a82-ee7084672eb6" width="200" title="Forgot Screen"/>
-
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7129082d-f9e6-4693-a82f-a519deb3c805" width="200" title="Forgot Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/d15da620-2034-4bb9-906a-88fa97b66f85" width="200" title="Sign Up Screen"/>
 
 
 
