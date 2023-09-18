@@ -1,5 +1,5 @@
 ## Frestaurant - Restaurant clone in flutter 
-A working Restaurant Mobile App clone built in Flutter using Firebase auth,realtime,firestore database and storage.
+A working Restaurant Mobile App clone built in Flutter using Firebase auth,realtime,firestore database and storage lucky
 
 ## Screen
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Slider Screen"/>
