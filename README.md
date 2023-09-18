@@ -8,12 +8,12 @@ A new Flutter project.
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Circles"/>
 
 ## Features
-* App features is mentioned at project section [ Click here](https://github.com/TheAlphamerc/flutter_twitter_clone/projects/1)
-* Messaging chat section status can be seen at [here](https://github.com/TheAlphamerc/flutter_twitter_clone/projects/2)
-
- :boom: Fwitter app now uses both firebase `realtime` and `firestore` database.:boom:
-* In branch **firetore** Fwitter uses `Firestore` database for app. 
-* In branch **Master** and **realtime_db** Fwitter uses `Firebase Realtime` database for app.
+* Slider Screen
+* Custom Paint
+* GetX State Management
+* Custom Button
+* Custom Title
+* Custom AppBar
 ## Folder Structure
 
 
