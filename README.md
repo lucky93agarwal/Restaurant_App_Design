@@ -18,6 +18,7 @@ A new Flutter project.
 * Sign In Screen
 * Sign Up Screen
 * Forgot Screen
+* Verifition Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
