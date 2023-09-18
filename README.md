@@ -3,18 +3,27 @@
 A new Flutter project.
 
 ## Screen
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Hybrid Map"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/307d6d1c-cddd-4dae-a91c-7f27fa560ea3" width="200" title="Normal Map"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Circles"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Slider Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/307d6d1c-cddd-4dae-a91c-7f27fa560ea3" width="200" title="Slider Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Slider Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f2a0c17d-d0e7-4918-b2d2-54553536a850" width="200" title="Sign In Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/e23440d9-5ec0-4eef-9300-fd06ff6d9423" width="200" title="Sign Up Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/fcb6bda3-e3e5-4ae4-b8ac-34d15b4339a0" width="200" title="Verify Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/10cabd75-200f-454f-ab43-fd7d1aea642a" width="200" title="Forgot Screen"/>
+
+
 
 ## Features
 * Slider Screen
-* Sign in Screen
+* Sign In Screen
+* Sign Up Screen
+* Forgot Screen
+* Verifition Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
 * Custom Title
-* Custom AppBar
+* Custom App Bar
 * Custom Text Field
 ## Folder Structure
 
