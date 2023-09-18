@@ -7,7 +7,14 @@ A new Flutter project.
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/307d6d1c-cddd-4dae-a91c-7f27fa560ea3" width="200" title="Normal Map"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Circles"/>
 
-
+## Features
+* Slider Screen
+* Custom Paint
+* GetX State Management
+* Custom Button
+* Custom Title
+* Custom AppBar
+* Custom Text Field
 ## Folder Structure
 
 
