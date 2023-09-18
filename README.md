@@ -45,6 +45,8 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * [firebase_database](https://pub.dev/packages/firebase_database)
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
 * [flutter_advanced_networkimage](https://pub.dev/packages/flutter_advanced_networkimage)
+
+
 ## Folder Structure
 
 
