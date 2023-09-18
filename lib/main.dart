@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/bindings/global_binding.dart';
 import 'package:restaurant_app_design/controller/slider_controller.dart';
-import 'package:restaurant_app_design/ui/sliding_screen.dart';
+import 'package:restaurant_app_design/ui/screen/sliding_screen.dart';
 import 'package:restaurant_app_design/utils/route.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 

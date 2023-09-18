@@ -26,6 +26,25 @@ Widget titleWidget(String title){
         fontColor: Colors.white, fontWeight: FWT.semiBold),),
   );
 }
+
+Widget subTitleWidget(String title){
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    alignment: Alignment.center,
+    child: Text(title,textAlign: TextAlign.center,style:  FontUtilities.h14(
+        fontColor: Colors.white, fontWeight: FWT.medium),),
+  );
+}
+Widget subSecondTitleWidget(String title){
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    alignment: Alignment.center,
+    child: Text(title,textAlign: TextAlign.center,style:  FontUtilities.h15(
+        fontColor: Colors.white, fontWeight: FWT.black),),
+  );
+}
 Widget customTextUnderLineButton(String title, void Function() onTap){
   return InkWell(
     onTap: onTap,

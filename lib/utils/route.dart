@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
-import 'package:restaurant_app_design/ui/login_screen.dart';
-import 'package:restaurant_app_design/ui/sliding_screen.dart';
+import 'package:restaurant_app_design/ui/screen/forgot_pass_screen.dart';
+import 'package:restaurant_app_design/ui/screen/signup_screen.dart';
+import 'package:restaurant_app_design/ui/screen/sliding_screen.dart';
+import 'package:restaurant_app_design/ui/screen/verification_screen.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
+
+import '../ui/screen/login_screen.dart';
 
 // Import the GetX
 
@@ -9,10 +13,20 @@ class ScreenRouter {
   static List<GetPage> routes = [
     //*----------------------- Unauthorized ---------------------------------
     GetPage(
-        name: RoutePath.selectLanugaeScreen, page: () => SlidingScreen()),
+        name: RoutePath.selectLanugaeScreen, page: () =>const SlidingScreen()),
 
     GetPage(
-        name: RoutePath.loginScreen, page: () => LoginScreen()),
+        name: RoutePath.loginScreen, page: () =>const LoginScreen()),
+
+
+    GetPage(
+        name: RoutePath.forgotScreen, page: () =>const ForgotPasswordScreen()),
+
+
+    GetPage(
+        name: RoutePath.signupScreen, page: () =>const SignUpScreen()),
+    GetPage(
+        name: RoutePath.verifyScreen, page: () =>const VerificationScreen()),
   ];
 
 }
