@@ -238,9 +238,9 @@ extension AppTheme on ThemeData {
   Color get appMainDarkColor => const Color(0xff8937FF);
   Color get secondMainDarkColor => const Color(0xffE85BFF);
   Color get thirdMainDarkColor => const Color(0xFF8937FF);
-  Color get appMainLightColor => const Color(0xffF37335);
+  Color get appMainLightColor => const Color(0xfffe0d76);
   Color get lightholidayColor => const Color(0xfff95a00);
-  Color get secondMainLightColor => const Color(0xffFDC830);
+  Color get secondMainLightColor => const Color(0xfffe6402);
   Color get blogLangButtonColor => const Color(0xFFE85BFF);
   Color get weekendDateTextColor => const Color(0xffEA4335);
   Color get selectedDateColor => const Color(0xff42AF0F);

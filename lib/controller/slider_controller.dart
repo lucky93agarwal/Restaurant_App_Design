@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app_design/utils/route_path.dart';
 
 class SliderController extends GetxController{
   final pageController = PageController();
@@ -20,8 +21,7 @@ class SliderController extends GetxController{
       currentPage.value = currentPage.value +1;
       pageController.jumpToPage(currentPage.value.toInt());
     }else  if(pageController.page! ==2){
-      currentPage.value =0;
-      pageController.jumpToPage(currentPage.value.toInt());
+      Get.toNamed(RoutePath.loginScreen);
     }
   }
   @override

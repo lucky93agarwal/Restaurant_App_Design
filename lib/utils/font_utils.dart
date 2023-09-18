@@ -176,6 +176,7 @@ class FontUtilities {
     FWT fontWeight = FWT.regular,
     TextDecoration? decoration,
     double letterSpacing = 0.5,
+    Color? decorationColor,
   }) {
     return TextStyle(
       color: fontColor,
@@ -184,6 +185,8 @@ class FontUtilities {
       letterSpacing: letterSpacing,
       fontFamily: "Mukta",
       decoration: decoration,
+      decorationColor: decorationColor,
+      decorationThickness: 2,
     );
   }
 
