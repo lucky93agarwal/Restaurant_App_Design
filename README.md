@@ -1,6 +1,5 @@
-# restaurant_app_design
+## Frestaurant - Restaurant clone in flutter [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/Restaurant_App_Design?style=social)](https://github.com/login?return_to=%2FTheAlphamerc%Restaurant_App_Design) ![GitHub forks](https://img.shields.io/github/forks/TheAlphamerc/Restaurant_App_Design?style=social) 
 
-A new Flutter project.
 
 ## Screen
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Slider Screen"/>
