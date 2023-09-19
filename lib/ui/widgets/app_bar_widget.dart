@@ -9,8 +9,9 @@ import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/images.dart';
+import 'package:restaurant_app_design/utils/route_path.dart';
 
-Widget appBarWidget(String title) {
+Widget appBarWidget(String title,bool rightIcon) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     margin: const EdgeInsets.symmetric(vertical: 10),
@@ -33,6 +34,15 @@ Widget appBarWidget(String title) {
               style: FontUtilities.h16(
                   fontColor: Colors.white, fontWeight: FWT.semiBold),
             )),
+        Visibility(
+          visible: rightIcon ==null?false:true,
+          child:const Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
+              )),
+        ),
       ],
     ),
   );
@@ -166,7 +176,7 @@ Widget menuCategory(BuildContext context) {
   );
 }
 
-Widget titleMenu(String firstTitle,String secondTitle){
+Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
   return  Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.end,
@@ -177,28 +187,117 @@ Widget titleMenu(String firstTitle,String secondTitle){
             fontColor: Colors.white,
             fontWeight: FWT.semiBold),
       ),
-      Row(
-        children: [
-          Text(secondTitle,
-            textAlign: TextAlign.center,
-            style: FontUtilities.h12(
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.blue,
-                fontColor: Colors.white,
-                fontWeight: FWT.semiBold),
-          ),
-          const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,)
-        ],
+      InkWell(
+        onTap: (){
+          var  data = {
+            "title" : firstTitle,
+            "model" : model
+          };
+          Get.toNamed(RoutePath.listScreen,arguments: data);
+        },
+        child: Row(
+          children: [
+            Text(secondTitle,
+              textAlign: TextAlign.center,
+              style: FontUtilities.h12(
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blue,
+                  fontColor: Colors.white,
+                  fontWeight: FWT.semiBold),
+            ),
+            const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,)
+          ],
+        ),
       )
     ],
   );
 }
+
+Widget listFood(BuildContext context,dynamic model,ScrollController controller){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
+    child: ListView.builder(
+        padding: const EdgeInsets.all(0),
+      controller: controller,
+        itemCount: model.length,
+    shrinkWrap: true,
+    itemBuilder: (BuildContext context,int index){
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 150,
+            width: Get.width,
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              borderRadius:const BorderRadius.all(Radius.circular(10)),
+              image: DecorationImage(
+                image: AssetImage(model[index].img),
+                fit: BoxFit.cover
+              )
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(model[index].title,
+                    style: FontUtilities.h14(
+                        decorationColor: Colors.blue,
+                        fontColor: Colors.white,
+                        fontWeight: FWT.semiBold),),
+                  Visibility(
+                    visible: model[index].price.length>0?true:false,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.star,color: Colors.yellow,size: 15,),
+                        horizontalSpacing(5),
+                        Text(model[index].rating,
+                          style: FontUtilities.h12(
+                              decorationColor: Colors.blue,
+                              fontColor: Colors.white,
+                              fontWeight: FWT.semiBold),),
+                        horizontalSpacing(5),
+                        Text(model[index].review,
+                          style: FontUtilities.h12(
+                              decorationColor: Colors.blue,
+                              fontColor: Theme.of(context).subTitleText,
+                              fontWeight: FWT.regular),),
+                      ],),
+                  )
+                ],
+              ),
+              Visibility(
+                visible: model[index].price.length>0?true:false,
+                child: Text(model[index].price,
+                  style: FontUtilities.h26(
+                      fontColor: Colors.white,
+                      fontWeight: FWT.semiBold),),
+              ),
+            ],
+          ),
+
+        ],
+      );
+    }),
+  );
+}
+
 Widget popularFood() {
   return Container(
     margin: const EdgeInsets.only(left: 20),
     child: Column(
       children: [
-        titleMenu(AppText.popularFood, AppText.allFood),
+        Padding(
+          padding: const EdgeInsets.only(right:20.0),
+          child: titleMenu(AppText.popularFood, AppText.allFood, popular),
+        ),
 
         verticalSpacing(20),
         SizedBox(
@@ -285,7 +384,8 @@ Widget nearbyRestaurantFood() {
     margin: const EdgeInsets.only(left: 20),
     child: Column(
       children: [
-        titleMenu(AppText.nearbyBestRestaurant, AppText.all),
+        Padding(padding: const EdgeInsets.only(right:20.0),
+            child: titleMenu(AppText.nearbyBestRestaurant, AppText.all, restaurant)),
 
         verticalSpacing(20),
         SizedBox(
@@ -337,7 +437,8 @@ Widget resendSend(BuildContext context){
           style: FontUtilities.h14(
             fontColor: Theme.of(context).subTitleText,),),
          verticalSpacing(10),
-         Column(children: List.generate(recentSearch.length, (index) => Container(
+         Column(children: List.generate(recentSearch.length, (index) =>
+             Container(
            margin: const EdgeInsets.symmetric(vertical: 10),
            child: Row(children: [
              const Icon(Icons.access_time_filled_outlined,color: Color(0xffff0188),size: 20,),

@@ -45,7 +45,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget(AppText.verification),
+                  appBarWidget(AppText.verification,false),
                   verticalSpacing(20),
                   subTitleWidget(AppText.weSentAVerificationCodeTo),
                   subSecondTitleWidget(AppText.demoEmail),

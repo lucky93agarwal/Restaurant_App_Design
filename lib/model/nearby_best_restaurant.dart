@@ -12,7 +12,8 @@ const List<Restaurant> restaurant = [
       title: 'Pizza Hut',
       rating: '4.9',
       review: '(670 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: ""
   ),
   Restaurant(
       id: '2',
@@ -20,7 +21,8 @@ const List<Restaurant> restaurant = [
       title: 'Mc Donald',
       rating: '4.6',
       review: '(1247 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: ""
   ),
   Restaurant(
       id: '3',
@@ -28,7 +30,8 @@ const List<Restaurant> restaurant = [
       title: 'Burger King',
       rating: '4.5',
       review: '(1866 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: ""
   ),
   Restaurant(
       id: '4',
@@ -36,7 +39,8 @@ const List<Restaurant> restaurant = [
       title: 'KFC',
       rating: '4.5',
       review: '(1866 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: ""
   ),
 ];
 
@@ -48,6 +52,7 @@ class Restaurant{
   final String rating;
   final String review;
   final String off;
+  final String price;
   const Restaurant({
     required this.id,
     required this.img,
@@ -55,5 +60,6 @@ class Restaurant{
     required this.rating,
     required this.review,
     required this.off,
+    required this.price,
   });
 }

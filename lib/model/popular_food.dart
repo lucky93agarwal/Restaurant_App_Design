@@ -12,7 +12,8 @@ const List<Popular> popular = [
     title: 'Chhole Bhature',
     rating: '4.9',
     review: '(670 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: "\$15"
   ),
   Popular(
     id: '2',
@@ -20,7 +21,8 @@ const List<Popular> popular = [
     title: 'Vada Pav',
     rating: '4.6',
     review: '(1247 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: "\$18"
   ),
   Popular(
     id: '3',
@@ -28,7 +30,8 @@ const List<Popular> popular = [
     title: 'Kulchee',
     rating: '4.5',
     review: '(1866 Review)',
-      off: "30% off"
+      off: "30% off",
+      price: "\$25"
   ),
 ];
 
@@ -40,6 +43,7 @@ class Popular{
   final String rating;
   final String review;
   final String off;
+  final String price;
   const Popular({
     required this.id,
     required this.img,
@@ -47,5 +51,6 @@ class Popular{
     required this.rating,
     required this.review,
     required this.off,
+    required this.price,
   });
 }

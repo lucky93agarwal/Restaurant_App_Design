@@ -40,7 +40,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget(AppText.forgotPassword),
+                  appBarWidget(AppText.forgotPassword,false),
                   verticalSpacing(20),
                   subTitleWidget(AppText.pleaseEnterYourEmailToResetYourPassword),
                   verticalSpacing(20),

@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     verticalSpacing(20),
-                    appBarWidget(AppText.signIn),
+                    appBarWidget(AppText.signIn,false),
                     verticalSpacing(20),
                     titleWidget(AppText.yourFavouriteFoodFromNearbyTopRestaurant),
                     verticalSpacing(20),

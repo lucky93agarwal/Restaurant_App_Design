@@ -46,7 +46,7 @@ class _CreateUserProfileScreenState extends State<CreateUserProfileScreen> {
                 child: Column(
                   children: [
                     verticalSpacing(20),
-                    appBarWidget(AppText.createYourProfile),
+                    appBarWidget(AppText.createYourProfile,false),
                     verticalSpacing(40),
                     userProfile(true,context,onTapProfileButton,""),
 

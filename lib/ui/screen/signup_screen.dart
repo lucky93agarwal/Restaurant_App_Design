@@ -41,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget(AppText.signUp),
+                  appBarWidget(AppText.signUp,false),
                   verticalSpacing(60),
                   AppTextField(
                       ctrl: emailController,
