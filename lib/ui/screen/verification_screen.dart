@@ -4,6 +4,7 @@ import 'package:restaurant_app_design/ui/widgets/app_bar_widget.dart';
 import 'package:restaurant_app_design/ui/widgets/custom_painter.dart';
 import 'package:restaurant_app_design/ui/widgets/text_field.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
+import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
@@ -18,6 +19,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   void onTapButton(){
+    Get.toNamed(RoutePath.createUserProfileScreen);
   }
   void onTapMoveNextButton(){
     Get.toNamed(RoutePath.loginScreen);
@@ -39,10 +41,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget("Verification"),
+                  appBarWidget(AppText.verification),
                   verticalSpacing(20),
-                  subTitleWidget("We've sent a verification code to"),
-                  subSecondTitleWidget("RamSingh@gmail.com"),
+                  subTitleWidget(AppText.weSentAVerificationCodeTo),
+                  subSecondTitleWidget(AppText.demoEmail),
                   verticalSpacing(20),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -53,43 +55,43 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             ctrl: emailController,
                             hintText: "",
                             textInputType:TextInputType.number,
-                            icons:4,
-                            iconsTwo:2,
+                            icons: AppText.hidePrefixIconEditText,
+                            iconsTwo:AppText.hideSuffixIconEditText,
                             checkVerify:true
                         ),
                         AppTextField(
                             ctrl: emailController,
                             hintText: "",
                             textInputType:TextInputType.number,
-                            icons:4,
-                            iconsTwo:2,
+                            icons: AppText.hidePrefixIconEditText,
+                            iconsTwo:AppText.hideSuffixIconEditText,
                             checkVerify:true
                         ),
                         AppTextField(
                             ctrl: emailController,
                             hintText: "",
                             textInputType:TextInputType.number,
-                            icons:4,
-                            iconsTwo:2,
+                            icons: AppText.hidePrefixIconEditText,
+                            iconsTwo: AppText.hideSuffixIconEditText,
                             checkVerify:true
                         ),
                         AppTextField(
                             ctrl: emailController,
                             hintText: "",
                             textInputType:TextInputType.number,
-                            icons:4,
-                            iconsTwo:2,
+                            icons: AppText.hidePrefixIconEditText,
+                            iconsTwo: AppText.hideSuffixIconEditText,
                             checkVerify:true
                         ),
                       ],
                     ),
                   ),
                   verticalSpacing(20),
-                  customButton("Verify",context,onTapButton),
+                  customButton(AppText.verify,context,onTapButton),
                 ],
               ),
             ),),
-            customTextUnderLineButton("Sign In",onTapMoveNextButton),
+            customTextUnderLineButton(AppText.signIn,onTapMoveNextButton),
             verticalSpacing(40),
           ],
         ),

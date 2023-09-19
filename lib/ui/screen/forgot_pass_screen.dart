@@ -7,6 +7,8 @@ import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dar
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
+import '../../utils/app_text.dart';
+
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
 
@@ -38,25 +40,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget("Forgot Password"),
+                  appBarWidget(AppText.forgotPassword),
                   verticalSpacing(20),
-                  subTitleWidget("Please enter your email to reset your password"),
+                  subTitleWidget(AppText.pleaseEnterYourEmailToResetYourPassword),
                   verticalSpacing(20),
                   AppTextField(
                       ctrl: emailController,
-                      hintText: "Email",
+                      hintText: AppText.email,
                       textInputType:TextInputType.emailAddress,
-                      icons:0,
-                      iconsTwo:2,
+                      icons: AppText.messageTextPrefixIconEditText,
+                      iconsTwo:AppText.hideSuffixIconEditText,
                       checkVerify:false
                   ),
                   verticalSpacing(20),
-                  customButton("Send Now",context,onTapButton),
+                  customButton(AppText.sendNow,context,onTapButton),
                 ],
               ),
             ),),
 
-            customTextUnderLineButton("Sign Up",onTapMoveNextButton),
+            customTextUnderLineButton(AppText.signUp,onTapMoveNextButton),
             verticalSpacing(40),
           ],
         ),

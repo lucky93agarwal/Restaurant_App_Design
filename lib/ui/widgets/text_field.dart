@@ -33,7 +33,7 @@ class AppTextField extends StatelessWidget {
       height: checkVerify==true?60:45,
       width: checkVerify==true?60:Get.width,
       decoration: BoxDecoration(
-          color:checkVerify==true? const Color(0xFF785494): const Color(0xFFF6F6F6),
+          color:checkVerify==true? Theme.of(context).buttonSec : const Color(0xFFF6F6F6),
           borderRadius:checkVerify==true?BorderRadius.circular(50): BorderRadius.circular(25),
           border: Border.all(color: Theme.of(context).textColor)),
       child: TextField(
@@ -55,15 +55,23 @@ class AppTextField extends StatelessWidget {
           prefixIcon: icons==0?
           const Icon(Icons.mail_sharp,color: Colors.grey,size: 20,):
           icons==2?
-          const Icon(Icons.phone,color: Colors.grey,size: 20,):icons==3?
-          const Icon(Icons.key,color: Colors.grey,size: 20,):null,
+          const Icon(Icons.phone,color: Colors.grey,size: 20,):
+          icons==3?
+          const Icon(Icons.key,color: Colors.grey,size: 20,):
+          icons==4?
+          const Icon(Icons.person,color: Colors.grey,size: 20,):
+          icons==5?
+          const Icon(Icons.location_on,color: Colors.grey,size: 20,):null,
+
+
           suffixIcon:iconsTwo==0? const Icon(Icons.check,color: Colors.green,size: 20,):
-          iconsTwo==2? null
-              : InkWell(
+          iconsTwo==2? InkWell(
             onTap: onTap,
             child: Text("Forgot ?",style: FontUtilities.h14(
                 fontColor: Theme.of(context).appMainLightColor, fontWeight: FWT.semiBold),),
-          ),
+          ) :
+          iconsTwo==3?
+          const Icon(Icons.add_circle_outline,color: Colors.grey,size: 20,):null,
           suffixIconConstraints: BoxConstraints(minWidth:iconsTwo==0? 50:70, minHeight: 0),
 
           isDense: true,

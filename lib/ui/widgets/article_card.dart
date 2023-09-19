@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app_design/model/database.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
+import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
-import 'package:restaurant_app_design/utils/images.dart';
 
 
 class ArticleCard extends StatelessWidget {
@@ -30,10 +30,10 @@ class ArticleCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Text(
-            "Loren Ipsum is simply dummy test printing and typesetting.",
+            AppText.lorenIpsumIsSimplyDummyTestPrintingAndTypeSetting,
             textAlign: TextAlign.center,
             style: FontUtilities.h12(
-                fontColor: Color(0xff857998), fontWeight: FWT.regular),
+                fontColor:const Color(0xff857998), fontWeight: FWT.regular),
           ),
         ),
         verticalSpacing(20),

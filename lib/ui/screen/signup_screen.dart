@@ -4,6 +4,7 @@ import 'package:restaurant_app_design/ui/widgets/app_bar_widget.dart';
 import 'package:restaurant_app_design/ui/widgets/custom_painter.dart';
 import 'package:restaurant_app_design/ui/widgets/text_field.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
+import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
@@ -40,44 +41,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 children: [
                   verticalSpacing(20),
-                  appBarWidget("Sign Up"),
-                  verticalSpacing(40),
-                  verticalSpacing(20),
+                  appBarWidget(AppText.signUp),
+                  verticalSpacing(60),
                   AppTextField(
                       ctrl: emailController,
-                      hintText: "Email",
+                      hintText: AppText.email,
                       textInputType:TextInputType.emailAddress,
-                      icons:0,
-                      iconsTwo:2,
+                      icons: AppText.messageTextPrefixIconEditText,
+                      iconsTwo:AppText.hideSuffixIconEditText,
                       checkVerify:false
                   ),
                   verticalSpacing(10),
                   AppTextField(
                       ctrl: passController,
-                      hintText: "Password",
+                      hintText: AppText.password,
                       textInputType:TextInputType.visiblePassword,
                       onTap: onTapForgotButton,
-                      icons:3,
-                      iconsTwo:2,
+                      icons: AppText.keyTextPrefixIconEditText,
+                      iconsTwo:AppText.hideSuffixIconEditText,
                       checkVerify:false
                   ),
                   verticalSpacing(10),
                   AppTextField(
                       ctrl: phoneController,
-                      hintText: "Phone",
+                      hintText: AppText.phone,
                       textInputType:TextInputType.visiblePassword,
                       onTap: onTapForgotButton,
-                      icons:2,
-                      iconsTwo:2,
+                      icons: AppText.phoneTextPrefixIconEditText,
+                      iconsTwo:AppText.hideSuffixIconEditText,
                       checkVerify:false
                   ),
                   verticalSpacing(20),
-                  customButton("Next",context,onTapButton),
+                  customButton(AppText.next,context,onTapButton),
                 ],
               ),
             ),),
 
-            customTextUnderLineButton("Sign In",onTapMoveNextButton),
+            customTextUnderLineButton(AppText.signIn,onTapMoveNextButton),
             verticalSpacing(40),
           ],
         ),

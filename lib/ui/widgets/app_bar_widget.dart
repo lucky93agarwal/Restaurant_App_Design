@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
+import 'package:restaurant_app_design/utils/images.dart';
 
 Widget appBarWidget(String title){
   return Container(
@@ -34,6 +35,48 @@ Widget subTitleWidget(String title){
     alignment: Alignment.center,
     child: Text(title,textAlign: TextAlign.center,style:  FontUtilities.h14(
         fontColor: Colors.white, fontWeight: FWT.medium),),
+  );
+}
+
+Widget userProfile(bool addBtn,BuildContext context, void Function() onTap,String userImg){
+  return InkWell(
+    onTap: (){
+
+    },
+    child: SizedBox(height: 110,
+      width: 110,
+      child: Stack(children: [
+        Container(
+          height: 110,
+          width: 110,
+          alignment: Alignment.center,
+          decoration:  BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+              image: DecorationImage(
+                  image: AssetImage(userImg.isEmpty?AppImages.userImg:userImg)
+              )
+          ),
+        ),
+        Visibility(
+          visible: addBtn,
+          child: Positioned(
+            bottom: 3,
+            right: 3,
+            child: Container(
+              height: 30,
+              width: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black,width: 2),
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).buttonSec
+              ),
+              child: const Icon(Icons.add,color: Colors.white,),
+            ),
+          ),
+        ),
+      ],),),
   );
 }
 Widget subSecondTitleWidget(String title){

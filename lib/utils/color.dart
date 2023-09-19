@@ -248,4 +248,5 @@ extension AppTheme on ThemeData {
   Color get chatLightColor => const Color(0xff909090);
   Color get greenColor => Colors.green;
   Color get blue => const Color(0xFF4A6FC5);
+  Color get buttonSec => const Color(0xFF785494);
 }
