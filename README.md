@@ -5,12 +5,13 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8b4d14fe-4a31-4831-a205-cd881e937021" width="200"  title="Slider Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/307d6d1c-cddd-4dae-a91c-7f27fa560ea3" width="200" title="Slider Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/7bb29a20-6df4-4c28-8eab-c8f14badd558" width="200" title="Slider Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f2a0c17d-d0e7-4918-b2d2-54553536a850" width="200" title="Sign In Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/e23440d9-5ec0-4eef-9300-fd06ff6d9423" width="200" title="Sign Up Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/fcb6bda3-e3e5-4ae4-b8ac-34d15b4339a0" width="200" title="Verify Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/10cabd75-200f-454f-ab43-fd7d1aea642a" width="200" title="Forgot Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/b1a79173-e76e-4722-a9e3-2c985e1c56f5" width="200" title="Create User Profile Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/56f3597a-d12c-42eb-9d98-3af2b140e4d6" width="200" title="Sign In Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f87cdc20-0a75-4d02-b4bb-75173b292154" width="200" title="Sign Up Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/a94744ff-986a-4cc6-a7d4-35338a5999a0" width="200" title="Verify Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/eb69137e-55aa-4a16-b89e-696e30f99cfe" width="200" title="Forgot Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/92bd1262-2efd-4288-997f-2d56e6fde240" width="200" title="Create User Profile Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/b9729fb9-e42d-4423-b245-1228418fac6d" width="200" title="Home Screen"/>
+
 
 
 
@@ -27,6 +28,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Sign Up Screen
 * Forgot Screen
 * Verifition Screen
+* Home Screen
 * Create User Profile Screen
 * Custom Paint
 * GetX State Management
