@@ -110,6 +110,7 @@ class FontUtilities {
     TextDecoration? decoration,
     FWT fontWeight = FWT.regular,
     double letterSpacing = 0.5,
+    Color? decorationColor,
   }) {
     return TextStyle(
       color: fontColor,
@@ -118,6 +119,8 @@ class FontUtilities {
       letterSpacing: letterSpacing,
       decoration: decoration,
       fontFamily: "Mukta",
+      decorationColor: decorationColor,
+      decorationThickness: 2,
     );
   }
   /// FONTSTYLE FOR FONT SIZE 12
@@ -126,6 +129,7 @@ class FontUtilities {
     TextDecoration? decoration,
     FWT fontWeight = FWT.regular,
     double letterSpacing = 0.5,
+    Color? decorationColor,
   }) {
     return TextStyle(
       color: fontColor,
@@ -134,6 +138,8 @@ class FontUtilities {
       letterSpacing: letterSpacing,
       decoration: decoration,
       fontFamily: "Mukta",
+      decorationColor: decorationColor,
+      decorationThickness: 2,
     );
   }
 
@@ -143,6 +149,7 @@ class FontUtilities {
     FWT fontWeight = FWT.regular,
     TextDecoration? decoration,
     double letterSpacing = 0.5,
+    Color? decorationColor,
   }) {
     return TextStyle(
       color: fontColor,
@@ -151,6 +158,8 @@ class FontUtilities {
       letterSpacing: letterSpacing,
       fontFamily: "Mukta",
       decoration: decoration,
+      decorationColor: decorationColor,
+      decorationThickness: 2,
     );
   }
 

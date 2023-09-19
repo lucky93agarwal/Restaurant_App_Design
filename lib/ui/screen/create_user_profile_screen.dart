@@ -23,9 +23,11 @@ class _CreateUserProfileScreenState extends State<CreateUserProfileScreen> {
   TextEditingController addressController = TextEditingController();
 
   void onTapButton() {
-    // Get.toNamed(RoutePath.createUserProfileScreen);
+    Get.toNamed(RoutePath.homeScreen);
   }
+  void onTapProfileButton() {
 
+  }
   void onTapMoveNextButton() {
     Get.toNamed(RoutePath.loginScreen);
   }
@@ -46,7 +48,7 @@ class _CreateUserProfileScreenState extends State<CreateUserProfileScreen> {
                     verticalSpacing(20),
                     appBarWidget(AppText.createYourProfile),
                     verticalSpacing(40),
-                    userProfile(true,context,onTapButton,""),
+                    userProfile(true,context,onTapProfileButton,""),
 
                     verticalSpacing(20),
                     AppTextField(

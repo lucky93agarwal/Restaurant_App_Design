@@ -12,6 +12,7 @@ class AppText {
   static const String done = 'Done';
 
   static const String firstName = 'First Name';
+  static const String search = 'Search';
   static const String lastName = 'Last Name';
   static const String verification = 'Verification';
   static const String demoEmail = "RamSingh@gmail.com";
@@ -23,11 +24,18 @@ class AppText {
   static const String yourFavouriteFoodFromNearbyTopRestaurant = 'Your Favourite Food from Nearby Top Restaurant';
   static const String verify = 'Verify';
   static const String weSentAVerificationCodeTo = "We've sent a verification code to";
+  static const String cuisine = "CUISINE";
+  static const String  popularFood = 'Popular Food';
+  static const String  allFood = 'ALLFOOD';
+
+  static const String  nearbyBestRestaurant = 'Nearby Best Restaurant';
+  static const String  all = 'ALL';
 
   static const int hideSuffixIconEditText = 10;
   static const int checkSuffixIconEditText = 0;
   static const int forgotTextSuffixIconEditText = 2;
   static const int addIconTextSuffixIconEditText = 3;
+  static const int filterIconTextSuffixIconEditText = 1;
 
 
   static const int messageTextPrefixIconEditText = 0;
@@ -36,4 +44,5 @@ class AppText {
   static const int locationTextPrefixIconEditText = 5;
   static const int userTextPrefixIconEditText = 4;
   static const int hidePrefixIconEditText = 10;
+  static const int searchPrefixIconEditText = 6;
 }

@@ -6,6 +6,7 @@ import 'package:restaurant_app_design/ui/widgets/text_field.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
+import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -16,8 +17,11 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  TextEditingController oneController = TextEditingController();
+  TextEditingController twoController = TextEditingController();
+  TextEditingController threeController = TextEditingController();
+  TextEditingController fourController = TextEditingController();
+
   void onTapButton(){
     Get.toNamed(RoutePath.createUserProfileScreen);
   }
@@ -52,36 +56,44 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppTextField(
-                            ctrl: emailController,
-                            hintText: "",
+                            ctrl: oneController,
+                            hintText: "-",
                             textInputType:TextInputType.number,
                             icons: AppText.hidePrefixIconEditText,
                             iconsTwo:AppText.hideSuffixIconEditText,
-                            checkVerify:true
+                            checkVerify:true,
+                          style: FontUtilities.h30(
+                              fontColor: Colors.white, fontWeight: FWT.semiBold),
                         ),
                         AppTextField(
-                            ctrl: emailController,
-                            hintText: "",
+                            ctrl: twoController,
+                            hintText: "-",
                             textInputType:TextInputType.number,
                             icons: AppText.hidePrefixIconEditText,
                             iconsTwo:AppText.hideSuffixIconEditText,
-                            checkVerify:true
+                            checkVerify:true,
+                          style: FontUtilities.h30(
+                              fontColor: Colors.white, fontWeight: FWT.semiBold),
                         ),
                         AppTextField(
-                            ctrl: emailController,
-                            hintText: "",
+                            ctrl: threeController,
+                            hintText: "-",
                             textInputType:TextInputType.number,
                             icons: AppText.hidePrefixIconEditText,
                             iconsTwo: AppText.hideSuffixIconEditText,
-                            checkVerify:true
+                            checkVerify:true,
+                          style: FontUtilities.h30(
+                              fontColor: Colors.white, fontWeight: FWT.semiBold),
                         ),
                         AppTextField(
-                            ctrl: emailController,
-                            hintText: "",
+                            ctrl: fourController,
+                            hintText: "-",
                             textInputType:TextInputType.number,
                             icons: AppText.hidePrefixIconEditText,
                             iconsTwo: AppText.hideSuffixIconEditText,
-                            checkVerify:true
+                            checkVerify:true,
+                          style: FontUtilities.h30(
+                              fontColor: Colors.white, fontWeight: FWT.semiBold),
                         ),
                       ],
                     ),

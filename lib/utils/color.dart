@@ -249,4 +249,6 @@ extension AppTheme on ThemeData {
   Color get greenColor => Colors.green;
   Color get blue => const Color(0xFF4A6FC5);
   Color get buttonSec => const Color(0xFF785494);
+  Color get editIconButtonSec => const Color(0xFF1f1f1f);
+  Color get subTitleText => const Color(0xff857998);
 }

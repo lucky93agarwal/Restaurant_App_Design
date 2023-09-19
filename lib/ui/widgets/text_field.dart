@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
@@ -32,6 +33,7 @@ class AppTextField extends StatelessWidget {
       margin:checkVerify==true?null: const EdgeInsets.symmetric(horizontal: 20),
       height: checkVerify==true?60:45,
       width: checkVerify==true?60:Get.width,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
           color:checkVerify==true? Theme.of(context).buttonSec : const Color(0xFFF6F6F6),
           borderRadius:checkVerify==true?BorderRadius.circular(50): BorderRadius.circular(25),
@@ -41,10 +43,13 @@ class AppTextField extends StatelessWidget {
         style: style,
         textAlign: checkVerify==true?TextAlign.center:TextAlign.start,
         textCapitalization: textCapitalization ?? TextCapitalization.sentences,
+        inputFormatters:checkVerify==true? [FilteringTextInputFormatter. digitsOnly,
+          LengthLimitingTextInputFormatter(1),
+        ]:null,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          fillColor: const Color(0x10DADADA),
+          hintStyle: TextStyle(color: checkVerify==true?Colors.white: Theme.of(context).editIconButtonSec),
+          fillColor:  Colors.transparent,
           filled: true,
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
@@ -53,15 +58,17 @@ class AppTextField extends StatelessWidget {
           disabledBorder: InputBorder.none,
           focusedErrorBorder: InputBorder.none,
           prefixIcon: icons==0?
-          const Icon(Icons.mail_sharp,color: Colors.grey,size: 20,):
+          Icon(Icons.mail_sharp,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==2?
-          const Icon(Icons.phone,color: Colors.grey,size: 20,):
+          Icon(Icons.phone,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==3?
-          const Icon(Icons.key,color: Colors.grey,size: 20,):
+          Icon(Icons.key,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==4?
-          const Icon(Icons.person,color: Colors.grey,size: 20,):
+          Icon(Icons.person,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==5?
-          const Icon(Icons.location_on,color: Colors.grey,size: 20,):null,
+          Icon(Icons.location_on,color: Theme.of(context).editIconButtonSec,size: 20,):
+          icons==6?
+          Icon(Icons.search,color: Theme.of(context).editIconButtonSec,size: 20,):null,
 
 
           suffixIcon:iconsTwo==0? const Icon(Icons.check,color: Colors.green,size: 20,):
@@ -71,7 +78,9 @@ class AppTextField extends StatelessWidget {
                 fontColor: Theme.of(context).appMainLightColor, fontWeight: FWT.semiBold),),
           ) :
           iconsTwo==3?
-          const Icon(Icons.add_circle_outline,color: Colors.grey,size: 20,):null,
+          Icon(Icons.add_circle_outline,color: Theme.of(context).editIconButtonSec,size: 20,):
+          iconsTwo==1?
+          Icon(Icons.filter_alt_outlined,color: Theme.of(context).editIconButtonSec,size: 20,):null,
           suffixIconConstraints: BoxConstraints(minWidth:iconsTwo==0? 50:70, minHeight: 0),
 
           isDense: true,
