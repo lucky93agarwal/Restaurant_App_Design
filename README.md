@@ -10,6 +10,8 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/fcb6bda3-e3e5-4ae4-b8ac-34d15b4339a0" width="200" title="Verify Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/10cabd75-200f-454f-ab43-fd7d1aea642a" width="200" title="Forgot Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/b1a79173-e76e-4722-a9e3-2c985e1c56f5" width="200" title="Create User Profile Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/b9729fb9-e42d-4423-b245-1228418fac6d" width="200" title="Home Screen"/>
+
 
 
 
