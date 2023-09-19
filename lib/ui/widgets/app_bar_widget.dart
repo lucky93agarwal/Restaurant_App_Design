@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:restaurant_app_design/model/category.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
 import 'package:restaurant_app_design/model/popular_food.dart';
+import 'package:restaurant_app_design/model/recent_search.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
@@ -323,6 +324,35 @@ Widget nearbyRestaurantFood() {
     ),
   );
 }
+
+Widget resendSend(BuildContext context){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppText.recentSearch,
+          style: FontUtilities.h14(
+            fontColor: Theme.of(context).subTitleText,),),
+         verticalSpacing(10),
+         Column(children: List.generate(recentSearch.length, (index) => Container(
+           margin: const EdgeInsets.symmetric(vertical: 10),
+           child: Row(children: [
+             const Icon(Icons.access_time_filled_outlined,color: Color(0xffff0188),size: 20,),
+             horizontalSpacing(10),
+             Text(recentSearch[index].title,
+               style: FontUtilities.h14(
+                 decorationColor:Colors.white,
+                 fontColor: Colors.white,),),
+           ],),
+         )),)
+
+      ],
+    ),);
+}
+
 Widget horizontalLine(BuildContext context){
   return Container(height: 1,
     width: Get.width,

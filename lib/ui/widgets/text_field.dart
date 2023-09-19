@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
+import 'package:restaurant_app_design/utils/route_path.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField(
@@ -16,6 +17,7 @@ class AppTextField extends StatelessWidget {
         this.icons,
         this.iconsTwo,
       this.onTap,
+        this.searchEdit,
         required this.checkVerify});
   final TextEditingController ctrl;
   final String? hintText;
@@ -27,12 +29,13 @@ class AppTextField extends StatelessWidget {
   final int? iconsTwo;
   final void Function()? onTap;
   final bool checkVerify;
+  final int? searchEdit;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin:checkVerify==true?null: const EdgeInsets.symmetric(horizontal: 20),
       height: checkVerify==true?60:45,
-      width: checkVerify==true?60:Get.width,
+      width: checkVerify==true?60:searchEdit==1?Get.width*0.8:Get.width,
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color:checkVerify==true? Theme.of(context).buttonSec : const Color(0xFFF6F6F6),
@@ -68,7 +71,9 @@ class AppTextField extends StatelessWidget {
           icons==5?
           Icon(Icons.location_on,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==6?
-          Icon(Icons.search,color: Theme.of(context).editIconButtonSec,size: 20,):null,
+          InkWell(onTap: (){
+            Get.toNamed(RoutePath.searchScreen);
+          },child: Icon(Icons.search,color: Theme.of(context).editIconButtonSec,size: 20,)):null,
 
 
           suffixIcon:iconsTwo==0? const Icon(Icons.check,color: Colors.green,size: 20,):

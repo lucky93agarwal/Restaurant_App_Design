@@ -6,4 +6,5 @@ class RoutePath {
   static String verifyScreen = '/verify';
   static String createUserProfileScreen = '/createUserProfile';
   static String homeScreen = '/home';
+  static String searchScreen = '/search';
 }

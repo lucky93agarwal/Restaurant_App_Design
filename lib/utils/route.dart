@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:restaurant_app_design/ui/screen/create_user_profile_screen.dart';
 import 'package:restaurant_app_design/ui/screen/forgot_pass_screen.dart';
 import 'package:restaurant_app_design/ui/screen/home_screen.dart';
+import 'package:restaurant_app_design/ui/screen/search_screen.dart';
 import 'package:restaurant_app_design/ui/screen/signup_screen.dart';
 import 'package:restaurant_app_design/ui/screen/sliding_screen.dart';
 import 'package:restaurant_app_design/ui/screen/verification_screen.dart';
@@ -37,6 +38,9 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.homeScreen, page: () =>const HomeScreen()),
+
+    GetPage(
+        name: RoutePath.searchScreen, page: () =>const SearchScreen()),
   ];
 
 }

@@ -29,6 +29,7 @@ class AppText {
   static const String  allFood = 'ALLFOOD';
 
   static const String  nearbyBestRestaurant = 'Nearby Best Restaurant';
+  static const String recentSearch = 'Recent Search';
   static const String  all = 'ALL';
 
   static const int hideSuffixIconEditText = 10;
