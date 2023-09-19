@@ -25,6 +25,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Sign Up Screen
 * Forgot Screen
 * Verifition Screen
+* Create User Profile Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
