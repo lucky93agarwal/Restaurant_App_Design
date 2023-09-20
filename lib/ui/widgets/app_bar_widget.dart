@@ -213,6 +213,65 @@ Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
   );
 }
 
+Widget titleFilter(String firstTitle,String secondTitle){
+  return  Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(firstTitle+secondTitle,
+          style: FontUtilities.h16(
+              decorationColor: Colors.blue,
+              fontColor: Colors.white,
+              fontWeight: FWT.semiBold),
+        ),
+        InkWell(
+          onTap: (){
+
+          //  Get.toNamed(RoutePath.listScreen);
+          },
+          child: filterIcon(),
+        )
+      ],
+    ),
+  );
+}
+
+Widget filterIcon(){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Container(
+      height: 4,
+      width: 18,
+      margin: const EdgeInsets.symmetric(vertical: 2),
+      decoration:const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(0xffff0188),
+      ),
+    ),
+    Container(
+      height: 4,
+      width: 13,
+      margin: const EdgeInsets.symmetric(vertical: 2),
+      decoration:const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(0xffff0188),
+      ),
+    ),
+    Container(
+      height: 4,
+      width: 7,
+      margin: const EdgeInsets.symmetric(vertical: 2),
+      decoration:const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(0xffff0188),
+      ),
+    ),
+  ],);
+}
+
 Widget listFood(BuildContext context,dynamic model,ScrollController controller){
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),

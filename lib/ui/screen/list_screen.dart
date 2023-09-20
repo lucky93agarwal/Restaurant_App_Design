@@ -26,13 +26,15 @@ class _ListScreenState extends State<ListScreen> {
         child: SizedBox(
           width: Get.width,
           height: Get.height,
-          child: Column(
+          child: ListView(
+            padding: const EdgeInsets.all(0),
+            controller: controller,
             children: [
-              verticalSpacing(20),
             appBarWidget(Get.arguments['title']!,true),
-
+              titleFilter("360+ ",Get.arguments['title']!.toString().split(" ").last),
             Expanded(child: listFood(context,Get.arguments['model']!,controller)),
               verticalSpacing(20),
+
           ],),
         ),
       ),
