@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
@@ -18,6 +19,7 @@ class AppTextField extends StatelessWidget {
         this.iconsTwo,
       this.onTap,
         this.searchEdit,
+        this.onChange,
         required this.checkVerify});
   final TextEditingController ctrl;
   final String? hintText;
@@ -28,6 +30,7 @@ class AppTextField extends StatelessWidget {
   final int? icons;
   final int? iconsTwo;
   final void Function()? onTap;
+  final void Function(String)? onChange;
   final bool checkVerify;
   final int? searchEdit;
   @override
@@ -44,6 +47,7 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         keyboardType: textInputType,
         style: style,
+        onChanged: onChange,
         textAlign: checkVerify==true?TextAlign.center:TextAlign.start,
         textCapitalization: textCapitalization ?? TextCapitalization.sentences,
         inputFormatters:checkVerify==true? [FilteringTextInputFormatter. digitsOnly,
@@ -72,6 +76,7 @@ class AppTextField extends StatelessWidget {
           Icon(Icons.location_on,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==6?
           InkWell(onTap: (){
+            Get.lazyPut(() => FilterController());
             Get.toNamed(RoutePath.searchScreen);
           },child: Icon(Icons.search,color: Theme.of(context).editIconButtonSec,size: 20,)):null,
 
