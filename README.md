@@ -13,6 +13,8 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/b9729fb9-e42d-4423-b245-1228418fac6d" width="200" title="Home Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/6df60e8e-7b73-4976-97f3-9a93f71abe71" width="200" title="Search Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/6ca0281a-f72b-4d0e-a8fe-5f8c7e73f823" width="200" title="Search Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/98137e76-9d3c-4f84-abeb-74664cb9b1ed" width="200" title="Filter Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/595200f8-5136-46df-aa3c-97dfa2bced9a" width="200" title="Filter Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/a43c3031-2ae9-4749-a86e-e13e89272d07" width="200" title="List Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/3080565e-5e38-404e-9513-463ade0a42e6" width="200" title="List Screen"/>
 
