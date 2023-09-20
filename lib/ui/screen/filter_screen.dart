@@ -35,7 +35,7 @@ class FilterScreen extends GetView<FilterController> {
               verticalSpacing(20),
               Visibility(visible: controller.checkVisibility.value == true?true:false,
                   replacement: applyWidget(context,controller.list),
-                  child: filterWidget(context)),
+                  child: filterWidget(context,controller.start,controller.end,controller.filterModelList)),
               const Spacer(),
               customButton(controller.checkVisibility.value?AppText.search:AppText.apply,context,onTapButton),
               verticalSpacing(40),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/model/category.dart';
+import 'package:restaurant_app_design/model/filter_list.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
 import 'package:restaurant_app_design/model/popular_food.dart';
 import 'package:restaurant_app_design/model/recent_search.dart';
@@ -521,18 +522,100 @@ Widget resendSend(BuildContext context){
 Widget applyWidget(BuildContext context,RxList<SortList> list){
   return SizedBox(
     width: Get.width,
-    child: Column(children: List.generate(sortList.length, (index) => titleThree(context,list[index]))),
+    child: Column(children: List.generate(sortList.length, (index) => titleThree(context,list[index]))
+    ),
   );
 }
-Widget filterWidget(BuildContext context){
+Widget filterWidget(BuildContext context,RxDouble start, RxDouble end,RxList<FilterList> list){
   return SizedBox(
     width: Get.width,
     child: Column(children: [
-
+      verticalSpacing(25),
+      Text(AppText.priceRange,  style: FontUtilities.h16(
+          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+      verticalSpacing(10),
+      priceSliderWidget(start,end,context),
+      verticalSpacing(25),
+      Text(AppText.dietary,  style: FontUtilities.h16(
+          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+      verticalSpacing(20),
+      Column(children: List.generate(list.length, (index) => titleThree(context,list[index])),),
+      verticalSpacing(25),
+      Text(AppText.cuisines,  style: FontUtilities.h16(
+          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+      verticalSpacing(20),
+      cuisinesListWidget(context),
     ],),
   );
 }
-Widget titleThree(context,SortList model){
+Widget cuisinesListWidget(BuildContext context){
+  return menuCategoryTwo(context);
+}
+
+Widget menuCategoryTwo(BuildContext context) {
+  return Container(
+    height: 100,
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: ListView.builder(itemCount: category.length,
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemBuilder: (context,index)=>InkWell(
+      onTap: () {},
+      child: Container(width: 100,
+        height: 100,
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(right: 10),
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius:BorderRadius.all(Radius.circular(5)),
+          color: Color(0xff4a3367),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).buttonSec,
+                  shape: BoxShape.circle),
+              child: Image.asset(category[index].img),
+            ),
+            Text(category[index].title,  style: FontUtilities.h12(
+                fontColor: Colors.white, fontWeight: FWT.regular),),
+          ],
+        ),),
+    ))
+
+  );
+}
+
+Widget priceSliderWidget(RxDouble start, RxDouble end,context){
+
+  return Column(
+    children: [
+      RangeSlider(
+        labels:RangeLabels(start.value.toString(), end.value.toString()),
+        values: RangeValues(start.value, end.value),
+        activeColor: Theme.of(context).btnOffColor,
+        inactiveColor: const Color(0xff796089),
+        onChanged: (value) {
+          start.value = value.start;
+          end.value = value.end;
+
+        },
+        min: 0,
+        max: 100,
+      ),
+      Text("\$"+start.value.toInt().toString()+" - "+"\$"+end.value.toInt().toString(),  style: FontUtilities.h14(
+          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+    ],
+  );
+}
+Widget titleThree(context,dynamic model){
   return  Column(
     children: [
       ListTile(

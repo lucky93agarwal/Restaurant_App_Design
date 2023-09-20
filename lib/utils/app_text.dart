@@ -10,6 +10,9 @@ class AppText {
   static const String phone = 'Phone';
   static const String next = 'Next';
   static const String done = 'Done';
+  static const String priceRange = "Price Range";
+  static const String dietary = "Dietary";
+  static const String cuisines = "Cuisines";
 
   static const String filter = 'Filter';
   static const String sort = 'Sort';
