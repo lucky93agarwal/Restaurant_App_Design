@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/model/category.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
 import 'package:restaurant_app_design/model/popular_food.dart';
 import 'package:restaurant_app_design/model/recent_search.dart';
+import 'package:restaurant_app_design/model/sort_list.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
@@ -161,9 +163,9 @@ Widget menuCategory(BuildContext context) {
           onTap: () {},
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            decoration: const BoxDecoration(
-                color: Color(0xffff0188),
-                borderRadius: BorderRadius.all(Radius.circular(25))),
+            decoration:  BoxDecoration(
+                color: Theme.of(context).btnOffColor,
+                borderRadius: const BorderRadius.all(Radius.circular(25))),
             child: Text(
               AppText.cuisine,
               style: FontUtilities.h14(
@@ -213,7 +215,7 @@ Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
   );
 }
 
-Widget titleFilter(String firstTitle,String secondTitle){
+Widget titleFilter(String firstTitle,String secondTitle,BuildContext context){
   return  Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Row(
@@ -228,17 +230,20 @@ Widget titleFilter(String firstTitle,String secondTitle){
         ),
         InkWell(
           onTap: (){
-
-          //  Get.toNamed(RoutePath.listScreen);
+            Get.lazyPut(() => FilterController());
+            var  data = {
+              "title" : secondTitle,
+            };
+            Get.toNamed(RoutePath.filterScreen,arguments: data);
           },
-          child: filterIcon(),
+          child: filterIcon(context),
         )
       ],
     ),
   );
 }
 
-Widget filterIcon(){
+Widget filterIcon(BuildContext context){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -246,27 +251,27 @@ Widget filterIcon(){
       height: 4,
       width: 18,
       margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration:const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Color(0xffff0188),
+      decoration: BoxDecoration(
+        borderRadius:const BorderRadius.all(Radius.circular(5)),
+        color: Theme.of(context).btnOffColor,
       ),
     ),
     Container(
       height: 4,
       width: 13,
       margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration:const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Color(0xffff0188),
+      decoration: BoxDecoration(
+        borderRadius:const BorderRadius.all(Radius.circular(5)),
+        color: Theme.of(context).btnOffColor,
       ),
     ),
     Container(
       height: 4,
       width: 7,
       margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration:const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Color(0xffff0188),
+      decoration: BoxDecoration(
+        borderRadius:const BorderRadius.all(Radius.circular(5)),
+        color: Theme.of(context).btnOffColor,
       ),
     ),
   ],);
@@ -395,9 +400,9 @@ Widget popularFood() {
                           ),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                            decoration: const BoxDecoration(
-                                color: Color(0xffff0188),
-                                borderRadius: BorderRadius.all(Radius.circular(25))),
+                            decoration:  BoxDecoration(
+                                color: Theme.of(context).btnOffColor,
+                                borderRadius:const BorderRadius.all(Radius.circular(25))),
                             child: Text(
                               popular[index].off,
                               style: FontUtilities.h11(
@@ -500,7 +505,7 @@ Widget resendSend(BuildContext context){
              Container(
            margin: const EdgeInsets.symmetric(vertical: 10),
            child: Row(children: [
-             const Icon(Icons.access_time_filled_outlined,color: Color(0xffff0188),size: 20,),
+             Icon(Icons.access_time_filled_outlined,color: Theme.of(context).btnOffColor,size: 20,),
              horizontalSpacing(10),
              Text(recentSearch[index].title,
                style: FontUtilities.h14(
@@ -513,12 +518,99 @@ Widget resendSend(BuildContext context){
     ),);
 }
 
+Widget applyWidget(BuildContext context,RxList<SortList> list){
+  return SizedBox(
+    width: Get.width,
+    child: Column(children: List.generate(sortList.length, (index) => titleThree(context,list[index]))),
+  );
+}
+Widget filterWidget(BuildContext context){
+  return SizedBox(
+    width: Get.width,
+    child: Column(children: [
+
+    ],),
+  );
+}
+Widget titleThree(context,SortList model){
+  return  Column(
+    children: [
+      ListTile(
+        title: Text(model.title,  style: FontUtilities.h12(
+            fontColor: Colors.white, fontWeight: FWT.regular),),
+        trailing: Visibility(visible: model.checkClick,child: const Icon(Icons.check,color: Colors.green,)),
+
+        onTap: (){
+          if(model.checkClick==true){
+            model.checkClick = false;
+          }else {
+            model.checkClick = true;
+          }
+
+        },
+      ),
+      horizontalLine(context),
+    ],
+  );
+}
+
+Widget filterButton(BuildContext context,RxBool check){
+
+  return  Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      InkWell(
+        onTap: (){
+          check.value = true;
+        },
+        child: Container(
+          width: 100,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+              borderRadius:const BorderRadius.all(Radius.circular(20)),
+              color: check.value?Theme.of(context).btnOffColor: const Color(0xff552d6c)
+          ),
+          child: Text(AppText.filter,
+            style: FontUtilities.h14(
+            decorationColor:Colors.white,
+            fontColor: Colors.white,
+            fontWeight: FWT.semiBold),),
+        ),
+      ),
+      InkWell(
+        onTap: (){
+
+          check.value = false;
+        },
+        child: Container(
+          width: 100,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+              borderRadius:const BorderRadius.all(Radius.circular(20)),
+              color:  check.value==false?Theme.of(context).btnOffColor: const Color(0xff552d6c)
+          ),
+          child:  Text(AppText.sort,
+            style: FontUtilities.h14(
+              decorationColor:Colors.white,
+              fontColor: Colors.white,
+                fontWeight: FWT.semiBold),),
+        ),
+      ),
+
+    ],);
+}
+
 Widget horizontalLine(BuildContext context){
   return Container(height: 1,
     width: Get.width,
     margin: const EdgeInsets.symmetric(horizontal: 20),
     color: Theme.of(context).subTitleText,);
 }
+
 
 Widget customTextUnderLineButton(String title, void Function() onTap) {
   return InkWell(

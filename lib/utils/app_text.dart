@@ -11,8 +11,12 @@ class AppText {
   static const String next = 'Next';
   static const String done = 'Done';
 
+  static const String filter = 'Filter';
+  static const String sort = 'Sort';
+
   static const String firstName = 'First Name';
   static const String search = 'Search';
+  static const String apply = 'Apply';
   static const String lastName = 'Last Name';
   static const String verification = 'Verification';
   static const String demoEmail = "RamSingh@gmail.com";

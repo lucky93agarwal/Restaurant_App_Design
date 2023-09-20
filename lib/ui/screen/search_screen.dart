@@ -39,7 +39,7 @@ class SearchScreen extends GetView<FilterController> {
           ),
           verticalSpacing(20),
           Visibility(visible: controller.checkVisibility.value,child: resendSend(context)),
-          Visibility(visible: controller.checkVisibility.value==true?false:true,child: titleFilter("360+ ","Food")),
+          Visibility(visible: controller.checkVisibility.value==true?false:true,child: titleFilter("360+ ","Food",context)),
           Visibility(visible: controller.checkVisibility.value==true?false:true,child:        Expanded(child: listFood(context,popular,controller.controllers)),),
         ],),
       )),

@@ -31,8 +31,8 @@ class _ListScreenState extends State<ListScreen> {
             controller: controller,
             children: [
             appBarWidget(Get.arguments['title']!,true),
-              titleFilter("360+ ",Get.arguments['title']!.toString().split(" ").last),
-            Expanded(child: listFood(context,Get.arguments['model']!,controller)),
+              titleFilter("360+ ",Get.arguments['title']!.toString().split(" ").last,context),
+            listFood(context,Get.arguments['model']!,controller),
               verticalSpacing(20),
 
           ],),
