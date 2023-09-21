@@ -17,10 +17,10 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/595200f8-5136-46df-aa3c-97dfa2bced9a" width="200" title="Filter Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/a43c3031-2ae9-4749-a86e-e13e89272d07" width="200" title="List Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/3080565e-5e38-404e-9513-463ade0a42e6" width="200" title="List Screen"/>
-
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/cdcdccd7-ed2a-47e7-911d-0ad1f85541b7" width="200" title="Product Details Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/62111a63-f516-413a-881a-da599890ac56" width="200" title="Quantity Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/c1448758-6636-4edd-94e1-a45910596179" width="200" title="Best Offer Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/1bda497d-fe15-45e6-a2a9-09da13192ef7" width="200" title="Favourite Screen"/>
 
 
 ## Download App
