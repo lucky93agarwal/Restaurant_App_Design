@@ -19,7 +19,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/3080565e-5e38-404e-9513-463ade0a42e6" width="200" title="List Screen"/>
 
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/cdcdccd7-ed2a-47e7-911d-0ad1f85541b7" width="200" title="Product Details Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/1e4ce127-d45d-41fc-ac26-1104e11bd8de" width="200" title="Quantity Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/62111a63-f516-413a-881a-da599890ac56" width="200" title="Quantity Screen"/>
 
 
 
@@ -40,6 +40,8 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Filter Screen
 * Search Screen
 * List Screen
+* Product Details Screen
+* Quantity Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
