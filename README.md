@@ -42,6 +42,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Product Details Screen
 * Quantity Screen
 * Best Offer Screen
+* Favourite Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
