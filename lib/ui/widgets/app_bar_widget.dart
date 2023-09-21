@@ -201,7 +201,9 @@ Widget menuCategory(BuildContext context) {
                   )),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(RoutePath.favourite);
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             decoration: BoxDecoration(
@@ -214,6 +216,165 @@ Widget menuCategory(BuildContext context) {
             ),
           ),
         )
+      ],
+    ),
+  );
+}
+
+Widget favouriteFoodWidget(BuildContext context){
+  return Container(
+    margin: const EdgeInsets.only(left: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppText.myFavouriteFood,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(15),
+        SizedBox(
+          width: Get.width,
+          height: 205,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: bestOfferList.length,
+              itemBuilder: (BuildContext context, int index){
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 150,
+                  width: 150,
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.only(left: 10,bottom: 10),
+                margin: const EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  image: DecorationImage(
+                    image: AssetImage(bestOfferList[index].img),
+                    fit: BoxFit.cover
+                  )
+                ),
+                  child:  Container(
+                    height: 30,
+                    width: 30,
+                    padding: const EdgeInsets.all(5),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: Image.asset(AppImages.heartIcon),
+                  ),
+                ),
+                verticalSpacing(10),
+                Text(
+                  bestOfferList[index].title,
+                  style: FontUtilities.h16(
+                      decorationColor: Colors.blue,
+                      fontColor: Colors.white,
+                      fontWeight: FWT.semiBold),
+                ),
+                verticalSpacing(5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                      size: 15,
+                    ),
+                    horizontalSpacing(5),
+                    Text(
+                      bestOfferList[index].rating,
+                      style: FontUtilities.h12(
+                          decorationColor: Colors.blue,
+                          fontColor: Colors.white,
+                          fontWeight: FWT.semiBold),
+                    ),
+                    horizontalSpacing(5),
+                    Text(
+                      bestOfferList[index].review,
+                      style: FontUtilities.h12(
+                          decorationColor: Colors.blue,
+                          fontColor:const Color(0xff89749c),
+                          fontWeight: FWT.regular),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget favouriteRestaurantWidget(BuildContext context){
+  return Container(
+    margin: const EdgeInsets.only(left: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppText.myFavouriteRestaurant,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(15),
+        SizedBox(
+          width: Get.width,
+          height: 190,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: restaurant.length,
+              itemBuilder: (BuildContext context, int index){
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 150,
+                      alignment: Alignment.bottomLeft,
+                      padding: const EdgeInsets.only(left: 10,bottom: 10),
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          image: DecorationImage(
+                              image: AssetImage(restaurant[index].img),
+                              fit: BoxFit.cover
+                          )
+                      ),
+                      child:  Container(
+                        height: 30,
+                        width: 30,
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Image.asset(AppImages.heartIcon),
+                      ),
+                    ),
+                    verticalSpacing(10),
+                    Text(
+                      restaurant[index].title,
+                      style: FontUtilities.h16(
+                          decorationColor: Colors.blue,
+                          fontColor: Colors.white,
+                          fontWeight: FWT.semiBold),
+                    ),
+                    verticalSpacing(5),
+
+                  ],
+                );
+              }),
+        ),
       ],
     ),
   );

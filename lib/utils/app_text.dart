@@ -17,6 +17,9 @@ class AppText {
 
   static const String bestOffer = "Best Offer";
   static const String foodOrder = "Food Order";
+  static const String favourite = 'Favourite';
+  static const String myFavouriteFood = 'My Favourite Food';
+  static const String myFavouriteRestaurant = 'My Favourite Restaurant';
 
   static const String quantity = "Quantity";
   static const String totalPrice = "Total Price";

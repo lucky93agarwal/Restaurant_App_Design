@@ -30,7 +30,8 @@ class _ListScreenState extends State<ListScreen> {
             padding: const EdgeInsets.all(0),
             controller: controller,
             children: [
-            appBarWidget(Get.arguments['title']!,true),
+              appBarTwoWidget(Get.arguments['title']!,true),
+              verticalSpacing(20),
               titleFilter("360+ ",Get.arguments['title']!.toString().split(" ").last,context),
             listFood(context,Get.arguments['model']!,controller),
               verticalSpacing(20),
