@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:restaurant_app_design/ui/screen/best_offer_screen.dart';
 import 'package:restaurant_app_design/ui/screen/create_user_profile_screen.dart';
 import 'package:restaurant_app_design/ui/screen/filter_screen.dart';
 import 'package:restaurant_app_design/ui/screen/forgot_pass_screen.dart';
@@ -57,6 +58,8 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.productDetails, page: () =>const ProductDetailsScreen()),
+    GetPage(
+        name: RoutePath.bestOffer, page: () =>const BestOfferScreen()),
   ];
 
 }

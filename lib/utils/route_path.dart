@@ -10,4 +10,5 @@ class RoutePath {
   static String listScreen ='/listScreen';
   static String filterScreen ='/filter';
   static String productDetails = '/productDetails';
+  static String bestOffer = '/bestOffer';
 }

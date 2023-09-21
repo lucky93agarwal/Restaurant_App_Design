@@ -20,4 +20,13 @@ class AppImages {
   static const String kulcheeFoodImg = 'assets/images/kulchee_food.png';
   static const String vadaPavFoodImg = 'assets/images/vada_pav_food.png';
   static const String chholeBhatureFoodImg = 'assets/images/chhole_bhature_food.png';
+
+
+  static const String dosaImg = 'assets/images/dosa.png';
+  static const String lassiImg = 'assets/images/lassi.png';
+  static const String samosaImg = 'assets/images/samosa.png';
+  static const String biryaniImg = 'assets/images/biryani.png';
+  static const String khastaImg = 'assets/images/khasta.png';
+  static const String pedaImg = 'assets/images/peda.png';
+  static const String idlitwoImg = 'assets/images/idlitwo.png';
 }

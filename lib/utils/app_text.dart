@@ -15,6 +15,9 @@ class AppText {
   static const String cuisines = "Cuisines";
   static const String order = "Order";
 
+  static const String bestOffer = "Best Offer";
+  static const String foodOrder = "Food Order";
+
   static const String quantity = "Quantity";
   static const String totalPrice = "Total Price";
   static const String continues = "Continue";

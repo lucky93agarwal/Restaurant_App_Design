@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/controller/product_details_contoller.dart';
+import 'package:restaurant_app_design/model/best_offer.dart';
 import 'package:restaurant_app_design/model/category.dart';
 import 'package:restaurant_app_design/model/filter_list.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
@@ -22,6 +23,41 @@ Widget appBarWidget(String title, bool rightIcon) {
     margin: const EdgeInsets.symmetric(vertical: 10),
     alignment: Alignment.center,
     height: 80,
+    child: Stack(
+      children: [
+        InkWell(
+            onTap: () => Get.back(),
+            child: const Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ))),
+        Align(
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style: FontUtilities.h16(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            )),
+        Visibility(
+          visible: rightIcon == null ? false : true,
+          child: const Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
+              )),
+        ),
+      ],
+    ),
+  );
+}
+Widget appBarTwoWidget(String title, bool rightIcon) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    margin: const EdgeInsets.only(top: 40),
+    alignment: Alignment.center,
     child: Stack(
       children: [
         InkWell(
@@ -149,7 +185,9 @@ Widget menuCategory(BuildContext context) {
           children: List.generate(
               category.length,
               (index) => InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(RoutePath.bestOffer);
+                    },
                     child: Container(
                       width: 40,
                       height: 40,
@@ -603,6 +641,78 @@ Widget minusButton(BuildContext context, void Function() onTap){
     ),
   );
 }
+
+Widget bestOfferWidget(BuildContext context,ScrollController controller){
+  return Container(
+    padding: const EdgeInsets.all(0),
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: GridView.count(
+      controller: controller,
+      crossAxisCount: 2,
+      crossAxisSpacing: 15.0,
+      mainAxisSpacing: 20.0,
+      shrinkWrap: true,
+      children: List.generate(
+        bestOfferList.length,
+            (index) => Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 130,
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                image: DecorationImage(
+                    image: AssetImage(bestOfferList[index].img),
+                    fit: BoxFit.cover),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 30,
+                    width: 30,
+                    padding: const EdgeInsets.all(5),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: Image.asset(AppImages.heartIcon),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).btnOffColor,
+                        borderRadius:
+                        const BorderRadius.all(Radius.circular(25))),
+                    child: Text(
+                      bestOfferList[index].off,
+                      style: FontUtilities.h11(
+                          fontColor: Colors.white,
+                          fontWeight: FWT.semiBold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            verticalSpacing(10),
+            Text(
+              bestOfferList[index].title,
+              style: FontUtilities.h14(
+                  fontColor: Colors.white,
+                  fontWeight: FWT.regular),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 
 Widget popularFood() {
   return Container(
