@@ -13,6 +13,11 @@ class AppText {
   static const String priceRange = "Price Range";
   static const String dietary = "Dietary";
   static const String cuisines = "Cuisines";
+  static const String order = "Order";
+
+  static const String quantity = "Quantity";
+  static const String totalPrice = "Total Price";
+  static const String continues = "Continue";
 
   static const String filter = 'Filter';
   static const String sort = 'Sort';

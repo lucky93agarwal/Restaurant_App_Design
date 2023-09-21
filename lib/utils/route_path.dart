@@ -9,4 +9,5 @@ class RoutePath {
   static String searchScreen = '/search';
   static String listScreen ='/listScreen';
   static String filterScreen ='/filter';
+  static String productDetails = '/productDetails';
 }

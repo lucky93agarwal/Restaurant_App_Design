@@ -120,7 +120,7 @@ class FontUtilities {
       decoration: decoration,
       fontFamily: "Mukta",
       decorationColor: decorationColor,
-      decorationThickness: 2,
+      decorationThickness: 3,
     );
   }
   /// FONTSTYLE FOR FONT SIZE 12

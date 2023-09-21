@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app_design/controller/filter_controller.dart';
+import 'package:restaurant_app_design/controller/product_details_contoller.dart';
 import 'package:restaurant_app_design/model/category.dart';
 import 'package:restaurant_app_design/model/filter_list.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
 import 'package:restaurant_app_design/model/popular_food.dart';
 import 'package:restaurant_app_design/model/recent_search.dart';
 import 'package:restaurant_app_design/model/sort_list.dart';
+import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
@@ -14,7 +16,7 @@ import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/images.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
-Widget appBarWidget(String title,bool rightIcon) {
+Widget appBarWidget(String title, bool rightIcon) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     margin: const EdgeInsets.symmetric(vertical: 10),
@@ -38,8 +40,8 @@ Widget appBarWidget(String title,bool rightIcon) {
                   fontColor: Colors.white, fontWeight: FWT.semiBold),
             )),
         Visibility(
-          visible: rightIcon ==null?false:true,
-          child:const Align(
+          visible: rightIcon == null ? false : true,
+          child: const Align(
               alignment: Alignment.centerRight,
               child: Icon(
                 Icons.search,
@@ -164,7 +166,7 @@ Widget menuCategory(BuildContext context) {
           onTap: () {},
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
                 color: Theme.of(context).btnOffColor,
                 borderRadius: const BorderRadius.all(Radius.circular(25))),
             child: Text(
@@ -179,28 +181,27 @@ Widget menuCategory(BuildContext context) {
   );
 }
 
-Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
-  return  Row(
+Widget titleMenu(String firstTitle, String secondTitle, dynamic model) {
+  return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
-      Text(firstTitle,
+      Text(
+        firstTitle,
         style: FontUtilities.h16(
             decorationColor: Colors.blue,
             fontColor: Colors.white,
             fontWeight: FWT.semiBold),
       ),
       InkWell(
-        onTap: (){
-          var  data = {
-            "title" : firstTitle,
-            "model" : model
-          };
-          Get.toNamed(RoutePath.listScreen,arguments: data);
+        onTap: () {
+          var data = {"title": firstTitle, "model": model};
+          Get.toNamed(RoutePath.listScreen, arguments: data);
         },
         child: Row(
           children: [
-            Text(secondTitle,
+            Text(
+              secondTitle,
               textAlign: TextAlign.center,
               style: FontUtilities.h12(
                   decoration: TextDecoration.underline,
@@ -208,7 +209,11 @@ Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
                   fontColor: Colors.white,
                   fontWeight: FWT.semiBold),
             ),
-            const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,)
+            const Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: Colors.white,
+              size: 15,
+            )
           ],
         ),
       )
@@ -216,26 +221,28 @@ Widget titleMenu(String firstTitle,String secondTitle,dynamic model){
   );
 }
 
-Widget titleFilter(String firstTitle,String secondTitle,BuildContext context){
-  return  Container(
+Widget titleFilter(
+    String firstTitle, String secondTitle, BuildContext context) {
+  return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(firstTitle+secondTitle,
+        Text(
+          firstTitle + secondTitle,
           style: FontUtilities.h16(
               decorationColor: Colors.blue,
               fontColor: Colors.white,
               fontWeight: FWT.semiBold),
         ),
         InkWell(
-          onTap: (){
+          onTap: () {
             Get.lazyPut(() => FilterController());
-            var  data = {
-              "title" : secondTitle,
+            var data = {
+              "title": secondTitle,
             };
-            Get.toNamed(RoutePath.filterScreen,arguments: data);
+            Get.toNamed(RoutePath.filterScreen, arguments: data);
           },
           child: filterIcon(context),
         )
@@ -244,113 +251,356 @@ Widget titleFilter(String firstTitle,String secondTitle,BuildContext context){
   );
 }
 
-Widget filterIcon(BuildContext context){
+Widget filterIcon(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-    Container(
-      height: 4,
-      width: 18,
-      margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration: BoxDecoration(
-        borderRadius:const BorderRadius.all(Radius.circular(5)),
-        color: Theme.of(context).btnOffColor,
+      Container(
+        height: 4,
+        width: 18,
+        margin: const EdgeInsets.symmetric(vertical: 2),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: Theme.of(context).btnOffColor,
+        ),
       ),
-    ),
-    Container(
-      height: 4,
-      width: 13,
-      margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration: BoxDecoration(
-        borderRadius:const BorderRadius.all(Radius.circular(5)),
-        color: Theme.of(context).btnOffColor,
+      Container(
+        height: 4,
+        width: 13,
+        margin: const EdgeInsets.symmetric(vertical: 2),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: Theme.of(context).btnOffColor,
+        ),
       ),
-    ),
-    Container(
-      height: 4,
-      width: 7,
-      margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration: BoxDecoration(
-        borderRadius:const BorderRadius.all(Radius.circular(5)),
-        color: Theme.of(context).btnOffColor,
+      Container(
+        height: 4,
+        width: 7,
+        margin: const EdgeInsets.symmetric(vertical: 2),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: Theme.of(context).btnOffColor,
+        ),
       ),
-    ),
-  ],);
+    ],
+  );
 }
 
-Widget listFood(BuildContext context,dynamic model,ScrollController controller){
+Widget listFood(
+    BuildContext context, dynamic model, ScrollController controller) {
   return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
     child: ListView.builder(
         padding: const EdgeInsets.all(0),
-      controller: controller,
+        controller: controller,
         itemCount: model.length,
-    shrinkWrap: true,
-    itemBuilder: (BuildContext context,int index){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 150,
-            width: Get.width,
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius:const BorderRadius.all(Radius.circular(10)),
-              image: DecorationImage(
-                image: AssetImage(model[index].img),
-                fit: BoxFit.cover
-              )
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              Container(
+                height: 150,
+                width: Get.width,
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    image: DecorationImage(
+                        image: AssetImage(model[index].img),
+                        fit: BoxFit.cover)),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(model[index].title,
-                    style: FontUtilities.h14(
-                        decorationColor: Colors.blue,
-                        fontColor: Colors.white,
-                        fontWeight: FWT.semiBold),),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        model[index].title,
+                        style: FontUtilities.h14(
+                            decorationColor: Colors.blue,
+                            fontColor: Colors.white,
+                            fontWeight: FWT.semiBold),
+                      ),
+                      Visibility(
+                        visible: model[index].price.length > 0 ? true : false,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 15,
+                            ),
+                            horizontalSpacing(5),
+                            Text(
+                              model[index].rating,
+                              style: FontUtilities.h12(
+                                  decorationColor: Colors.blue,
+                                  fontColor: Colors.white,
+                                  fontWeight: FWT.semiBold),
+                            ),
+                            horizontalSpacing(5),
+                            Text(
+                              model[index].review,
+                              style: FontUtilities.h12(
+                                  decorationColor: Colors.blue,
+                                  fontColor: Theme.of(context).subTitleText,
+                                  fontWeight: FWT.regular),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                   Visibility(
-                    visible: model[index].price.length>0?true:false,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Icon(Icons.star,color: Colors.yellow,size: 15,),
-                        horizontalSpacing(5),
-                        Text(model[index].rating,
-                          style: FontUtilities.h12(
-                              decorationColor: Colors.blue,
-                              fontColor: Colors.white,
-                              fontWeight: FWT.semiBold),),
-                        horizontalSpacing(5),
-                        Text(model[index].review,
-                          style: FontUtilities.h12(
-                              decorationColor: Colors.blue,
-                              fontColor: Theme.of(context).subTitleText,
-                              fontWeight: FWT.regular),),
-                      ],),
-                  )
+                    visible: model[index].price.length > 0 ? true : false,
+                    child: Text(
+                      model[index].price,
+                      style: FontUtilities.h26(
+                          fontColor: Colors.white, fontWeight: FWT.semiBold),
+                    ),
+                  ),
                 ],
               ),
-              Visibility(
-                visible: model[index].price.length>0?true:false,
-                child: Text(model[index].price,
-                  style: FontUtilities.h26(
-                      fontColor: Colors.white,
-                      fontWeight: FWT.semiBold),),
-              ),
             ],
-          ),
+          );
+        }),
+  );
+}
 
-        ],
-      );
-    }),
+Widget productBigImg(BuildContext context, Popular popular) {
+  return Container(
+    height: 250,
+    width: Get.width,
+    alignment: Alignment.bottomCenter,
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+    decoration: BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
+      image: DecorationImage(
+        image: AssetImage(popular.img),
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          height: 30,
+          width: 30,
+          padding: const EdgeInsets.all(5),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
+          child: Image.asset(AppImages.heartIcon),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+              color: Theme.of(context).btnOffColor,
+              borderRadius: const BorderRadius.all(Radius.circular(25))),
+          child: Text(
+            popular.off,
+            style: FontUtilities.h11(
+                fontColor: Colors.white, fontWeight: FWT.semiBold),
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+Widget productBigTitle(BuildContext context, Popular popular) {
+  return Container(
+    width: Get.width,
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+        Expanded(
+          child: Text(popular.fullName,style:FontUtilities.h24(
+              fontColor: Colors.white,
+              fontWeight: FWT.regular),),
+        ),
+
+          Text(popular.price,style:FontUtilities.h30(
+              fontColor: Colors.white,
+              fontWeight: FWT.semiBold),),
+
+      ],),
+        verticalSpacing(10),
+        Text(popular.cal,style:FontUtilities.h14(
+            fontColor: Colors.white,
+            fontWeight: FWT.semiBold),),
+        verticalSpacing(20),
+        horizontalLineTwo(context),
+        verticalSpacing(20),
+        Row(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                  size: 15,
+                ),
+                horizontalSpacing(5),
+                Text(
+                  popular.rating,
+                  style: FontUtilities.h12(
+                      decorationColor: Colors.blue,
+                      fontColor: Colors.white,
+                      fontWeight: FWT.semiBold),
+                ),
+                horizontalSpacing(5),
+                Text(
+                  popular.review,
+                  style: FontUtilities.h12(
+                      decorationColor: Colors.blue,
+                      fontColor:const Color(0xff89749c),
+                      fontWeight: FWT.regular),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Text("Food   ",
+              style: FontUtilities.h12(
+                  decorationColor: Colors.blue,
+                  fontColor: Colors.white,
+                  fontWeight: FWT.semiBold),
+            ),
+            Text(
+              popular.brand,
+              style: FontUtilities.h12(
+                  decorationColor: Colors.blue,
+                  decoration: TextDecoration.underline,
+                  fontColor: Colors.white,
+                  fontWeight: FWT.semiBold),
+            ),
+          ],
+        ),
+        verticalSpacing(20),
+        horizontalLineTwo(context),
+        verticalSpacing(20),
+        Text(
+          popular.details,
+          style: FontUtilities.h12(
+              decorationColor: Colors.blue,
+              fontColor:const Color(0xff89749c),
+              fontWeight: FWT.regular),
+        ),
+
+    ],),
+  );
+}
+Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Function() onPlusTap, void Function() onTapButton){
+
+  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Container(
+    height: Get.height*0.4,
+    width: Get.width,
+    decoration:const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        verticalSpacing(20),
+        Text(AppText.quantity,
+          style: FontUtilities.h16(
+              decorationColor: Colors.blue,
+              fontColor: Colors.black,
+              fontWeight: FWT.semiBold),),
+        verticalSpacing(30),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            minusButton(context,onMinusTap),
+            horizontalSpacing(20),
+            Text(controller.quantity.value.toString(),
+              style: FontUtilities.h40(
+                  fontColor: Colors.black,
+                  fontWeight: FWT.semiBold),),
+            horizontalSpacing(20),
+            plusButton(context,onPlusTap),
+
+          ],
+        ),
+        verticalSpacing(40),
+        Text(AppText.totalPrice,
+          style: FontUtilities.h12(
+              fontColor: Colors.black,
+              fontWeight: FWT.semiBold),),
+        Text("\$18",
+          style: FontUtilities.h26(
+              fontColor: Colors.black,
+              fontWeight: FWT.semiBold),),
+        verticalSpacing(10),
+        customButton(AppText.continues,context,onTapButton),
+      ],
+    ),
+  ));
+}
+Widget plusButton(BuildContext context, void Function() onTap){
+  return InkWell(
+    onTap: onTap,
+    child: Container(height: 50,width: 50,
+      padding: const EdgeInsets.all(5),
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color(0xfffff2fb)
+      ),
+      child: Stack(children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(height: 30,width: 5,
+          decoration: BoxDecoration(
+            color: Theme.of(context).btnOffColor,
+            borderRadius: BorderRadius.all(Radius.circular(5))
+          ),),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Container(height: 5,width: 30,
+            decoration: BoxDecoration(
+                color: Theme.of(context).btnOffColor,
+                borderRadius: BorderRadius.all(Radius.circular(5))
+            ),),
+        ),
+
+      ],),
+    ),
+  );
+}
+
+Widget minusButton(BuildContext context, void Function() onTap){
+  return InkWell(
+    onTap: onTap,
+    child: Container(height: 50,width: 50,
+      padding: const EdgeInsets.all(5),
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Color(0xfffff2fb)
+      ),
+      child: Container(height: 5,width: 30,
+        decoration: BoxDecoration(
+            color: Theme.of(context).btnOffColor,
+            borderRadius: BorderRadius.all(Radius.circular(5))
+        ),),
+    ),
   );
 }
 
@@ -360,82 +610,107 @@ Widget popularFood() {
     child: Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(right:20.0),
+          padding: const EdgeInsets.only(right: 20.0),
           child: titleMenu(AppText.popularFood, AppText.allFood, popular),
         ),
-
         verticalSpacing(20),
         SizedBox(
           height: 250,
           child: ListView.builder(
-            shrinkWrap: true,
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: popular.length,
               itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 200,
-                      width: 150,
-                      alignment: Alignment.bottomCenter,
-                      margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          image: DecorationImage(
-                              image: AssetImage(popular[index].img),
-                              fit: BoxFit.cover)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                return InkWell(
+                  onTap: () {
+                    Get.lazyPut(() => ProductDetailsController());
+                    var data = {
+                      "model": popular[index],
+                    };
+                    Get.toNamed(RoutePath.productDetails, arguments: data);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 150,
+                        alignment: Alignment.bottomCenter,
+                        margin: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            image: DecorationImage(
+                                image: AssetImage(popular[index].img),
+                                fit: BoxFit.cover)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 30,
+                              padding: const EdgeInsets.all(5),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: Image.asset(AppImages.heartIcon),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).btnOffColor,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(25))),
+                              child: Text(
+                                popular[index].off,
+                                style: FontUtilities.h11(
+                                    fontColor: Colors.white,
+                                    fontWeight: FWT.semiBold),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      verticalSpacing(10),
+                      Text(
+                        popular[index].title,
+                        style: FontUtilities.h14(
+                            decorationColor: Colors.blue,
+                            fontColor: Colors.white,
+                            fontWeight: FWT.semiBold),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            height:30,
-                            width: 30,
-                            padding: const EdgeInsets.all(5),
-                            decoration:const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child: Image.asset(AppImages.heartIcon),
+                          const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                            decoration:  BoxDecoration(
-                                color: Theme.of(context).btnOffColor,
-                                borderRadius:const BorderRadius.all(Radius.circular(25))),
-                            child: Text(
-                              popular[index].off,
-                              style: FontUtilities.h11(
-                                  fontColor: Colors.white, fontWeight: FWT.semiBold),
-                            ),
-                          )
-                      ],),
-                    ),
-                    verticalSpacing(10),
-                    Text(popular[index].title,
-                      style: FontUtilities.h14(
-                        decorationColor: Colors.blue,
-                        fontColor: Colors.white,
-                        fontWeight: FWT.semiBold),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                     const Icon(Icons.star,color: Colors.yellow,size: 15,),
-                        horizontalSpacing(5),
-                        Text(popular[index].rating,
-                          style: FontUtilities.h12(
-                              decorationColor: Colors.blue,
-                              fontColor: Colors.white,
-                              fontWeight: FWT.semiBold),),
-                        horizontalSpacing(5),
-                        Text(popular[index].review,
-                          style: FontUtilities.h12(
-                              decorationColor: Colors.blue,
-                              fontColor: Theme.of(context).subTitleText,
-                              fontWeight: FWT.regular),),
-                    ],)
-                  ],
+                          horizontalSpacing(5),
+                          Text(
+                            popular[index].rating,
+                            style: FontUtilities.h12(
+                                decorationColor: Colors.blue,
+                                fontColor: Colors.white,
+                                fontWeight: FWT.semiBold),
+                          ),
+                          horizontalSpacing(5),
+                          Text(
+                            popular[index].review,
+                            style: FontUtilities.h12(
+                                decorationColor: Colors.blue,
+                                fontColor: Theme.of(context).subTitleText,
+                                fontWeight: FWT.regular),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 );
               }),
         ),
@@ -449,9 +724,10 @@ Widget nearbyRestaurantFood() {
     margin: const EdgeInsets.only(left: 20),
     child: Column(
       children: [
-        Padding(padding: const EdgeInsets.only(right:20.0),
-            child: titleMenu(AppText.nearbyBestRestaurant, AppText.all, restaurant)),
-
+        Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: titleMenu(
+                AppText.nearbyBestRestaurant, AppText.all, restaurant)),
         verticalSpacing(20),
         SizedBox(
           height: 250,
@@ -468,19 +744,23 @@ Widget nearbyRestaurantFood() {
                       width: 150,
                       alignment: Alignment.bottomCenter,
                       margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                               image: AssetImage(restaurant[index].img),
                               fit: BoxFit.cover)),
                     ),
                     verticalSpacing(10),
-                    Text(restaurant[index].title,
+                    Text(
+                      restaurant[index].title,
                       style: FontUtilities.h14(
                           decorationColor: Colors.blue,
                           fontColor: Colors.white,
-                          fontWeight: FWT.semiBold),),
+                          fontWeight: FWT.semiBold),
+                    ),
                   ],
                 );
               }),
@@ -490,7 +770,7 @@ Widget nearbyRestaurantFood() {
   );
 }
 
-Widget resendSend(BuildContext context){
+Widget resendSend(BuildContext context) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
@@ -500,136 +780,184 @@ Widget resendSend(BuildContext context){
         Text(
           AppText.recentSearch,
           style: FontUtilities.h14(
-            fontColor: Theme.of(context).subTitleText,),),
-         verticalSpacing(10),
-         Column(children: List.generate(recentSearch.length, (index) =>
-             Container(
-           margin: const EdgeInsets.symmetric(vertical: 10),
-           child: Row(children: [
-             Icon(Icons.access_time_filled_outlined,color: Theme.of(context).btnOffColor,size: 20,),
-             horizontalSpacing(10),
-             Text(recentSearch[index].title,
-               style: FontUtilities.h14(
-                 decorationColor:Colors.white,
-                 fontColor: Colors.white,),),
-           ],),
-         )),)
-
+            fontColor: Theme.of(context).subTitleText,
+          ),
+        ),
+        verticalSpacing(10),
+        Column(
+          children: List.generate(
+              recentSearch.length,
+              (index) => Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.access_time_filled_outlined,
+                          color: Theme.of(context).btnOffColor,
+                          size: 20,
+                        ),
+                        horizontalSpacing(10),
+                        Text(
+                          recentSearch[index].title,
+                          style: FontUtilities.h14(
+                            decorationColor: Colors.white,
+                            fontColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+        )
       ],
-    ),);
-}
-
-Widget applyWidget(BuildContext context,RxList<SortList> list){
-  return SizedBox(
-    width: Get.width,
-    child: Column(children: List.generate(sortList.length, (index) => titleThree(context,list[index]))
     ),
   );
 }
-Widget filterWidget(BuildContext context,RxDouble start, RxDouble end,RxList<FilterList> list){
+
+Widget applyWidget(BuildContext context, RxList<SortList> list) {
   return SizedBox(
     width: Get.width,
-    child: Column(children: [
-      verticalSpacing(25),
-      Text(AppText.priceRange,  style: FontUtilities.h16(
-          fontColor: Colors.white, fontWeight: FWT.semiBold),),
-      verticalSpacing(10),
-      priceSliderWidget(start,end,context),
-      verticalSpacing(25),
-      Text(AppText.dietary,  style: FontUtilities.h16(
-          fontColor: Colors.white, fontWeight: FWT.semiBold),),
-      verticalSpacing(20),
-      Column(children: List.generate(list.length, (index) => titleThree(context,list[index])),),
-      verticalSpacing(25),
-      Text(AppText.cuisines,  style: FontUtilities.h16(
-          fontColor: Colors.white, fontWeight: FWT.semiBold),),
-      verticalSpacing(20),
-      cuisinesListWidget(context),
-    ],),
+    child: Column(
+        children: List.generate(
+            sortList.length, (index) => titleThree(context, list[index]))),
   );
 }
-Widget cuisinesListWidget(BuildContext context){
+
+Widget filterWidget(BuildContext context, RxDouble start, RxDouble end,
+    RxList<FilterList> list) {
+  return SizedBox(
+    width: Get.width,
+    child: Column(
+      children: [
+        verticalSpacing(25),
+        Text(
+          AppText.priceRange,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(10),
+        priceSliderWidget(start, end, context),
+        verticalSpacing(25),
+        Text(
+          AppText.dietary,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(20),
+        Column(
+          children: List.generate(
+              list.length, (index) => titleThree(context, list[index])),
+        ),
+        verticalSpacing(25),
+        Text(
+          AppText.cuisines,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(20),
+        cuisinesListWidget(context),
+      ],
+    ),
+  );
+}
+
+Widget cuisinesListWidget(BuildContext context) {
   return menuCategoryTwo(context);
 }
 
 Widget menuCategoryTwo(BuildContext context) {
   return Container(
-    height: 100,
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    child: ListView.builder(itemCount: category.length,
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemBuilder: (context,index)=>InkWell(
-      onTap: () {},
-      child: Container(width: 100,
-        height: 100,
-        padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.only(right: 10),
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius:BorderRadius.all(Radius.circular(5)),
-          color: Color(0xff4a3367),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).buttonSec,
-                  shape: BoxShape.circle),
-              child: Image.asset(category[index].img),
-            ),
-            Text(category[index].title,  style: FontUtilities.h12(
-                fontColor: Colors.white, fontWeight: FWT.regular),),
-          ],
-        ),),
-    ))
-
-  );
+      height: 100,
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: ListView.builder(
+          itemCount: category.length,
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(right: 10),
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: Color(0xff4a3367),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).buttonSec,
+                            shape: BoxShape.circle),
+                        child: Image.asset(category[index].img),
+                      ),
+                      Text(
+                        category[index].title,
+                        style: FontUtilities.h12(
+                            fontColor: Colors.white, fontWeight: FWT.regular),
+                      ),
+                    ],
+                  ),
+                ),
+              )));
 }
 
-Widget priceSliderWidget(RxDouble start, RxDouble end,context){
-
+Widget priceSliderWidget(RxDouble start, RxDouble end, context) {
   return Column(
     children: [
       RangeSlider(
-        labels:RangeLabels(start.value.toString(), end.value.toString()),
+        labels: RangeLabels(start.value.toString(), end.value.toString()),
         values: RangeValues(start.value, end.value),
         activeColor: Theme.of(context).btnOffColor,
         inactiveColor: const Color(0xff796089),
         onChanged: (value) {
           start.value = value.start;
           end.value = value.end;
-
         },
         min: 0,
         max: 100,
       ),
-      Text("\$"+start.value.toInt().toString()+" - "+"\$"+end.value.toInt().toString(),  style: FontUtilities.h14(
-          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+      Text(
+        "\$" +
+            start.value.toInt().toString() +
+            " - " +
+            "\$" +
+            end.value.toInt().toString(),
+        style: FontUtilities.h14(
+            fontColor: Colors.white, fontWeight: FWT.semiBold),
+      ),
     ],
   );
 }
-Widget titleThree(context,dynamic model){
-  return  Column(
+
+Widget titleThree(context, dynamic model) {
+  return Column(
     children: [
       ListTile(
-        title: Text(model.title,  style: FontUtilities.h12(
-            fontColor: Colors.white, fontWeight: FWT.regular),),
-        trailing: Visibility(visible: model.checkClick,child: const Icon(Icons.check,color: Colors.green,)),
-
-        onTap: (){
-          if(model.checkClick==true){
+        title: Text(
+          model.title,
+          style: FontUtilities.h12(
+              fontColor: Colors.white, fontWeight: FWT.regular),
+        ),
+        trailing: Visibility(
+            visible: model.checkClick,
+            child: const Icon(
+              Icons.check,
+              color: Colors.green,
+            )),
+        onTap: () {
+          if (model.checkClick == true) {
             model.checkClick = false;
-          }else {
+          } else {
             model.checkClick = true;
           }
-
         },
       ),
       horizontalLine(context),
@@ -637,13 +965,12 @@ Widget titleThree(context,dynamic model){
   );
 }
 
-Widget filterButton(BuildContext context,RxBool check){
-
-  return  Row(
+Widget filterButton(BuildContext context, RxBool check) {
+  return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       InkWell(
-        onTap: (){
+        onTap: () {
           check.value = true;
         },
         child: Container(
@@ -652,19 +979,21 @@ Widget filterButton(BuildContext context,RxBool check){
           padding: const EdgeInsets.symmetric(vertical: 5),
           margin: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-              borderRadius:const BorderRadius.all(Radius.circular(20)),
-              color: check.value?Theme.of(context).btnOffColor: const Color(0xff552d6c)
-          ),
-          child: Text(AppText.filter,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              color: check.value
+                  ? Theme.of(context).btnOffColor
+                  : const Color(0xff552d6c)),
+          child: Text(
+            AppText.filter,
             style: FontUtilities.h14(
-            decorationColor:Colors.white,
-            fontColor: Colors.white,
-            fontWeight: FWT.semiBold),),
+                decorationColor: Colors.white,
+                fontColor: Colors.white,
+                fontWeight: FWT.semiBold),
+          ),
         ),
       ),
       InkWell(
-        onTap: (){
-
+        onTap: () {
           check.value = false;
         },
         child: Container(
@@ -673,28 +1002,38 @@ Widget filterButton(BuildContext context,RxBool check){
           padding: const EdgeInsets.symmetric(vertical: 5),
           margin: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-              borderRadius:const BorderRadius.all(Radius.circular(20)),
-              color:  check.value==false?Theme.of(context).btnOffColor: const Color(0xff552d6c)
-          ),
-          child:  Text(AppText.sort,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              color: check.value == false
+                  ? Theme.of(context).btnOffColor
+                  : const Color(0xff552d6c)),
+          child: Text(
+            AppText.sort,
             style: FontUtilities.h14(
-              decorationColor:Colors.white,
-              fontColor: Colors.white,
-                fontWeight: FWT.semiBold),),
+                decorationColor: Colors.white,
+                fontColor: Colors.white,
+                fontWeight: FWT.semiBold),
+          ),
         ),
       ),
-
-    ],);
+    ],
+  );
 }
 
-Widget horizontalLine(BuildContext context){
-  return Container(height: 1,
+Widget horizontalLine(BuildContext context) {
+  return Container(
+    height: 1,
     width: Get.width,
     margin: const EdgeInsets.symmetric(horizontal: 20),
-    color: Theme.of(context).subTitleText,);
+    color: Theme.of(context).subTitleText,
+  );
 }
-
-
+Widget horizontalLineTwo(BuildContext context) {
+  return Container(
+    height: 1,
+    width: Get.width,
+    color: Theme.of(context).subTitleText,
+  );
+}
 Widget customTextUnderLineButton(String title, void Function() onTap) {
   return InkWell(
     onTap: onTap,
