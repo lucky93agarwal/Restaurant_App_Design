@@ -90,8 +90,8 @@ keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -k
 ```
 
 Step 2. Reference the keystore from the app :
-* Create a file named <span style="color:blue">some *blue* text [project]/android/key.properties</span>  that contains a reference to your keystore:
-
+* Create a file named <span style="color:blue">[project]/android/key.properties</span>  that contains a reference to your keystore:
+<span style="color:blue">[project]/android/key.properties</span>
 ```
 storePassword=<password from previous step>
 keyPassword=<password from previous step>
