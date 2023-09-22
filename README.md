@@ -89,8 +89,8 @@ On Windows, use the following command:
 keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
 
-Step 2. Reference the keystore from the app
-Create a file named [project]/android/key.properties that contains a reference to your keystore:
+Step 2. Reference the keystore from the app :
+* Create a file named [project]/android/key.properties that contains a reference to your keystore:
 
 ```
 storePassword=<password from previous step>
@@ -99,7 +99,7 @@ keyAlias=upload
 storeFile=<location of the key store file, such as /Users/<user name>/upload-keystore.jks
 ```
 Step 3. Configure signing in gradle : 
-Configure gradle to use your upload key when building your app in release mode by editing the [project]/android/app/build.gradle file.
+* Configure gradle to use your upload key when building your app in release mode by editing the [project]/android/app/build.gradle file.
 * Add the keystore information from your properties file before the android block:
 ```
 def keystoreProperties = new Properties()
