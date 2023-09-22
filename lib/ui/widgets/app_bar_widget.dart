@@ -705,7 +705,7 @@ Widget productBigTitle(BuildContext context, Popular popular) {
 }
 Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Function() onPlusTap, void Function() onTapButton){
 
-  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Container(
+  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Obx(()=>Container(
     height: Get.height*0.4,
     width: Get.width,
     decoration:const BoxDecoration(
@@ -741,7 +741,7 @@ Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Functi
           style: FontUtilities.h12(
               fontColor: Colors.black,
               fontWeight: FWT.semiBold),),
-        Text("\$18",
+        Text("\$"+controller.prince.value.toString(),
           style: FontUtilities.h26(
               fontColor: Colors.black,
               fontWeight: FWT.semiBold),),
@@ -749,7 +749,10 @@ Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Functi
         customButton(AppText.continues,context,onTapButton),
       ],
     ),
-  ));
+  ))
+
+
+  );
 }
 Widget plusButton(BuildContext context, void Function() onTap){
   return InkWell(
