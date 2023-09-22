@@ -15,6 +15,16 @@ class AppText {
   static const String cuisines = "Cuisines";
   static const String order = "Order";
 
+  static const String paymentMethod = 'Payment Method';
+  static const String deliveryAddress = 'Delivery Address';
+  static const String change = 'CHANGE';
+  static const String fullAddressFake = 'Unit 9,6P,345, Part Park Street\nNew York, USA';
+  static const String addCard = 'ADD CARD';
+  static const String promoCode = 'Promo Code';
+  static const String subTotal = 'Sub-total';
+  static const String delivery = 'Delivery';
+  static const String total = 'Total';
+
   static const String bestOffer = "Best Offer";
   static const String foodOrder = "Food Order";
   static const String favourite = 'Favourite';

@@ -7,6 +7,7 @@ import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dar
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
+import 'package:restaurant_app_design/utils/route_path.dart';
 import 'package:restaurant_app_design/utils/utility.dart';
 
 class ProductDetailsController extends GetxController{
@@ -16,20 +17,16 @@ class ProductDetailsController extends GetxController{
     if(quantity.value >1){
       quantity.value = quantity.value -1;
       prince.value = 18 * quantity.value;
-      cPrint("onPlusTap = "+quantity.value.toString());
     }
-    cPrint("onMinusTap"+quantity.value.toString());
   }
   void onPlusTap(){
     if(quantity.value >=1){
       quantity.value = quantity.value +1;
       prince.value = 18 * quantity.value;
-      cPrint("onPlusTap = "+quantity.value.toString());
     }
-    cPrint("onPlusTap"+quantity.value.toString());
   }
   void onTapButtons(){
-
+    Get.toNamed(RoutePath.payment);
   }
   void onTapButton(){
   Get.bottomSheet(bottomSheet(Get.context!,onMinusTap,onPlusTap,onTapButtons));

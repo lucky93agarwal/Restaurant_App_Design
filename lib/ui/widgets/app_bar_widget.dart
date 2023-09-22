@@ -380,7 +380,8 @@ Widget favouriteRestaurantWidget(BuildContext context){
   );
 }
 
-Widget titleMenu(String firstTitle, String secondTitle, dynamic model) {
+
+Widget titleMenu(String firstTitle, String secondTitle, dynamic model,Color color) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.end,
@@ -405,12 +406,12 @@ Widget titleMenu(String firstTitle, String secondTitle, dynamic model) {
               style: FontUtilities.h12(
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.blue,
-                  fontColor: Colors.white,
+                  fontColor: color,
                   fontWeight: FWT.semiBold),
             ),
-            const Icon(
+            Icon(
               Icons.arrow_forward_ios_rounded,
-              color: Colors.white,
+              color: color,
               size: 15,
             )
           ],
@@ -885,7 +886,7 @@ Widget popularFood() {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 20.0),
-          child: titleMenu(AppText.popularFood, AppText.allFood, popular),
+          child: titleMenu(AppText.popularFood, AppText.allFood, popular,Colors.white),
         ),
         verticalSpacing(20),
         SizedBox(
@@ -993,6 +994,148 @@ Widget popularFood() {
   );
 }
 
+Widget paymentDelivery(BuildContext context){
+  return  Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        titleMenu(AppText.deliveryAddress, AppText.change, AppText.change,const Color(0xffb40572)),
+
+
+        verticalSpacing(10),
+        Text(
+          AppText.fullAddressFake,
+          style: FontUtilities.h10(
+              fontColor: Theme.of(context).subTextTitle, fontWeight: FWT.regular),
+        ),
+
+
+      ],),
+  );
+}
+Widget paymentMethod(BuildContext context){
+  return  Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        titleMenu(AppText.paymentMethod, AppText.addCard, AppText.addCard,const Color(0xffb40572)),
+
+
+        verticalSpacing(20),
+
+        Container(
+          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+            color: Color(0xff2394bc),
+            borderRadius: BorderRadius.all(Radius.circular(5))
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            children: [
+              Image.asset(AppImages.visaIcon,width: 50,),
+              Text("*** **** **** 1234",style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.black),),
+              
+             const Icon(Icons.check,color: Colors.white,),
+          ],),
+        ),
+
+        verticalSpacing(20),
+
+        Container(
+          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration:  BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(color: const Color(0xff4e247e),width: 1),
+              borderRadius: const BorderRadius.all(Radius.circular(5))
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            children: [
+              Image.asset(AppImages.paypalImg,width: 50,height: 30,),
+              Text("*** **** **** 5789",style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.black),),
+
+              const Icon(Icons.check,color: Colors.transparent,),
+            ],),
+        ),
+
+
+
+
+      ],),
+  );
+}
+Widget promoCodeSubTotalWidget(){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppText.subTotal,style: FontUtilities.h14(
+                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
+            Text("\$18",style: FontUtilities.h14(
+                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
+        ],),
+
+        verticalSpacing(10),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppText.delivery,style: FontUtilities.h14(
+                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
+            Text("\$0.60",style: FontUtilities.h14(
+                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
+          ],),
+
+        verticalSpacing(10),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppText.total,style: FontUtilities.h22(
+                fontColor: Colors.white, fontWeight: FWT.black),),
+            Text("\$18.60",style: FontUtilities.h22(
+                fontColor: Colors.white, fontWeight: FWT.black),),
+          ],),
+      ],
+    ),
+  );
+}
+
+Widget promoCodeWidget(){
+  return Container(
+    height: 55,
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: const  BoxDecoration(
+        color: Color(0xff452767),
+        borderRadius: BorderRadius.all(Radius.circular(5))
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+      children: [
+        Text(AppText.promoCode,style: FontUtilities.h14(
+            fontColor: Colors.white, fontWeight: FWT.black),),
+
+        Text(AppText.apply,style: FontUtilities.h14(
+            decoration: TextDecoration.underline,
+            decorationColor: Colors.blue,
+            fontColor: Colors.white,
+            fontWeight: FWT.semiBold),),
+      ],),
+  );
+}
+
 Widget nearbyRestaurantFood() {
   return Container(
     margin: const EdgeInsets.only(left: 20),
@@ -1001,7 +1144,7 @@ Widget nearbyRestaurantFood() {
         Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: titleMenu(
-                AppText.nearbyBestRestaurant, AppText.all, restaurant)),
+                AppText.nearbyBestRestaurant, AppText.all, restaurant,Colors.white)),
         verticalSpacing(20),
         SizedBox(
           height: 250,

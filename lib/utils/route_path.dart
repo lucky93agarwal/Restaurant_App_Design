@@ -12,4 +12,5 @@ class RoutePath {
   static String productDetails = '/productDetails';
   static String bestOffer = '/bestOffer';
   static String favourite = '/favourite';
+  static String payment = '/payment';
 }

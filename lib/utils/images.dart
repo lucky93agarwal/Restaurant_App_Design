@@ -29,4 +29,7 @@ class AppImages {
   static const String khastaImg = 'assets/images/khasta.png';
   static const String pedaImg = 'assets/images/peda.png';
   static const String idlitwoImg = 'assets/images/idlitwo.png';
+
+  static const String visaIcon = 'assets/images/visa_icon.png';
+  static const String paypalImg = 'assets/images/paypal_img.png';
 }

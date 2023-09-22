@@ -6,6 +6,7 @@ import 'package:restaurant_app_design/ui/screen/filter_screen.dart';
 import 'package:restaurant_app_design/ui/screen/forgot_pass_screen.dart';
 import 'package:restaurant_app_design/ui/screen/home_screen.dart';
 import 'package:restaurant_app_design/ui/screen/list_screen.dart';
+import 'package:restaurant_app_design/ui/screen/payment_method_screen.dart';
 import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
 import 'package:restaurant_app_design/ui/screen/search_screen.dart';
 import 'package:restaurant_app_design/ui/screen/signup_screen.dart';
@@ -65,6 +66,10 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.favourite, page: () =>const FavouriteScreen()),
+
+
+    GetPage(
+        name: RoutePath.payment, page: () =>const PaymentMethodScreen()),
   ];
 
 }

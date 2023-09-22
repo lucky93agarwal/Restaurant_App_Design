@@ -252,4 +252,5 @@ extension AppTheme on ThemeData {
   Color get editIconButtonSec => const Color(0xFF1f1f1f);
   Color get subTitleText => const Color(0xff524c60);
   Color get btnOffColor => const Color(0xffff0188);
+  Color get subTextTitle => const Color(0xffccb8d4);
 }
