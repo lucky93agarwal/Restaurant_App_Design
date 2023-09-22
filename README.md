@@ -78,7 +78,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 
 
 
-##Create an upload keystore: 
+## Create an upload keystore: 
 
 On Mac/Linux, use the following command:
 ```
