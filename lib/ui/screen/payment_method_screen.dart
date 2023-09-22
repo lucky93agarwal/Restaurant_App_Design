@@ -16,6 +16,13 @@ class PaymentMethodScreen extends StatefulWidget {
 }
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
+  int price = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   price = Get.arguments['price']!;
+  }
   void onTapButton(){
   }
   @override
@@ -39,7 +46,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
             verticalSpacing(50),
             promoCodeWidget(),
             verticalSpacing(50),
-            promoCodeSubTotalWidget(),
+            promoCodeSubTotalWidget(price),
             verticalSpacing(60),
             customButton(AppText.continues,context,onTapButton),
         ],),

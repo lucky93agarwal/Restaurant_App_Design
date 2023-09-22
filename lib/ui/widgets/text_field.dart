@@ -20,6 +20,7 @@ class AppTextField extends StatelessWidget {
       this.onTap,
         this.searchEdit,
         this.onChange,
+        this.checkPayment,
         required this.checkVerify});
   final TextEditingController ctrl;
   final String? hintText;
@@ -33,22 +34,23 @@ class AppTextField extends StatelessWidget {
   final void Function(String)? onChange;
   final bool checkVerify;
   final int? searchEdit;
+  final bool? checkPayment;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin:checkVerify==true?null: const EdgeInsets.symmetric(horizontal: 20),
-      height: checkVerify==true?60:45,
+      height: checkVerify==true? (checkPayment==true? 50:60):45,
       width: checkVerify==true?60:searchEdit==1?Get.width*0.8:Get.width,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color:checkVerify==true? Theme.of(context).buttonSec : const Color(0xFFF6F6F6),
-          borderRadius:checkVerify==true?BorderRadius.circular(50): BorderRadius.circular(25),
+          color:checkVerify==true? (checkPayment==true? const Color(0xFF522e6c): Theme.of(context).buttonSec) : const Color(0xFFF6F6F6),
+          borderRadius:checkVerify==true? (checkPayment==true?BorderRadius.circular(10):  BorderRadius.circular(50)):BorderRadius.circular(25),
           border: Border.all(color: Theme.of(context).textColor)),
       child: TextField(
         keyboardType: textInputType,
         style: style,
         onChanged: onChange,
-        textAlign: checkVerify==true?TextAlign.center:TextAlign.start,
+        textAlign: checkVerify==true? (checkPayment==true? TextAlign.start: TextAlign.center):TextAlign.start,
         textCapitalization: textCapitalization ?? TextCapitalization.sentences,
         inputFormatters:checkVerify==true? [FilteringTextInputFormatter. digitsOnly,
           LengthLimitingTextInputFormatter(1),

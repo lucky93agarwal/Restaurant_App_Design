@@ -395,6 +395,7 @@ Widget titleMenu(String firstTitle, String secondTitle, dynamic model,Color colo
       ),
       InkWell(
         onTap: () {
+
           var data = {"title": firstTitle, "model": model};
           Get.toNamed(RoutePath.listScreen, arguments: data);
         },
@@ -1072,7 +1073,7 @@ Widget paymentMethod(BuildContext context){
       ],),
   );
 }
-Widget promoCodeSubTotalWidget(){
+Widget promoCodeSubTotalWidget(int price){
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
@@ -1082,7 +1083,7 @@ Widget promoCodeSubTotalWidget(){
           children: [
             Text(AppText.subTotal,style: FontUtilities.h14(
                 fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
-            Text("\$18",style: FontUtilities.h14(
+            Text("\$"+price.toString(),style: FontUtilities.h14(
                 fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
         ],),
 
@@ -1104,35 +1105,63 @@ Widget promoCodeSubTotalWidget(){
           children: [
             Text(AppText.total,style: FontUtilities.h22(
                 fontColor: Colors.white, fontWeight: FWT.black),),
-            Text("\$18.60",style: FontUtilities.h22(
+            Text("\$"+(price+0.60).toString(),style: FontUtilities.h22(
                 fontColor: Colors.white, fontWeight: FWT.black),),
           ],),
       ],
     ),
   );
 }
-
-Widget promoCodeWidget(){
+Widget promoCodeTitleWidget(){
   return Container(
-    height: 55,
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    decoration: const  BoxDecoration(
-        color: Color(0xff452767),
-        borderRadius: BorderRadius.all(Radius.circular(5))
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+    margin: const EdgeInsets.symmetric(horizontal: 30),
+    alignment: Alignment.center,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(AppText.promoCode,style: FontUtilities.h14(
-            fontColor: Colors.white, fontWeight: FWT.black),),
+      Text(
+        AppText.enterPromoCode,
+        style: FontUtilities.h16(
+            fontColor: Colors.white, fontWeight: FWT.semiBold),
+      ),
+      verticalSpacing(5),
+      Text(
+        AppText.ifYouHaveAPromoCodeEnterItAndSaveOnYourOrder,
+        textAlign: TextAlign.center,
+        style: FontUtilities.h12(
+            fontColor: const Color(0xffb9aeca), fontWeight: FWT.regular),
+      ),
 
-        Text(AppText.apply,style: FontUtilities.h14(
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.blue,
-            fontColor: Colors.white,
-            fontWeight: FWT.semiBold),),
-      ],),
+    ],),
+  );
+}
+Widget promoCodeWidget(){
+  return InkWell(
+    onTap: (){
+      Get.toNamed(RoutePath.promoCode);
+    },
+    child: Container(
+      height: 55,
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: const  BoxDecoration(
+          color: Color(0xff452767),
+          borderRadius: BorderRadius.all(Radius.circular(5))
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+        children: [
+          Text(AppText.promoCode,style: FontUtilities.h14(
+              fontColor: Colors.white, fontWeight: FWT.black),),
+
+          Text(AppText.apply,style: FontUtilities.h14(
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.blue,
+              fontColor: Colors.white,
+              fontWeight: FWT.semiBold),),
+        ],),
+    ),
   );
 }
 

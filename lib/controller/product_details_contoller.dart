@@ -26,7 +26,10 @@ class ProductDetailsController extends GetxController{
     }
   }
   void onTapButtons(){
-    Get.toNamed(RoutePath.payment);
+    var data = {
+      "price": prince.value,
+    };
+    Get.toNamed(RoutePath.payment, arguments: data);
   }
   void onTapButton(){
   Get.bottomSheet(bottomSheet(Get.context!,onMinusTap,onPlusTap,onTapButtons));

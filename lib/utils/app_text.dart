@@ -17,9 +17,19 @@ class AppText {
 
   static const String paymentMethod = 'Payment Method';
   static const String deliveryAddress = 'Delivery Address';
+  static const String enterPromoCode = 'Enter Promo Code';
+  static const String ifYouHaveAPromoCodeEnterItAndSaveOnYourOrder = 'If you have a promo code, enter it and\nsave on your order.';
   static const String change = 'CHANGE';
   static const String fullAddressFake = 'Unit 9,6P,345, Part Park Street\nNew York, USA';
   static const String addCard = 'ADD CARD';
+
+  static const String addCardTwo = 'Add Card';
+  static const String cardNumber = 'Card Number';
+  static const String expDate = 'Exp. Date';
+  static const String mmYY = 'MM/YY';
+  static const String cvc = 'CVC';
+  static const String country = 'Country';
+
   static const String promoCode = 'Promo Code';
   static const String subTotal = 'Sub-total';
   static const String delivery = 'Delivery';
