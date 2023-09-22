@@ -80,11 +80,11 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 ## How to publish Flutter app on Play Store: Beginner guide
 Step 1. Create an upload keystore: 
 
-On Mac/Linux, use the following command:
+* On Mac/Linux, use the following command:
 ```
 keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
-On Windows, use the following command:
+* On Windows, use the following command:
 ```
 keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
