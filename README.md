@@ -98,7 +98,7 @@ keyPassword=<password from previous step>
 keyAlias=upload
 storeFile=<location of the key store file, such as /Users/<user name>/upload-keystore.jks
 ```
-Step 3. Configure signing in gradle \n
+Step 3. Configure signing in gradle : 
 Configure gradle to use your upload key when building your app in release mode by editing the [project]/android/app/build.gradle file.
 * Add the keystore information from your properties file before the android block:
 ```
@@ -112,8 +112,33 @@ def keystoreProperties = new Properties()
          ...
    }`
 ```
-
-
+* Find the buildTypes block:
+```
+buildTypes {
+       release {
+           // TODO: Add your own signing config for the release build.
+           // Signing with the debug keys for now,
+           // so flutter run --release works.
+           signingConfig signingConfigs.debug
+       }
+   }
+```
+* And replace it with the following signing configuration info:
+```
+signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+   buildTypes {
+       release {
+           signingConfig signingConfigs.release
+       }
+   }
+```
 ## Folder Structure
 
 
