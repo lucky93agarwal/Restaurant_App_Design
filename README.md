@@ -98,6 +98,20 @@ keyPassword=<password from previous step>
 keyAlias=upload
 storeFile=<location of the key store file, such as /Users/<user name>/upload-keystore.jks
 ```
+Step 3. Configure signing in gradle
+Configure gradle to use your upload key when building your app in release mode by editing the [project]/android/app/build.gradle file.
+
+```
+def keystoreProperties = new Properties()
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
+ 
+ android {
+         ...
+   }`
+```
 
 
 ## Folder Structure
