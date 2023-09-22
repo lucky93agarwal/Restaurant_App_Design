@@ -168,7 +168,7 @@ Git branch
 
 ```
 
-##Create an upload keystore
+Create an upload keystore: 
 
 On Mac/Linux, use the following command:
 ```
