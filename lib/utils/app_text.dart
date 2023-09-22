@@ -14,6 +14,9 @@ class AppText {
   static const String dietary = "Dietary";
   static const String cuisines = "Cuisines";
   static const String order = "Order";
+  static const String save = "Save";
+  static const String placeOrder = "Place Order";
+  static const String orderSummary = "Order Summary";
 
   static const String paymentMethod = 'Payment Method';
   static const String deliveryAddress = 'Delivery Address';
@@ -72,6 +75,7 @@ class AppText {
 
   static const int hideSuffixIconEditText = 10;
   static const int checkSuffixIconEditText = 0;
+  static const int arrowDownSuffixIconEditText = 5;
   static const int forgotTextSuffixIconEditText = 2;
   static const int addIconTextSuffixIconEditText = 3;
   static const int filterIconTextSuffixIconEditText = 1;

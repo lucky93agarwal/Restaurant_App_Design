@@ -10,6 +10,7 @@ import 'package:restaurant_app_design/model/popular_food.dart';
 import 'package:restaurant_app_design/model/recent_search.dart';
 import 'package:restaurant_app_design/model/sort_list.dart';
 import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
+import 'package:restaurant_app_design/ui/widgets/text_field.dart';
 import 'package:restaurant_app_design/ui/widgets/vertical_and_horizontal_gap.dart';
 import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/color.dart';
@@ -395,9 +396,14 @@ Widget titleMenu(String firstTitle, String secondTitle, dynamic model,Color colo
       ),
       InkWell(
         onTap: () {
+          if(model == AppText.addCard){
+            Get.toNamed(RoutePath.addCard);
+          }else {
 
-          var data = {"title": firstTitle, "model": model};
-          Get.toNamed(RoutePath.listScreen, arguments: data);
+            var data = {"title": firstTitle, "model": model};
+            Get.toNamed(RoutePath.listScreen, arguments: data);
+          }
+
         },
         child: Row(
           children: [
@@ -879,6 +885,85 @@ Widget bestOfferWidget(BuildContext context,ScrollController controller){
   );
 }
 
+Widget orderSummaryWidget(BuildContext context){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 60,
+
+          decoration:const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  horizontalSpacing(10),
+                  Image.asset(AppImages.samosaImg,width: 60,),
+                  horizontalSpacing(10),
+                  SizedBox(width: 150,
+                    child:  Expanded(
+                      child: Text(popular[1].fullName,style: FontUtilities.h16(
+                          fontColor: Colors.black, fontWeight: FWT.semiBold),),
+                    ),),
+                ],),
+              Container(
+                width: 85,
+                decoration:const BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(5),bottomRight: Radius.circular(5)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("\$18",style: FontUtilities.h18(
+                        fontColor: Colors.black, fontWeight: FWT.black),),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 29,
+                          width: 40,
+                          alignment: Alignment.center,
+                          decoration:const BoxDecoration(
+                            color: Color(0xfffed9ef),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(5)),
+                          ),
+                          child:const Icon(Icons.delete,color: Color(0xffff0087),),
+                        ),
+                        Container(
+                          height: 29,
+                          width: 40,
+                          alignment: Alignment.center,
+                          decoration:const BoxDecoration(
+                            color: Color(0xfffed9ef),
+                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(5)),
+                          ),
+                          child:const Icon(Icons.edit,color:  Color(0xffff0087),),
+                        ),
+                      ],),
+                  ],
+                ),
+              ),
+            ],),
+        ),
+        verticalSpacing(30),
+        Text(popular[1].brand,style: FontUtilities.h16(
+            decoration: TextDecoration.underline,
+            decorationColor: Colors.blue,
+            fontColor: Colors.white, fontWeight: FWT.semiBold),),
+        Text(AppText.fullAddressFake,style: FontUtilities.h10(
+            fontColor: Colors.white, fontWeight: FWT.regular),),
+      ],
+    ),
+  );
+}
 
 Widget popularFood() {
   return Container(
@@ -1041,7 +1126,7 @@ Widget paymentMethod(BuildContext context){
               Image.asset(AppImages.visaIcon,width: 50,),
               Text("*** **** **** 1234",style: FontUtilities.h14(
                   fontColor: Colors.white, fontWeight: FWT.black),),
-              
+
              const Icon(Icons.check,color: Colors.white,),
           ],),
         ),
@@ -1087,8 +1172,6 @@ Widget promoCodeSubTotalWidget(int price){
                 fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
         ],),
 
-        verticalSpacing(10),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -1098,8 +1181,6 @@ Widget promoCodeSubTotalWidget(int price){
                 fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
           ],),
 
-        verticalSpacing(10),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -1108,6 +1189,102 @@ Widget promoCodeSubTotalWidget(int price){
             Text("\$"+(price+0.60).toString(),style: FontUtilities.h22(
                 fontColor: Colors.white, fontWeight: FWT.black),),
           ],),
+      ],
+    ),
+  );
+}
+
+Widget addCardFormWidget(BuildContext context,TextEditingController emailController){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+        Text(
+          AppText.cardNumber,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(10),
+        AppTextField(
+          ctrl: emailController,
+          hintText: "1234 1234 1234 1234",
+          textInputType:TextInputType.emailAddress,
+          icons: AppText.hideSuffixIconEditText,
+          iconsTwo: AppText.hidePrefixIconEditText,
+          checkVerify:true,
+          checkPayment:true,
+        ),
+        verticalSpacing(30),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppText.expDate,
+                  style: FontUtilities.h16(
+                      fontColor: Colors.white, fontWeight: FWT.semiBold),
+                ),
+                verticalSpacing(10),
+                AppTextField(
+                  ctrl: emailController,
+                  hintText: AppText.mmYY,
+                  textInputType:TextInputType.emailAddress,
+                  icons: AppText.hideSuffixIconEditText,
+                  iconsTwo: AppText.hidePrefixIconEditText,
+                  checkVerify:true,
+                  checkPayment:true,
+                    checkRow:true,
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppText.cvc,
+                  style: FontUtilities.h16(
+                      fontColor: Colors.white, fontWeight: FWT.semiBold),
+                ),
+                verticalSpacing(10),
+                AppTextField(
+                  ctrl: emailController,
+                  hintText: AppText.mmYY,
+                  textInputType:TextInputType.emailAddress,
+                  icons: AppText.hideSuffixIconEditText,
+                  iconsTwo: AppText.hidePrefixIconEditText,
+                  checkVerify:true,
+                  checkPayment:true,
+                  checkRow:true,
+                ),
+              ],
+            ),
+          ],),
+        verticalSpacing(30),
+
+        Text(
+          AppText.country,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(10),
+        AppTextField(
+          ctrl: emailController,
+          hintText: "United State of America",
+          textInputType:TextInputType.emailAddress,
+          icons: AppText.locationTextPrefixIconEditText,
+          iconsTwo: AppText.arrowDownSuffixIconEditText,
+          checkVerify:true,
+          checkPayment:true,
+        ),
+
       ],
     ),
   );

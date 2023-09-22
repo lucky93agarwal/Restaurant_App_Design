@@ -21,6 +21,7 @@ class AppTextField extends StatelessWidget {
         this.searchEdit,
         this.onChange,
         this.checkPayment,
+        this.checkRow,
         required this.checkVerify});
   final TextEditingController ctrl;
   final String? hintText;
@@ -35,12 +36,13 @@ class AppTextField extends StatelessWidget {
   final bool checkVerify;
   final int? searchEdit;
   final bool? checkPayment;
+  final bool? checkRow;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin:checkVerify==true?null: const EdgeInsets.symmetric(horizontal: 20),
       height: checkVerify==true? (checkPayment==true? 50:60):45,
-      width: checkVerify==true?60:searchEdit==1?Get.width*0.8:Get.width,
+      width: checkVerify==true? (checkPayment==true? checkRow==true? Get.width*0.44: Get.width: 60):searchEdit==1?Get.width*0.8:Get.width,
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color:checkVerify==true? (checkPayment==true? const Color(0xFF522e6c): Theme.of(context).buttonSec) : const Color(0xFFF6F6F6),
@@ -75,7 +77,7 @@ class AppTextField extends StatelessWidget {
           icons==4?
           Icon(Icons.person,color: Theme.of(context).editIconButtonSec,size: 20,):
           icons==5?
-          Icon(Icons.location_on,color: Theme.of(context).editIconButtonSec,size: 20,):
+          Icon(Icons.location_on,color:checkPayment==true?Colors.white: Theme.of(context).editIconButtonSec,size: 20,):
           icons==6?
           InkWell(onTap: (){
             Get.lazyPut(() => FilterController());
@@ -92,7 +94,12 @@ class AppTextField extends StatelessWidget {
           iconsTwo==3?
           Icon(Icons.add_circle_outline,color: Theme.of(context).editIconButtonSec,size: 20,):
           iconsTwo==1?
-          Icon(Icons.filter_alt_outlined,color: Theme.of(context).editIconButtonSec,size: 20,):null,
+          Icon(Icons.filter_alt_outlined,color: Theme.of(context).editIconButtonSec,size: 20,):
+          iconsTwo==5?
+          Icon(Icons.keyboard_arrow_down,color:checkPayment==true?Colors.white: Theme.of(context).editIconButtonSec,size: 20,):null,
+
+
+
           suffixIconConstraints: BoxConstraints(minWidth:iconsTwo==0? 50:70, minHeight: 0),
 
           isDense: true,

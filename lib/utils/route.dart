@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:restaurant_app_design/ui/screen/add_card_screen.dart';
 import 'package:restaurant_app_design/ui/screen/best_offer_screen.dart';
 import 'package:restaurant_app_design/ui/screen/create_user_profile_screen.dart';
 import 'package:restaurant_app_design/ui/screen/favourite_screen.dart';
@@ -6,6 +7,7 @@ import 'package:restaurant_app_design/ui/screen/filter_screen.dart';
 import 'package:restaurant_app_design/ui/screen/forgot_pass_screen.dart';
 import 'package:restaurant_app_design/ui/screen/home_screen.dart';
 import 'package:restaurant_app_design/ui/screen/list_screen.dart';
+import 'package:restaurant_app_design/ui/screen/order_summary_screen.dart';
 import 'package:restaurant_app_design/ui/screen/payment_method_screen.dart';
 import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
 import 'package:restaurant_app_design/ui/screen/promocode_screen.dart';
@@ -75,6 +77,15 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.promoCode, page: () =>const PromoCodeScreen()),
+
+
+    GetPage(
+        name: RoutePath.addCard, page: () =>const AddCardScreen()),
+
+
+
+    GetPage(
+        name: RoutePath.orderSummary, page: () =>const OrderSummaryScreen()),
   ];
 
 }
