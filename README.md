@@ -23,6 +23,11 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/1bda497d-fe15-45e6-a2a9-09da13192ef7" width="200" title="Favourite Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f8ec6eaf-fe7c-4b90-aa3c-96dc508b4263" width="200" title="Payment Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f79bb8aa-9bb3-485a-855a-030caa6d3186" width="200" title="Promo Code Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/3752576f-bd11-4ecb-8ab6-0a372f890021" width="200" title="Add Card Screen"/>
+
+
+
+
 
 ## Download App
 <a href="https://play.google.com/store/apps/details?id=com.thealphamerc.flutter_twitter_clone"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a>
@@ -46,6 +51,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Favourite Screen
 * Payment Screen
 * Promo Code Screen
+* Add Card Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
