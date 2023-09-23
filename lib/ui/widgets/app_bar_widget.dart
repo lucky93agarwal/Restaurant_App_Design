@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/controller/product_details_contoller.dart';
 import 'package:restaurant_app_design/model/best_offer.dart';
@@ -52,6 +55,68 @@ Widget appBarWidget(String title, bool rightIcon) {
         ),
       ],
     ),
+  );
+}
+Widget trackOrderWidget(BuildContext context){
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+      Text(
+        "McDonald's",
+        style: FontUtilities.h16(
+            fontColor: Colors.white, fontWeight: FWT.semiBold),
+      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "4:45 pm",
+              style: FontUtilities.h30(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+            Text(AppText.estimateArrival,
+              style: FontUtilities.h15(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+        ],),
+
+        verticalSpacing(20),
+
+
+    ],),
+  );
+}
+Widget preparingYourOrder(BuildContext context,Completer<GoogleMapController> controllerGoogle,CameraPosition kGooglePlex){
+  return Container(
+    height: Get.height*0.75,
+    child:  Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(AppText.preparingYourOrder,
+              style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+            horizontalSpacing(10),
+            Icon(Icons.keyboard_arrow_down_outlined,color: Colors.white,)
+          ],
+        ),
+        verticalSpacing(10),
+        Expanded(flex: 1,child: Container(color: Colors.yellow,
+          child: GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              controllerGoogle.complete(controller);
+            },
+          )))
+    ],),
   );
 }
 Widget appBarTwoWidget(String title, bool rightIcon) {

@@ -10,28 +10,9 @@ import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
-class PaymentMethodScreen extends StatefulWidget {
-  const PaymentMethodScreen({super.key});
 
-  @override
-  State<PaymentMethodScreen> createState() => _PaymentMethodScreenState();
-}
-
-class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
-  int price = 0;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-   price = Get.arguments['price']!;
-  }
-  void onTapButtons(){
-    Get.lazyPut(() =>TrackOrderController());
-    Get.toNamed(RoutePath.trackOrder);
-  }
-  void onTapButton(){
-    Get.bottomSheet(bottomSheetThanks(Get.context!,onTapButtons));
-  }
+class TrackOrderScreen extends GetView<TrackOrderController> {
+  const TrackOrderScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,20 +23,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           padding: const EdgeInsets.all(0),
           children: [
             verticalSpacing(10),
-            appBarTwoWidget(AppText.paymentMethod,true),
-            verticalSpacing(20),
-            paymentDelivery(context),
-            verticalSpacing(20),
-            horizontalLine(context),
-            verticalSpacing(20),
-            paymentMethod(context),
+            appBarTwoWidget(AppText.trackOrder,true),
 
             verticalSpacing(50),
-            promoCodeWidget(),
-            verticalSpacing(50),
-            promoCodeSubTotalWidget(price),
-            verticalSpacing(60),
-            customButton(AppText.continues,context,onTapButton),
+            trackOrderWidget(context),
+            horizontalLine(context),
+            verticalSpacing(10),
+            preparingYourOrder(context,controller.controllerGoogle,controller.kGooglePlex)
         ],),
       ),
     );

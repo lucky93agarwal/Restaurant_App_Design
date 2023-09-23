@@ -44,6 +44,8 @@ dependencies:
   url_launcher: ^6.1.14
   intl: ^0.18.1
   share_plus: ^7.1.0
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:

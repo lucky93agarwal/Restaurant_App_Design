@@ -16,4 +16,5 @@ class RoutePath {
   static String promoCode = '/promoCode';
   static String addCard = '/addCard';
   static String orderSummary = '/orderSummary';
+  static String trackOrder = '/trackOrder';
 }

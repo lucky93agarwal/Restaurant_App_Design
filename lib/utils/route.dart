@@ -14,6 +14,7 @@ import 'package:restaurant_app_design/ui/screen/promocode_screen.dart';
 import 'package:restaurant_app_design/ui/screen/search_screen.dart';
 import 'package:restaurant_app_design/ui/screen/signup_screen.dart';
 import 'package:restaurant_app_design/ui/screen/sliding_screen.dart';
+import 'package:restaurant_app_design/ui/screen/track_order_screen.dart';
 import 'package:restaurant_app_design/ui/screen/verification_screen.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
 
@@ -86,6 +87,10 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.orderSummary, page: () =>const OrderSummaryScreen()),
+
+
+    GetPage(
+        name: RoutePath.trackOrder, page: () =>const TrackOrderScreen()),
   ];
 
 }

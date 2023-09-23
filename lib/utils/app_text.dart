@@ -48,6 +48,9 @@ class AppText {
   static const String thankYouForYourOrder = "Thank you\nfor your order";
   static const String trackYourOrder = "Track Your Order";
   static const String totalPrice = "Total Price";
+  static const String trackOrder = 'Track Order';
+  static const String  estimateArrival = 'Estimate arrival';
+  static const String preparingYourOrder  = 'Preparing your order';
   static const String continues = "Continue";
 
   static const String filter = 'Filter';
