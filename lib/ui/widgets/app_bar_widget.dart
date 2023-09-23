@@ -711,6 +711,45 @@ Widget productBigTitle(BuildContext context, Popular popular) {
     ],),
   );
 }
+
+Widget bottomSheetThanks(BuildContext context,void Function() onTapButton){
+  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Container(
+    height: Get.height*0.4,
+    width: Get.width,
+    decoration:const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        verticalSpacing(30),
+
+        Container(height: 60,
+        width: 60,
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Color(0xff42d584),
+        ),
+          child: const Icon(Icons.check,color: Colors.white,),
+        ),
+        verticalSpacing(40),
+        Text(AppText.thankYouForYourOrder,
+          textAlign: TextAlign.center,
+          style: FontUtilities.h30(
+              fontColor: Colors.black,
+              fontWeight: FWT.black),),
+
+        verticalSpacing(40),
+
+
+        customButton(AppText.trackYourOrder,context,onTapButton),
+      ],
+    ),
+  ));
+}
 Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Function() onPlusTap, void Function() onTapButton){
 
   return GetBuilder<ProductDetailsController>(  builder:(controller)=> Obx(()=>Container(
@@ -757,10 +796,7 @@ Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Functi
         customButton(AppText.continues,context,onTapButton),
       ],
     ),
-  ))
-
-
-  );
+  )));
 }
 Widget plusButton(BuildContext context, void Function() onTap){
   return InkWell(

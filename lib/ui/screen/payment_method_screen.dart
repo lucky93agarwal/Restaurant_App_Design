@@ -23,7 +23,11 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     super.initState();
    price = Get.arguments['price']!;
   }
+  void onTapButtons(){
+
+  }
   void onTapButton(){
+    Get.bottomSheet(bottomSheetThanks(Get.context!,onTapButtons));
   }
   @override
   Widget build(BuildContext context) {

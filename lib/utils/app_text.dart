@@ -45,6 +45,8 @@ class AppText {
   static const String myFavouriteRestaurant = 'My Favourite Restaurant';
 
   static const String quantity = "Quantity";
+  static const String thankYouForYourOrder = "Thank you\nfor your order";
+  static const String trackYourOrder = "Track Your Order";
   static const String totalPrice = "Total Price";
   static const String continues = "Continue";
 
