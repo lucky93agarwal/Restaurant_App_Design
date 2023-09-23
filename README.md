@@ -26,9 +26,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/3752576f-bd11-4ecb-8ab6-0a372f890021" width="200" title="Add Card Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/2fb46014-77a0-44ab-b7c1-edf6bd278d11" width="200" title="Order Summary Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/752a2ac0-49de-413f-8eec-ea838c055667" width="200" title="Thanks Screen"/>
-
-
-
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/adbe91e0-7fa6-4327-8766-10dededa1ad5" width="200" title="Track Order Screen"/>
 
 
 
@@ -57,6 +55,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Add Card Screen
 * Thanks Screen
 * Order Summary Screen
+* Track Order Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
