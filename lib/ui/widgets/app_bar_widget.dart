@@ -1442,7 +1442,6 @@ Widget promoCodeWidget(){
     ),
   );
 }
-
 Widget nearbyRestaurantFood() {
   return Container(
     margin: const EdgeInsets.only(left: 20),
@@ -1460,32 +1459,38 @@ Widget nearbyRestaurantFood() {
               scrollDirection: Axis.horizontal,
               itemCount: restaurant.length,
               itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 200,
-                      width: 150,
-                      alignment: Alignment.bottomCenter,
-                      margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          image: DecorationImage(
-                              image: AssetImage(restaurant[index].img),
-                              fit: BoxFit.cover)),
-                    ),
-                    verticalSpacing(10),
-                    Text(
-                      restaurant[index].title,
-                      style: FontUtilities.h14(
-                          decorationColor: Colors.blue,
-                          fontColor: Colors.white,
-                          fontWeight: FWT.semiBold),
-                    ),
-                  ],
+                return InkWell(
+                  onTap: (){
+                    var data = { "model": restaurant[index]};
+                    Get.toNamed(RoutePath.restaurantDetails, arguments: data);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 150,
+                        alignment: Alignment.bottomCenter,
+                        margin: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            image: DecorationImage(
+                                image: AssetImage(restaurant[index].img),
+                                fit: BoxFit.cover)),
+                      ),
+                      verticalSpacing(10),
+                      Text(
+                        restaurant[index].title,
+                        style: FontUtilities.h14(
+                            decorationColor: Colors.blue,
+                            fontColor: Colors.white,
+                            fontWeight: FWT.semiBold),
+                      ),
+                    ],
+                  ),
                 );
               }),
         ),
@@ -1493,7 +1498,6 @@ Widget nearbyRestaurantFood() {
     ),
   );
 }
-
 Widget resendSend(BuildContext context) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -1536,7 +1540,6 @@ Widget resendSend(BuildContext context) {
     ),
   );
 }
-
 Widget applyWidget(BuildContext context, RxList<SortList> list) {
   return SizedBox(
     width: Get.width,
@@ -1545,7 +1548,6 @@ Widget applyWidget(BuildContext context, RxList<SortList> list) {
             sortList.length, (index) => titleThree(context, list[index]))),
   );
 }
-
 Widget filterWidget(BuildContext context, RxDouble start, RxDouble end,
     RxList<FilterList> list) {
   return SizedBox(
@@ -1583,11 +1585,9 @@ Widget filterWidget(BuildContext context, RxDouble start, RxDouble end,
     ),
   );
 }
-
 Widget cuisinesListWidget(BuildContext context) {
   return menuCategoryTwo(context);
 }
-
 Widget menuCategoryTwo(BuildContext context) {
   return Container(
       height: 100,
@@ -1660,7 +1660,6 @@ Widget priceSliderWidget(RxDouble start, RxDouble end, context) {
     ],
   );
 }
-
 Widget titleThree(context, dynamic model) {
   return Column(
     children: [
@@ -1688,7 +1687,6 @@ Widget titleThree(context, dynamic model) {
     ],
   );
 }
-
 Widget filterButton(BuildContext context, RxBool check) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -1742,7 +1740,6 @@ Widget filterButton(BuildContext context, RxBool check) {
     ],
   );
 }
-
 Widget horizontalLine(BuildContext context) {
   return Container(
     height: 1,
@@ -1774,6 +1771,289 @@ Widget customTextUnderLineButton(String title, void Function() onTap) {
             fontColor: Colors.white,
             fontWeight: FWT.semiBold),
       ),
+    ),
+  );
+}
+
+
+
+Widget restaurantListWidget(BuildContext context,Restaurant model){
+  return Column(children: [
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: titleMenu(AppText.menu, AppText.all, popular,Colors.white),
+    ),
+
+    verticalSpacing(20),
+    Container(
+      height: 200,
+      padding: const EdgeInsets.only(left: 20),
+      child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: bestOfferList.length,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Get.lazyPut(() => ProductDetailsController());
+                var data = {
+                  "model": bestOfferList[index],
+                };
+                Get.toNamed(RoutePath.productDetails, arguments: data);
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    alignment: Alignment.bottomCenter,
+                    margin: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                        const BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                            image: AssetImage(bestOfferList[index].img),
+                            fit: BoxFit.cover)),
+                  ),
+                  verticalSpacing(10),
+                  Text(
+                    bestOfferList[index].title,
+                    style: FontUtilities.h14(
+                        decorationColor: Colors.blue,
+                        fontColor: Colors.white,
+                        fontWeight: FWT.semiBold),
+                  ),
+                ],
+              ),
+            );
+          }),
+    ),
+  ],);
+}
+Widget restaurantAddressWidget(BuildContext context,Restaurant model){
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppText.averageCost,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h13(
+                fontColor: Colors.white, fontWeight: FWT.regular),
+          ),
+
+          Text("\$16 - \$19",
+            textAlign: TextAlign.start,
+            style: FontUtilities.h14(
+                fontColor: Colors.white, fontWeight: FWT.bold),
+          ),
+      ],),
+      verticalSpacing(5),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppText.home,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h13(
+                fontColor: Colors.white, fontWeight: FWT.regular),
+          ),
+
+          Text("Open now 6am - 6pm",
+            textAlign: TextAlign.start,
+            style: FontUtilities.h14(
+                fontColor: Colors.white, fontWeight: FWT.bold),
+          ),
+        ],),
+
+      verticalSpacing(5),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppText.phone,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h13(
+                fontColor: Colors.white, fontWeight: FWT.regular),
+          ),
+
+          Text("+1 1234 56789 258",
+            textAlign: TextAlign.start,
+            style: FontUtilities.h14(
+                fontColor: Colors.white, fontWeight: FWT.bold),
+          ),
+        ],),
+
+      verticalSpacing(5),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppText.website,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h13(
+                fontColor: Colors.white, fontWeight: FWT.regular),
+          ),
+
+          Text("www.mslgoel.com",
+            textAlign: TextAlign.start,
+            style: FontUtilities.h14(
+              decorationColor: Colors.blue,
+                fontColor: Colors.white, fontWeight: FWT.bold),
+          ),
+        ],),
+    ],),
+  );
+}
+
+Widget restaurantTitleWidget(BuildContext context,Restaurant model){
+  return Container(
+    margin: const EdgeInsets.only(top: 230),
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+      Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            model.title,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h24(
+                fontColor: Colors.white, fontWeight: FWT.semiBold),
+          ),
+          Text(
+            model.fullAddress,
+            textAlign: TextAlign.start,
+            style: FontUtilities.h11(
+                fontColor: Colors.white, fontWeight: FWT.regular),
+          ),
+      ],),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                  size: 25,
+                ),
+                horizontalSpacing(5),
+                Text(
+                  model.rating,
+                  style: FontUtilities.h20(
+                      fontColor: Colors.white,
+                      fontWeight: FWT.black),
+                ),
+              ],
+            ),
+            Text( model.review,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h12(
+                  decorationColor: Colors.white,
+                  fontColor: Colors.white,
+                  fontWeight: FWT.regular),
+            ),
+          ],)
+    ],),
+  );
+}
+
+Widget appBarThreeWidget(String title, bool rightIcon) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    alignment: Alignment.center,
+    height: 80,
+    child: Stack(
+      children: [
+        InkWell(
+            onTap: () => Get.back(),
+            child: const Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ))),
+        Align(
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style: FontUtilities.h16(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            )),
+        Visibility(
+          visible: rightIcon == null ? false : true,
+          child: const Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
+              )),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget restaurantDetailsWidget(BuildContext context,Restaurant model){
+  return Container(height: 250,
+    alignment: Alignment.bottomCenter,
+    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+    decoration: BoxDecoration(
+        color: Colors.transparent,
+        image: DecorationImage(
+            image: AssetImage(model.img),
+            fit: BoxFit.cover
+        )
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        appBarThreeWidget("",true),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).btnOffColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(25))),
+              child: Row(
+                children: [
+                 const Icon(Icons.location_on,color: Colors.white,size: 15,),
+                  Text(
+                    "Show Map",
+                    style: FontUtilities.h14(
+                        fontColor: Colors.white, fontWeight: FWT.semiBold),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 30,
+              width: 30,
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: Image.asset(AppImages.heartIcon),
+            ),
+
+          ],
+        ),
+      ],
     ),
   );
 }

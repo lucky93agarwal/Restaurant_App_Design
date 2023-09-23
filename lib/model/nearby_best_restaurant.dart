@@ -3,6 +3,7 @@
 
 
 
+import 'package:restaurant_app_design/utils/app_text.dart';
 import 'package:restaurant_app_design/utils/images.dart';
 
 const List<Restaurant> restaurant = [
@@ -13,16 +14,18 @@ const List<Restaurant> restaurant = [
       rating: '4.9',
       review: '(670 Review)',
       off: "30% off",
-      price: ""
+      price: "",
+    fullAddress: AppText.fullAddressFake,
   ),
   Restaurant(
       id: '2',
       img: AppImages.mcdonaldImg,
-      title: 'Mc Donald',
+      title: "Mc Donald\'s",
       rating: '4.6',
       review: '(1247 Review)',
       off: "30% off",
-      price: ""
+      price: "",
+    fullAddress: AppText.fullAddressFake,
   ),
   Restaurant(
       id: '3',
@@ -31,7 +34,8 @@ const List<Restaurant> restaurant = [
       rating: '4.5',
       review: '(1866 Review)',
       off: "30% off",
-      price: ""
+      price: "",
+    fullAddress: AppText.fullAddressFake,
   ),
   Restaurant(
       id: '4',
@@ -40,7 +44,8 @@ const List<Restaurant> restaurant = [
       rating: '4.5',
       review: '(1866 Review)',
       off: "30% off",
-      price: ""
+      price: "",
+      fullAddress: AppText.fullAddressFake,
   ),
 ];
 
@@ -53,6 +58,7 @@ class Restaurant{
   final String review;
   final String off;
   final String price;
+  final String fullAddress;
   const Restaurant({
     required this.id,
     required this.img,
@@ -61,5 +67,6 @@ class Restaurant{
     required this.review,
     required this.off,
     required this.price,
+    required this.fullAddress,
   });
 }
