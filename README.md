@@ -81,7 +81,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
 * [flutter_advanced_networkimage](https://pub.dev/packages/flutter_advanced_networkimage)
 * [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
-* [geolocator](https://pub.dev/packages/http)
+* [geolocator](https://pub.dev/packages/geolocator)
 * [share_plus](https://pub.dev/packages/share_plus)
 </details>
 
