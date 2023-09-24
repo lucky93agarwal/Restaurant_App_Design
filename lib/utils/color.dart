@@ -253,4 +253,6 @@ extension AppTheme on ThemeData {
   Color get subTitleText => const Color(0xff524c60);
   Color get btnOffColor => const Color(0xffff0188);
   Color get subTextTitle => const Color(0xffccb8d4);
+  Color get boxTitle => const Color(0xff5a3b6c);
+  Color get boxSelectTitle => const Color(0xffff0188);
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app_design/controller/filter_controller.dart';
 import 'package:restaurant_app_design/controller/product_details_contoller.dart';
+import 'package:restaurant_app_design/controller/restaurant_booking_controller.dart';
 import 'package:restaurant_app_design/model/best_offer.dart';
 import 'package:restaurant_app_design/model/category.dart';
 import 'package:restaurant_app_design/model/filter_list.dart';
@@ -20,6 +21,7 @@ import 'package:restaurant_app_design/utils/color.dart';
 import 'package:restaurant_app_design/utils/font_utils.dart';
 import 'package:restaurant_app_design/utils/images.dart';
 import 'package:restaurant_app_design/utils/route_path.dart';
+import 'package:restaurant_app_design/utils/utility.dart';
 
 Widget appBarWidget(String title, bool rightIcon) {
   return Container(
@@ -57,18 +59,19 @@ Widget appBarWidget(String title, bool rightIcon) {
     ),
   );
 }
-Widget trackOrderWidget(BuildContext context){
+
+Widget trackOrderWidget(BuildContext context) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Text(
-        "McDonald's",
-        style: FontUtilities.h16(
-            fontColor: Colors.white, fontWeight: FWT.semiBold),
-      ),
+        Text(
+          "McDonald's",
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -77,48 +80,297 @@ Widget trackOrderWidget(BuildContext context){
               style: FontUtilities.h30(
                   fontColor: Colors.white, fontWeight: FWT.semiBold),
             ),
-            Text(AppText.estimateArrival,
+            Text(
+              AppText.estimateArrival,
               style: FontUtilities.h15(
                   fontColor: Colors.white, fontWeight: FWT.semiBold),
             ),
-        ],),
-
+          ],
+        ),
         verticalSpacing(20),
-
-
-    ],),
+      ],
+    ),
   );
 }
-Widget preparingYourOrder(BuildContext context,Completer<GoogleMapController> controllerGoogle,CameraPosition kGooglePlex){
+
+Widget preparingYourOrder(
+    BuildContext context,
+    Completer<GoogleMapController> controllerGoogle,
+    CameraPosition kGooglePlex) {
   return Container(
-    height: Get.height*0.75,
-    child:  Column(
+    height: Get.height * 0.75,
+    child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(AppText.preparingYourOrder,
+            Text(
+              AppText.preparingYourOrder,
               style: FontUtilities.h14(
                   fontColor: Colors.white, fontWeight: FWT.semiBold),
             ),
             horizontalSpacing(10),
-            Icon(Icons.keyboard_arrow_down_outlined,color: Colors.white,)
+            Icon(
+              Icons.keyboard_arrow_down_outlined,
+              color: Colors.white,
+            )
           ],
         ),
         verticalSpacing(10),
-        Expanded(flex: 1,child: Container(color: Colors.yellow,
-          child: GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              controllerGoogle.complete(controller);
-            },
-          )))
-    ],),
+        Expanded(
+            flex: 1,
+            child: Container(
+                color: Colors.yellow,
+                child: GoogleMap(
+                  mapType: MapType.normal,
+                  initialCameraPosition: kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) {
+                    controllerGoogle.complete(controller);
+                  },
+                )))
+      ],
+    ),
   );
 }
+
+Widget restaurantBookingDateWidget(BuildContext context, int type, Function(String) onTabTime,String time,
+    void Function() onTabPlus,void Function() onTabMinus, int person) {
+  return Column(
+    children: [
+      appBarTwoWidget(
+          type == 1
+              ? AppText.selectDate
+              : type == 2
+                  ? AppText.selectTime
+                  : type == 3
+                      ? AppText.selectPerson
+                      : AppText.yourInformation,
+          true),
+      verticalSpacing(20),
+      restaurantSelect(type,context,time,person),
+      verticalSpacing(50),
+      Visibility(visible: type == 2?true:false,child: restaurantTime(context,onTabTime,time)),
+      Visibility(visible: type == 3?true:false,child: restaurantPerson(context,onTabPlus,onTabMinus,person)),
+    ],
+  );
+}
+
+Widget restaurantPerson(BuildContext context, void Function() onTabPlus,void Function() onTabMinus,int person){
+
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+           const Icon(
+              Icons.arrow_back,
+              color: Colors.transparent,
+            ),
+            Text(
+              AppText.person,
+              style: FontUtilities.h16(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+            const  Icon(
+              Icons.arrow_forward,
+              color: Colors.transparent,
+            ),
+          ],
+        ),
+        verticalSpacing(20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(onTap: onTabMinus,child: Container(width: 15,height: 2,color: Colors.white,)),
+
+            personButton(context,person),
+
+            InkWell(
+              onTap: onTabPlus,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(width: 15,height: 2,color: Colors.white,),
+                  Container(width: 2,height: 15,color: Colors.white,),
+                ],),
+            ),
+
+
+
+
+
+          ],)
+      ],
+    ),
+  );
+}
+
+Widget restaurantTime(BuildContext context,  Function(String) onTab,String time) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            Text(
+              AppText.breakfast,
+              style: FontUtilities.h16(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+            Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        verticalSpacing(20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            timeButton("7:30",onTab,context,time),
+
+            timeButton("8:30",onTab,context,time),
+            timeButton("9:00",onTab,context,time),
+
+
+
+        ],)
+      ],
+    ),
+  );
+}
+
+Widget personButton(BuildContext context,int personLocal){
+  return Container(
+    width: 75,
+    alignment: Alignment.center,
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+    decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        color:Theme.of(context).boxTitle
+    ),
+    child:  Text(personLocal.toString(), style: FontUtilities.h14(
+        fontColor: Colors.white, fontWeight: FWT.semiBold),),
+  );
+}
+Widget timeButton(String time, Function(String) onTab, BuildContext context,String timeLocal){
+  int i=0;
+  return InkWell(
+    onTap: (){
+      cPrint("time -"+time);
+      i=1;
+      onTab(time);
+    },
+    child: Container(
+      alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          color:timeLocal==time? Theme.of(context).boxSelectTitle: Theme.of(context).boxTitle
+      ),
+      child: Text(time, style: FontUtilities.h14(
+          fontColor: Colors.white, fontWeight: FWT.semiBold),),
+    ),
+  );
+}
+
+
+
+Widget restaurantSelect(int type,BuildContext context,String time,int person) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        type == 1 ? restaurantObx(1, 1, "",context) : restaurantObx(2, 1, "16 June",context),
+        type == 1
+            ? restaurantObx(1, 2, "",context)
+            : type == 2
+                ? restaurantObx(1, 2, "",context)
+                : restaurantObx(2, 2, time,context),
+        type == 1
+            ? restaurantObx(1, 3, "",context)
+            : type == 2
+                ? restaurantObx(1, 3, "",context)
+                : type == 3
+                    ? restaurantObx(1, 3, "",context)
+                    : restaurantObx(2, 3, person.toString()+" Pers.",context),
+      ],
+    ),
+  );
+}
+
+Widget restaurantObx(int type, int icon, String data,BuildContext context) {
+  return Container(
+    width: 100,
+    height: 100,
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      color: type == 1 ? Theme.of(context).boxTitle : Theme.of(context).boxSelectTitle,
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color:
+                  type == 1 ? const Color(0xff7c608e) : const Color(0xfffa3ba6),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              icon == 1
+                  ? Icons.calendar_month
+                  : icon == 2
+                      ? Icons.access_time_filled_outlined
+                      : Icons.person,
+              color: Colors.white,
+              size: 20,
+            )),
+        verticalSpacing(5),
+        Visibility(
+          visible: data == "" ? false : true,
+          replacement: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(3, (index) => centerContainer()),
+          ),
+          child: Text(
+            data,
+            style: FontUtilities.h14(
+                fontColor: Colors.white, fontWeight: FWT.semiBold),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget centerContainer() {
+  return Container(
+    width: 4,
+    height: 4,
+    margin: const EdgeInsets.symmetric(horizontal: 2),
+    decoration:
+        const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+  );
+}
+
 Widget appBarTwoWidget(String title, bool rightIcon) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -287,7 +539,7 @@ Widget menuCategory(BuildContext context) {
   );
 }
 
-Widget favouriteFoodWidget(BuildContext context){
+Widget favouriteFoodWidget(BuildContext context) {
   return Container(
     margin: const EdgeInsets.only(left: 20),
     child: Column(
@@ -304,82 +556,81 @@ Widget favouriteFoodWidget(BuildContext context){
           width: Get.width,
           height: 205,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: bestOfferList.length,
-              itemBuilder: (BuildContext context, int index){
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(left: 10,bottom: 10),
-                margin: const EdgeInsets.only(right: 10),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  image: DecorationImage(
-                    image: AssetImage(bestOfferList[index].img),
-                    fit: BoxFit.cover
-                  )
-                ),
-                  child:  Container(
-                    height: 30,
-                    width: 30,
-                    padding: const EdgeInsets.all(5),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: Image.asset(AppImages.heartIcon),
-                  ),
-                ),
-                verticalSpacing(10),
-                Text(
-                  bestOfferList[index].title,
-                  style: FontUtilities.h16(
-                      decorationColor: Colors.blue,
-                      fontColor: Colors.white,
-                      fontWeight: FWT.semiBold),
-                ),
-                verticalSpacing(5),
-                Row(
+              scrollDirection: Axis.horizontal,
+              itemCount: bestOfferList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 15,
+                    Container(
+                      height: 150,
+                      width: 150,
+                      alignment: Alignment.bottomLeft,
+                      padding: const EdgeInsets.only(left: 10, bottom: 10),
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          image: DecorationImage(
+                              image: AssetImage(bestOfferList[index].img),
+                              fit: BoxFit.cover)),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Image.asset(AppImages.heartIcon),
+                      ),
                     ),
-                    horizontalSpacing(5),
+                    verticalSpacing(10),
                     Text(
-                      bestOfferList[index].rating,
-                      style: FontUtilities.h12(
+                      bestOfferList[index].title,
+                      style: FontUtilities.h16(
                           decorationColor: Colors.blue,
                           fontColor: Colors.white,
                           fontWeight: FWT.semiBold),
                     ),
-                    horizontalSpacing(5),
-                    Text(
-                      bestOfferList[index].review,
-                      style: FontUtilities.h12(
-                          decorationColor: Colors.blue,
-                          fontColor:const Color(0xff89749c),
-                          fontWeight: FWT.regular),
+                    verticalSpacing(5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 15,
+                        ),
+                        horizontalSpacing(5),
+                        Text(
+                          bestOfferList[index].rating,
+                          style: FontUtilities.h12(
+                              decorationColor: Colors.blue,
+                              fontColor: Colors.white,
+                              fontWeight: FWT.semiBold),
+                        ),
+                        horizontalSpacing(5),
+                        Text(
+                          bestOfferList[index].review,
+                          style: FontUtilities.h12(
+                              decorationColor: Colors.blue,
+                              fontColor: const Color(0xff89749c),
+                              fontWeight: FWT.regular),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ],
-            );
-          }),
+                );
+              }),
         ),
       ],
     ),
   );
 }
 
-Widget favouriteRestaurantWidget(BuildContext context){
+Widget favouriteRestaurantWidget(BuildContext context) {
   return Container(
     margin: const EdgeInsets.only(left: 20),
     child: Column(
@@ -398,7 +649,7 @@ Widget favouriteRestaurantWidget(BuildContext context){
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: restaurant.length,
-              itemBuilder: (BuildContext context, int index){
+              itemBuilder: (BuildContext context, int index) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -407,16 +658,15 @@ Widget favouriteRestaurantWidget(BuildContext context){
                       height: 150,
                       width: 150,
                       alignment: Alignment.bottomLeft,
-                      padding: const EdgeInsets.only(left: 10,bottom: 10),
+                      padding: const EdgeInsets.only(left: 10, bottom: 10),
                       margin: const EdgeInsets.only(right: 10),
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
                           image: DecorationImage(
                               image: AssetImage(restaurant[index].img),
-                              fit: BoxFit.cover
-                          )
-                      ),
-                      child:  Container(
+                              fit: BoxFit.cover)),
+                      child: Container(
                         height: 30,
                         width: 30,
                         padding: const EdgeInsets.all(5),
@@ -436,7 +686,6 @@ Widget favouriteRestaurantWidget(BuildContext context){
                           fontWeight: FWT.semiBold),
                     ),
                     verticalSpacing(5),
-
                   ],
                 );
               }),
@@ -446,8 +695,8 @@ Widget favouriteRestaurantWidget(BuildContext context){
   );
 }
 
-
-Widget titleMenu(String firstTitle, String secondTitle, dynamic model,Color color) {
+Widget titleMenu(
+    String firstTitle, String secondTitle, dynamic model, Color color) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.end,
@@ -461,14 +710,12 @@ Widget titleMenu(String firstTitle, String secondTitle, dynamic model,Color colo
       ),
       InkWell(
         onTap: () {
-          if(model == AppText.addCard){
+          if (model == AppText.addCard) {
             Get.toNamed(RoutePath.addCard);
-          }else {
-
+          } else {
             var data = {"title": firstTitle, "model": model};
             Get.toNamed(RoutePath.listScreen, arguments: data);
           }
-
         },
         child: Row(
           children: [
@@ -695,25 +942,30 @@ Widget productBigTitle(BuildContext context, Popular popular) {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-        Expanded(
-          child: Text(popular.fullName,style:FontUtilities.h24(
-              fontColor: Colors.white,
-              fontWeight: FWT.regular),),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                popular.fullName,
+                style: FontUtilities.h24(
+                    fontColor: Colors.white, fontWeight: FWT.regular),
+              ),
+            ),
+            Text(
+              popular.price,
+              style: FontUtilities.h30(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+          ],
         ),
-
-          Text(popular.price,style:FontUtilities.h30(
-              fontColor: Colors.white,
-              fontWeight: FWT.semiBold),),
-
-      ],),
         verticalSpacing(10),
-        Text(popular.cal,style:FontUtilities.h14(
-            fontColor: Colors.white,
-            fontWeight: FWT.semiBold),),
+        Text(
+          popular.cal,
+          style: FontUtilities.h14(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
         verticalSpacing(20),
         horizontalLineTwo(context),
         verticalSpacing(20),
@@ -740,13 +992,14 @@ Widget productBigTitle(BuildContext context, Popular popular) {
                   popular.review,
                   style: FontUtilities.h12(
                       decorationColor: Colors.blue,
-                      fontColor:const Color(0xff89749c),
+                      fontColor: const Color(0xff89749c),
                       fontWeight: FWT.regular),
                 ),
               ],
             ),
             const Spacer(),
-            Text("Food   ",
+            Text(
+              "Food   ",
               style: FontUtilities.h12(
                   decorationColor: Colors.blue,
                   fontColor: Colors.white,
@@ -769,153 +1022,171 @@ Widget productBigTitle(BuildContext context, Popular popular) {
           popular.details,
           style: FontUtilities.h12(
               decorationColor: Colors.blue,
-              fontColor:const Color(0xff89749c),
+              fontColor: const Color(0xff89749c),
               fontWeight: FWT.regular),
         ),
-
-    ],),
-  );
-}
-
-Widget bottomSheetThanks(BuildContext context,void Function() onTapButton){
-  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Container(
-    height: Get.height*0.4,
-    width: Get.width,
-    decoration:const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        verticalSpacing(30),
-
-        Container(height: 60,
-        width: 60,
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Color(0xff42d584),
-        ),
-          child: const Icon(Icons.check,color: Colors.white,),
-        ),
-        verticalSpacing(40),
-        Text(AppText.thankYouForYourOrder,
-          textAlign: TextAlign.center,
-          style: FontUtilities.h30(
-              fontColor: Colors.black,
-              fontWeight: FWT.black),),
-
-        verticalSpacing(40),
-
-
-        customButton(AppText.trackYourOrder,context,onTapButton),
       ],
-    ),
-  ));
-}
-Widget bottomSheet(BuildContext context, void Function() onMinusTap, void Function() onPlusTap, void Function() onTapButton){
-
-  return GetBuilder<ProductDetailsController>(  builder:(controller)=> Obx(()=>Container(
-    height: Get.height*0.4,
-    width: Get.width,
-    decoration:const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        verticalSpacing(20),
-        Text(AppText.quantity,
-          style: FontUtilities.h16(
-              decorationColor: Colors.blue,
-              fontColor: Colors.black,
-              fontWeight: FWT.semiBold),),
-        verticalSpacing(30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            minusButton(context,onMinusTap),
-            horizontalSpacing(20),
-            Text(controller.quantity.value.toString(),
-              style: FontUtilities.h40(
-                  fontColor: Colors.black,
-                  fontWeight: FWT.semiBold),),
-            horizontalSpacing(20),
-            plusButton(context,onPlusTap),
-
-          ],
-        ),
-        verticalSpacing(40),
-        Text(AppText.totalPrice,
-          style: FontUtilities.h12(
-              fontColor: Colors.black,
-              fontWeight: FWT.semiBold),),
-        Text("\$"+controller.prince.value.toString(),
-          style: FontUtilities.h26(
-              fontColor: Colors.black,
-              fontWeight: FWT.semiBold),),
-        verticalSpacing(10),
-        customButton(AppText.continues,context,onTapButton),
-      ],
-    ),
-  )));
-}
-Widget plusButton(BuildContext context, void Function() onTap){
-  return InkWell(
-    onTap: onTap,
-    child: Container(height: 50,width: 50,
-      padding: const EdgeInsets.all(5),
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Color(0xfffff2fb)
-      ),
-      child: Stack(children: [
-        Align(
-          alignment: Alignment.center,
-          child: Container(height: 30,width: 5,
-          decoration: BoxDecoration(
-            color: Theme.of(context).btnOffColor,
-            borderRadius: BorderRadius.all(Radius.circular(5))
-          ),),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Container(height: 5,width: 30,
-            decoration: BoxDecoration(
-                color: Theme.of(context).btnOffColor,
-                borderRadius: BorderRadius.all(Radius.circular(5))
-            ),),
-        ),
-
-      ],),
     ),
   );
 }
 
-Widget minusButton(BuildContext context, void Function() onTap){
+Widget bottomSheetThanks(BuildContext context, void Function() onTapButton) {
+  return GetBuilder<ProductDetailsController>(
+      builder: (controller) => Container(
+            height: Get.height * 0.4,
+            width: Get.width,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                verticalSpacing(30),
+                Container(
+                  height: 60,
+                  width: 60,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xff42d584),
+                  ),
+                  child: const Icon(
+                    Icons.check,
+                    color: Colors.white,
+                  ),
+                ),
+                verticalSpacing(40),
+                Text(
+                  AppText.thankYouForYourOrder,
+                  textAlign: TextAlign.center,
+                  style: FontUtilities.h30(
+                      fontColor: Colors.black, fontWeight: FWT.black),
+                ),
+                verticalSpacing(40),
+                customButton(AppText.trackYourOrder, context, onTapButton),
+              ],
+            ),
+          ));
+}
+
+Widget bottomSheet(BuildContext context, void Function() onMinusTap,
+    void Function() onPlusTap, void Function() onTapButton) {
+  return GetBuilder<ProductDetailsController>(
+      builder: (controller) => Obx(() => Container(
+            height: Get.height * 0.4,
+            width: Get.width,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                verticalSpacing(20),
+                Text(
+                  AppText.quantity,
+                  style: FontUtilities.h16(
+                      decorationColor: Colors.blue,
+                      fontColor: Colors.black,
+                      fontWeight: FWT.semiBold),
+                ),
+                verticalSpacing(30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    minusButton(context, onMinusTap),
+                    horizontalSpacing(20),
+                    Text(
+                      controller.quantity.value.toString(),
+                      style: FontUtilities.h40(
+                          fontColor: Colors.black, fontWeight: FWT.semiBold),
+                    ),
+                    horizontalSpacing(20),
+                    plusButton(context, onPlusTap),
+                  ],
+                ),
+                verticalSpacing(40),
+                Text(
+                  AppText.totalPrice,
+                  style: FontUtilities.h12(
+                      fontColor: Colors.black, fontWeight: FWT.semiBold),
+                ),
+                Text(
+                  "\$" + controller.prince.value.toString(),
+                  style: FontUtilities.h26(
+                      fontColor: Colors.black, fontWeight: FWT.semiBold),
+                ),
+                verticalSpacing(10),
+                customButton(AppText.continues, context, onTapButton),
+              ],
+            ),
+          )));
+}
+
+Widget plusButton(BuildContext context, void Function() onTap) {
   return InkWell(
     onTap: onTap,
-    child: Container(height: 50,width: 50,
+    child: Container(
+      height: 50,
+      width: 50,
       padding: const EdgeInsets.all(5),
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Color(0xfffff2fb)
+      decoration:
+          const BoxDecoration(shape: BoxShape.circle, color: Color(0xfffff2fb)),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 30,
+              width: 5,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).btnOffColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 5,
+              width: 30,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).btnOffColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+            ),
+          ),
+        ],
       ),
-      child: Container(height: 5,width: 30,
+    ),
+  );
+}
+
+Widget minusButton(BuildContext context, void Function() onTap) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      height: 50,
+      width: 50,
+      padding: const EdgeInsets.all(5),
+      alignment: Alignment.center,
+      decoration:
+          const BoxDecoration(shape: BoxShape.circle, color: Color(0xfffff2fb)),
+      child: Container(
+        height: 5,
+        width: 30,
         decoration: BoxDecoration(
             color: Theme.of(context).btnOffColor,
-            borderRadius: BorderRadius.all(Radius.circular(5))
-        ),),
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+      ),
     ),
   );
 }
 
-Widget bestOfferWidget(BuildContext context,ScrollController controller){
+Widget bestOfferWidget(BuildContext context, ScrollController controller) {
   return Container(
     padding: const EdgeInsets.all(0),
     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -927,15 +1198,14 @@ Widget bestOfferWidget(BuildContext context,ScrollController controller){
       shrinkWrap: true,
       children: List.generate(
         bestOfferList.length,
-            (index) => Column(
+        (index) => Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 130,
               alignment: Alignment.bottomCenter,
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 image: DecorationImage(
@@ -956,17 +1226,16 @@ Widget bestOfferWidget(BuildContext context,ScrollController controller){
                     child: Image.asset(AppImages.heartIcon),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                         color: Theme.of(context).btnOffColor,
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(25))),
+                            const BorderRadius.all(Radius.circular(25))),
                     child: Text(
                       bestOfferList[index].off,
                       style: FontUtilities.h11(
-                          fontColor: Colors.white,
-                          fontWeight: FWT.semiBold),
+                          fontColor: Colors.white, fontWeight: FWT.semiBold),
                     ),
                   )
                 ],
@@ -976,8 +1245,7 @@ Widget bestOfferWidget(BuildContext context,ScrollController controller){
             Text(
               bestOfferList[index].title,
               style: FontUtilities.h14(
-                  fontColor: Colors.white,
-                  fontWeight: FWT.regular),
+                  fontColor: Colors.white, fontWeight: FWT.regular),
             ),
           ],
         ),
@@ -986,7 +1254,7 @@ Widget bestOfferWidget(BuildContext context,ScrollController controller){
   );
 }
 
-Widget orderSummaryWidget(BuildContext context){
+Widget orderSummaryWidget(BuildContext context) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
@@ -995,8 +1263,7 @@ Widget orderSummaryWidget(BuildContext context){
       children: [
         Container(
           height: 60,
-
-          decoration:const BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
@@ -1006,25 +1273,39 @@ Widget orderSummaryWidget(BuildContext context){
               Row(
                 children: [
                   horizontalSpacing(10),
-                  Image.asset(AppImages.samosaImg,width: 60,),
+                  Image.asset(
+                    AppImages.samosaImg,
+                    width: 60,
+                  ),
                   horizontalSpacing(10),
-                  SizedBox(width: 150,
-                    child:  Expanded(
-                      child: Text(popular[1].fullName,style: FontUtilities.h16(
-                          fontColor: Colors.black, fontWeight: FWT.semiBold),),
-                    ),),
-                ],),
+                  SizedBox(
+                    width: 150,
+                    child: Expanded(
+                      child: Text(
+                        popular[1].fullName,
+                        style: FontUtilities.h16(
+                            fontColor: Colors.black, fontWeight: FWT.semiBold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Container(
                 width: 85,
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(5),bottomRight: Radius.circular(5)),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(5),
+                      bottomRight: Radius.circular(5)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$18",style: FontUtilities.h18(
-                        fontColor: Colors.black, fontWeight: FWT.black),),
+                    Text(
+                      "\$18",
+                      style: FontUtilities.h18(
+                          fontColor: Colors.black, fontWeight: FWT.black),
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1032,35 +1313,52 @@ Widget orderSummaryWidget(BuildContext context){
                           height: 29,
                           width: 40,
                           alignment: Alignment.center,
-                          decoration:const BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color(0xfffed9ef),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(5)),
+                            borderRadius:
+                                BorderRadius.only(topRight: Radius.circular(5)),
                           ),
-                          child:const Icon(Icons.delete,color: Color(0xffff0087),),
+                          child: const Icon(
+                            Icons.delete,
+                            color: Color(0xffff0087),
+                          ),
                         ),
                         Container(
                           height: 29,
                           width: 40,
                           alignment: Alignment.center,
-                          decoration:const BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color(0xfffed9ef),
-                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(5)),
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(5)),
                           ),
-                          child:const Icon(Icons.edit,color:  Color(0xffff0087),),
+                          child: const Icon(
+                            Icons.edit,
+                            color: Color(0xffff0087),
+                          ),
                         ),
-                      ],),
+                      ],
+                    ),
                   ],
                 ),
               ),
-            ],),
+            ],
+          ),
         ),
         verticalSpacing(30),
-        Text(popular[1].brand,style: FontUtilities.h16(
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.blue,
-            fontColor: Colors.white, fontWeight: FWT.semiBold),),
-        Text(AppText.fullAddressFake,style: FontUtilities.h10(
-            fontColor: Colors.white, fontWeight: FWT.regular),),
+        Text(
+          popular[1].brand,
+          style: FontUtilities.h16(
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.blue,
+              fontColor: Colors.white,
+              fontWeight: FWT.semiBold),
+        ),
+        Text(
+          AppText.fullAddressFake,
+          style: FontUtilities.h10(
+              fontColor: Colors.white, fontWeight: FWT.regular),
+        ),
       ],
     ),
   );
@@ -1073,7 +1371,8 @@ Widget popularFood() {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 20.0),
-          child: titleMenu(AppText.popularFood, AppText.allFood, popular,Colors.white),
+          child: titleMenu(
+              AppText.popularFood, AppText.allFood, popular, Colors.white),
         ),
         verticalSpacing(20),
         SizedBox(
@@ -1181,128 +1480,158 @@ Widget popularFood() {
   );
 }
 
-Widget paymentDelivery(BuildContext context){
-  return  Container(
+Widget paymentDelivery(BuildContext context) {
+  return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        titleMenu(AppText.deliveryAddress, AppText.change, AppText.change,const Color(0xffb40572)),
-
-
+        titleMenu(AppText.deliveryAddress, AppText.change, AppText.change,
+            const Color(0xffb40572)),
         verticalSpacing(10),
         Text(
           AppText.fullAddressFake,
           style: FontUtilities.h10(
-              fontColor: Theme.of(context).subTextTitle, fontWeight: FWT.regular),
+              fontColor: Theme.of(context).subTextTitle,
+              fontWeight: FWT.regular),
         ),
-
-
-      ],),
-  );
-}
-Widget paymentMethod(BuildContext context){
-  return  Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        titleMenu(AppText.paymentMethod, AppText.addCard, AppText.addCard,const Color(0xffb40572)),
-
-
-        verticalSpacing(20),
-
-        Container(
-          height: 55,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: const BoxDecoration(
-            color: Color(0xff2394bc),
-            borderRadius: BorderRadius.all(Radius.circular(5))
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-            children: [
-              Image.asset(AppImages.visaIcon,width: 50,),
-              Text("*** **** **** 1234",style: FontUtilities.h14(
-                  fontColor: Colors.white, fontWeight: FWT.black),),
-
-             const Icon(Icons.check,color: Colors.white,),
-          ],),
-        ),
-
-        verticalSpacing(20),
-
-        Container(
-          height: 55,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          decoration:  BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: const Color(0xff4e247e),width: 1),
-              borderRadius: const BorderRadius.all(Radius.circular(5))
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-            children: [
-              Image.asset(AppImages.paypalImg,width: 50,height: 30,),
-              Text("*** **** **** 5789",style: FontUtilities.h14(
-                  fontColor: Colors.white, fontWeight: FWT.black),),
-
-              const Icon(Icons.check,color: Colors.transparent,),
-            ],),
-        ),
-
-
-
-
-      ],),
-  );
-}
-Widget promoCodeSubTotalWidget(int price){
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(AppText.subTotal,style: FontUtilities.h14(
-                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
-            Text("\$"+price.toString(),style: FontUtilities.h14(
-                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
-        ],),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(AppText.delivery,style: FontUtilities.h14(
-                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
-            Text("\$0.60",style: FontUtilities.h14(
-                fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),),
-          ],),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(AppText.total,style: FontUtilities.h22(
-                fontColor: Colors.white, fontWeight: FWT.black),),
-            Text("\$"+(price+0.60).toString(),style: FontUtilities.h22(
-                fontColor: Colors.white, fontWeight: FWT.black),),
-          ],),
       ],
     ),
   );
 }
 
-Widget addCardFormWidget(BuildContext context,TextEditingController emailController){
+Widget paymentMethod(BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        titleMenu(AppText.paymentMethod, AppText.addCard, AppText.addCard,
+            const Color(0xffb40572)),
+        verticalSpacing(20),
+        Container(
+          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+              color: Color(0xff2394bc),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                AppImages.visaIcon,
+                width: 50,
+              ),
+              Text(
+                "*** **** **** 1234",
+                style: FontUtilities.h14(
+                    fontColor: Colors.white, fontWeight: FWT.black),
+              ),
+              const Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+            ],
+          ),
+        ),
+        verticalSpacing(20),
+        Container(
+          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(color: const Color(0xff4e247e), width: 1),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                AppImages.paypalImg,
+                width: 50,
+                height: 30,
+              ),
+              Text(
+                "*** **** **** 5789",
+                style: FontUtilities.h14(
+                    fontColor: Colors.white, fontWeight: FWT.black),
+              ),
+              const Icon(
+                Icons.check,
+                color: Colors.transparent,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget promoCodeSubTotalWidget(int price) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.subTotal,
+              style: FontUtilities.h14(
+                  fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),
+            ),
+            Text(
+              "\$" + price.toString(),
+              style: FontUtilities.h14(
+                  fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.delivery,
+              style: FontUtilities.h14(
+                  fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),
+            ),
+            Text(
+              "\$0.60",
+              style: FontUtilities.h14(
+                  fontColor: const Color(0xffb9aeca), fontWeight: FWT.semiBold),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.total,
+              style: FontUtilities.h22(
+                  fontColor: Colors.white, fontWeight: FWT.black),
+            ),
+            Text(
+              "\$" + (price + 0.60).toString(),
+              style: FontUtilities.h22(
+                  fontColor: Colors.white, fontWeight: FWT.black),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget addCardFormWidget(
+    BuildContext context, TextEditingController emailController) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Text(
           AppText.cardNumber,
           style: FontUtilities.h16(
@@ -1312,11 +1641,11 @@ Widget addCardFormWidget(BuildContext context,TextEditingController emailControl
         AppTextField(
           ctrl: emailController,
           hintText: "1234 1234 1234 1234",
-          textInputType:TextInputType.emailAddress,
+          textInputType: TextInputType.emailAddress,
           icons: AppText.hideSuffixIconEditText,
           iconsTwo: AppText.hidePrefixIconEditText,
-          checkVerify:true,
-          checkPayment:true,
+          checkVerify: true,
+          checkPayment: true,
         ),
         verticalSpacing(30),
         Row(
@@ -1336,12 +1665,12 @@ Widget addCardFormWidget(BuildContext context,TextEditingController emailControl
                 AppTextField(
                   ctrl: emailController,
                   hintText: AppText.mmYY,
-                  textInputType:TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   icons: AppText.hideSuffixIconEditText,
                   iconsTwo: AppText.hidePrefixIconEditText,
-                  checkVerify:true,
-                  checkPayment:true,
-                    checkRow:true,
+                  checkVerify: true,
+                  checkPayment: true,
+                  checkRow: true,
                 ),
               ],
             ),
@@ -1358,18 +1687,18 @@ Widget addCardFormWidget(BuildContext context,TextEditingController emailControl
                 AppTextField(
                   ctrl: emailController,
                   hintText: AppText.mmYY,
-                  textInputType:TextInputType.emailAddress,
+                  textInputType: TextInputType.emailAddress,
                   icons: AppText.hideSuffixIconEditText,
                   iconsTwo: AppText.hidePrefixIconEditText,
-                  checkVerify:true,
-                  checkPayment:true,
-                  checkRow:true,
+                  checkVerify: true,
+                  checkPayment: true,
+                  checkRow: true,
                 ),
               ],
             ),
-          ],),
+          ],
+        ),
         verticalSpacing(30),
-
         Text(
           AppText.country,
           style: FontUtilities.h16(
@@ -1379,18 +1708,18 @@ Widget addCardFormWidget(BuildContext context,TextEditingController emailControl
         AppTextField(
           ctrl: emailController,
           hintText: "United State of America",
-          textInputType:TextInputType.emailAddress,
+          textInputType: TextInputType.emailAddress,
           icons: AppText.locationTextPrefixIconEditText,
           iconsTwo: AppText.arrowDownSuffixIconEditText,
-          checkVerify:true,
-          checkPayment:true,
+          checkVerify: true,
+          checkPayment: true,
         ),
-
       ],
     ),
   );
 }
-Widget promoCodeTitleWidget(){
+
+Widget promoCodeTitleWidget() {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 30),
     alignment: Alignment.center,
@@ -1398,50 +1727,57 @@ Widget promoCodeTitleWidget(){
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-      Text(
-        AppText.enterPromoCode,
-        style: FontUtilities.h16(
-            fontColor: Colors.white, fontWeight: FWT.semiBold),
-      ),
-      verticalSpacing(5),
-      Text(
-        AppText.ifYouHaveAPromoCodeEnterItAndSaveOnYourOrder,
-        textAlign: TextAlign.center,
-        style: FontUtilities.h12(
-            fontColor: const Color(0xffb9aeca), fontWeight: FWT.regular),
-      ),
-
-    ],),
+        Text(
+          AppText.enterPromoCode,
+          style: FontUtilities.h16(
+              fontColor: Colors.white, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(5),
+        Text(
+          AppText.ifYouHaveAPromoCodeEnterItAndSaveOnYourOrder,
+          textAlign: TextAlign.center,
+          style: FontUtilities.h12(
+              fontColor: const Color(0xffb9aeca), fontWeight: FWT.regular),
+        ),
+      ],
+    ),
   );
 }
-Widget promoCodeWidget(){
+
+Widget promoCodeWidget() {
   return InkWell(
-    onTap: (){
+    onTap: () {
       Get.toNamed(RoutePath.promoCode);
     },
     child: Container(
       height: 55,
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: const  BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xff452767),
-          borderRadius: BorderRadius.all(Radius.circular(5))
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(AppText.promoCode,style: FontUtilities.h14(
-              fontColor: Colors.white, fontWeight: FWT.black),),
-
-          Text(AppText.apply,style: FontUtilities.h14(
-              decoration: TextDecoration.underline,
-              decorationColor: Colors.blue,
-              fontColor: Colors.white,
-              fontWeight: FWT.semiBold),),
-        ],),
+          Text(
+            AppText.promoCode,
+            style: FontUtilities.h14(
+                fontColor: Colors.white, fontWeight: FWT.black),
+          ),
+          Text(
+            AppText.apply,
+            style: FontUtilities.h14(
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.blue,
+                fontColor: Colors.white,
+                fontWeight: FWT.semiBold),
+          ),
+        ],
+      ),
     ),
   );
 }
+
 Widget nearbyRestaurantFood() {
   return Container(
     margin: const EdgeInsets.only(left: 20),
@@ -1449,8 +1785,8 @@ Widget nearbyRestaurantFood() {
       children: [
         Padding(
             padding: const EdgeInsets.only(right: 20.0),
-            child: titleMenu(
-                AppText.nearbyBestRestaurant, AppText.all, restaurant,Colors.white)),
+            child: titleMenu(AppText.nearbyBestRestaurant, AppText.all,
+                restaurant, Colors.white)),
         verticalSpacing(20),
         SizedBox(
           height: 250,
@@ -1460,8 +1796,8 @@ Widget nearbyRestaurantFood() {
               itemCount: restaurant.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: (){
-                    var data = { "model": restaurant[index]};
+                  onTap: () {
+                    var data = {"model": restaurant[index]};
                     Get.toNamed(RoutePath.restaurantDetails, arguments: data);
                   },
                   child: Column(
@@ -1498,6 +1834,7 @@ Widget nearbyRestaurantFood() {
     ),
   );
 }
+
 Widget resendSend(BuildContext context) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -1540,6 +1877,7 @@ Widget resendSend(BuildContext context) {
     ),
   );
 }
+
 Widget applyWidget(BuildContext context, RxList<SortList> list) {
   return SizedBox(
     width: Get.width,
@@ -1548,6 +1886,7 @@ Widget applyWidget(BuildContext context, RxList<SortList> list) {
             sortList.length, (index) => titleThree(context, list[index]))),
   );
 }
+
 Widget filterWidget(BuildContext context, RxDouble start, RxDouble end,
     RxList<FilterList> list) {
   return SizedBox(
@@ -1585,9 +1924,11 @@ Widget filterWidget(BuildContext context, RxDouble start, RxDouble end,
     ),
   );
 }
+
 Widget cuisinesListWidget(BuildContext context) {
   return menuCategoryTwo(context);
 }
+
 Widget menuCategoryTwo(BuildContext context) {
   return Container(
       height: 100,
@@ -1660,6 +2001,7 @@ Widget priceSliderWidget(RxDouble start, RxDouble end, context) {
     ],
   );
 }
+
 Widget titleThree(context, dynamic model) {
   return Column(
     children: [
@@ -1687,6 +2029,7 @@ Widget titleThree(context, dynamic model) {
     ],
   );
 }
+
 Widget filterButton(BuildContext context, RxBool check) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -1740,6 +2083,7 @@ Widget filterButton(BuildContext context, RxBool check) {
     ],
   );
 }
+
 Widget horizontalLine(BuildContext context) {
   return Container(
     height: 1,
@@ -1748,6 +2092,7 @@ Widget horizontalLine(BuildContext context) {
     color: Theme.of(context).subTitleText,
   );
 }
+
 Widget horizontalLineTwo(BuildContext context) {
   return Container(
     height: 1,
@@ -1755,6 +2100,7 @@ Widget horizontalLineTwo(BuildContext context) {
     color: Theme.of(context).subTitleText,
   );
 }
+
 Widget customTextUnderLineButton(String title, void Function() onTap) {
   return InkWell(
     onTap: onTap,
@@ -1775,143 +2121,148 @@ Widget customTextUnderLineButton(String title, void Function() onTap) {
   );
 }
 
-
-
-Widget restaurantListWidget(BuildContext context,Restaurant model){
-  return Column(children: [
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: titleMenu(AppText.menu, AppText.all, popular,Colors.white),
-    ),
-
-    verticalSpacing(20),
-    Container(
-      height: 200,
-      padding: const EdgeInsets.only(left: 20),
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: bestOfferList.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                Get.lazyPut(() => ProductDetailsController());
-                var data = {
-                  "model": bestOfferList[index],
-                };
-                Get.toNamed(RoutePath.productDetails, arguments: data);
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    alignment: Alignment.bottomCenter,
-                    margin: const EdgeInsets.only(right: 10),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                            image: AssetImage(bestOfferList[index].img),
-                            fit: BoxFit.cover)),
-                  ),
-                  verticalSpacing(10),
-                  Text(
-                    bestOfferList[index].title,
-                    style: FontUtilities.h14(
-                        decorationColor: Colors.blue,
-                        fontColor: Colors.white,
-                        fontWeight: FWT.semiBold),
-                  ),
-                ],
-              ),
-            );
-          }),
-    ),
-  ],);
-}
-Widget restaurantAddressWidget(BuildContext context,Restaurant model){
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    child: Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            AppText.averageCost,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h13(
-                fontColor: Colors.white, fontWeight: FWT.regular),
-          ),
-
-          Text("\$16 - \$19",
-            textAlign: TextAlign.start,
-            style: FontUtilities.h14(
-                fontColor: Colors.white, fontWeight: FWT.bold),
-          ),
-      ],),
-      verticalSpacing(5),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            AppText.home,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h13(
-                fontColor: Colors.white, fontWeight: FWT.regular),
-          ),
-
-          Text("Open now 6am - 6pm",
-            textAlign: TextAlign.start,
-            style: FontUtilities.h14(
-                fontColor: Colors.white, fontWeight: FWT.bold),
-          ),
-        ],),
-
-      verticalSpacing(5),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            AppText.phone,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h13(
-                fontColor: Colors.white, fontWeight: FWT.regular),
-          ),
-
-          Text("+1 1234 56789 258",
-            textAlign: TextAlign.start,
-            style: FontUtilities.h14(
-                fontColor: Colors.white, fontWeight: FWT.bold),
-          ),
-        ],),
-
-      verticalSpacing(5),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            AppText.website,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h13(
-                fontColor: Colors.white, fontWeight: FWT.regular),
-          ),
-
-          Text("www.mslgoel.com",
-            textAlign: TextAlign.start,
-            style: FontUtilities.h14(
-              decorationColor: Colors.blue,
-                fontColor: Colors.white, fontWeight: FWT.bold),
-          ),
-        ],),
-    ],),
+Widget restaurantListWidget(BuildContext context, Restaurant model) {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: titleMenu(AppText.menu, AppText.all, popular, Colors.white),
+      ),
+      verticalSpacing(20),
+      Container(
+        height: 200,
+        padding: const EdgeInsets.only(left: 20),
+        child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: bestOfferList.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Get.lazyPut(() => ProductDetailsController());
+                  var data = {
+                    "model": bestOfferList[index],
+                  };
+                  Get.toNamed(RoutePath.productDetails, arguments: data);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      alignment: Alignment.bottomCenter,
+                      margin: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                              image: AssetImage(bestOfferList[index].img),
+                              fit: BoxFit.cover)),
+                    ),
+                    verticalSpacing(10),
+                    Text(
+                      bestOfferList[index].title,
+                      style: FontUtilities.h14(
+                          decorationColor: Colors.blue,
+                          fontColor: Colors.white,
+                          fontWeight: FWT.semiBold),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
+    ],
   );
 }
 
-Widget restaurantTitleWidget(BuildContext context,Restaurant model){
+Widget restaurantAddressWidget(BuildContext context, Restaurant model) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.averageCost,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h13(
+                  fontColor: Colors.white, fontWeight: FWT.regular),
+            ),
+            Text(
+              "\$16 - \$19",
+              textAlign: TextAlign.start,
+              style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.bold),
+            ),
+          ],
+        ),
+        verticalSpacing(5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.home,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h13(
+                  fontColor: Colors.white, fontWeight: FWT.regular),
+            ),
+            Text(
+              "Open now 6am - 6pm",
+              textAlign: TextAlign.start,
+              style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.bold),
+            ),
+          ],
+        ),
+        verticalSpacing(5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.phone,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h13(
+                  fontColor: Colors.white, fontWeight: FWT.regular),
+            ),
+            Text(
+              "+1 1234 56789 258",
+              textAlign: TextAlign.start,
+              style: FontUtilities.h14(
+                  fontColor: Colors.white, fontWeight: FWT.bold),
+            ),
+          ],
+        ),
+        verticalSpacing(5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppText.website,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h13(
+                  fontColor: Colors.white, fontWeight: FWT.regular),
+            ),
+            Text(
+              "www.mslgoel.com",
+              textAlign: TextAlign.start,
+              style: FontUtilities.h14(
+                  decorationColor: Colors.blue,
+                  fontColor: Colors.white,
+                  fontWeight: FWT.bold),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget restaurantTitleWidget(BuildContext context, Restaurant model) {
   return Container(
     margin: const EdgeInsets.only(top: 230),
     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -1919,23 +2270,24 @@ Widget restaurantTitleWidget(BuildContext context,Restaurant model){
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            model.title,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h24(
-                fontColor: Colors.white, fontWeight: FWT.semiBold),
-          ),
-          Text(
-            model.fullAddress,
-            textAlign: TextAlign.start,
-            style: FontUtilities.h11(
-                fontColor: Colors.white, fontWeight: FWT.regular),
-          ),
-      ],),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              model.title,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h24(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),
+            ),
+            Text(
+              model.fullAddress,
+              textAlign: TextAlign.start,
+              style: FontUtilities.h11(
+                  fontColor: Colors.white, fontWeight: FWT.regular),
+            ),
+          ],
+        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1952,20 +2304,22 @@ Widget restaurantTitleWidget(BuildContext context,Restaurant model){
                 Text(
                   model.rating,
                   style: FontUtilities.h20(
-                      fontColor: Colors.white,
-                      fontWeight: FWT.black),
+                      fontColor: Colors.white, fontWeight: FWT.black),
                 ),
               ],
             ),
-            Text( model.review,
+            Text(
+              model.review,
               textAlign: TextAlign.start,
               style: FontUtilities.h12(
                   decorationColor: Colors.white,
                   fontColor: Colors.white,
                   fontWeight: FWT.regular),
             ),
-          ],)
-    ],),
+          ],
+        )
+      ],
+    ),
   );
 }
 
@@ -2005,25 +2359,22 @@ Widget appBarThreeWidget(String title, bool rightIcon) {
   );
 }
 
-Widget restaurantDetailsWidget(BuildContext context,Restaurant model){
-  return Container(height: 250,
+Widget restaurantDetailsWidget(BuildContext context, Restaurant model) {
+  return Container(
+    height: 250,
     alignment: Alignment.bottomCenter,
-    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     decoration: BoxDecoration(
         color: Colors.transparent,
-        image: DecorationImage(
-            image: AssetImage(model.img),
-            fit: BoxFit.cover
-        )
-    ),
+        image:
+            DecorationImage(image: AssetImage(model.img), fit: BoxFit.cover)),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        appBarThreeWidget("",true),
+        appBarThreeWidget("", true),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
@@ -2031,7 +2382,11 @@ Widget restaurantDetailsWidget(BuildContext context,Restaurant model){
                   borderRadius: const BorderRadius.all(Radius.circular(25))),
               child: Row(
                 children: [
-                 const Icon(Icons.location_on,color: Colors.white,size: 15,),
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.white,
+                    size: 15,
+                  ),
                   Text(
                     "Show Map",
                     style: FontUtilities.h14(
@@ -2050,7 +2405,6 @@ Widget restaurantDetailsWidget(BuildContext context,Restaurant model){
               ),
               child: Image.asset(AppImages.heartIcon),
             ),
-
           ],
         ),
       ],

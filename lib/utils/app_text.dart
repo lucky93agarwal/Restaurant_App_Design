@@ -60,6 +60,13 @@ class AppText {
   static const String filter = 'Filter';
   static const String sort = 'Sort';
 
+  static const String selectDate = 'Select Date';
+  static const String selectTime = 'Select Time';
+  static const String selectPerson = 'Select Person';
+  static const String breakfast = 'Breakfast';
+  static const String person = 'Person';
+  static const String yourInformation = 'Your Information';
+
   static const String firstName = 'First Name';
   static const String search = 'Search';
   static const String apply = 'Apply';
