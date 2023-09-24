@@ -12,6 +12,11 @@ import 'package:restaurant_app_design/utils/utility.dart';
 
 class RestaurantBookingScreen extends GetView<RestaurantBookingController> {
   const RestaurantBookingScreen({super.key});
+
+
+  void onTapButtons(){
+    cPrint("onTapButtons");
+  }
   void onTapMoveNextButton(){
     if(StateChange.date == controller.myEnum.value){
       controller.myEnum(StateChange.time);
@@ -19,12 +24,9 @@ class RestaurantBookingScreen extends GetView<RestaurantBookingController> {
       controller.myEnum(StateChange.person);
     }else if(StateChange.person == controller.myEnum.value){
       controller.myEnum(StateChange.yourInfo);
-    }else if(StateChange.yourInfo == controller.myEnum.value){
-      controller.myEnum(StateChange.bottomSheet);
-    }else if(StateChange.bottomSheet == controller.myEnum.value){
-      controller.myEnum(StateChange.bottomSheet);
     }else {
-
+      controller.myEnum(StateChange.bottomSheet);
+      Get.bottomSheet(bottomFinalSheetWidget(Get.context!,onTapButtons,controller.time.toString(),controller.person.toString()));
     }
 
       cPrint(StateChange.bottomSheet.toString());

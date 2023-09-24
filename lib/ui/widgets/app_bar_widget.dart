@@ -1124,6 +1124,66 @@ Widget bottomSheetThanks(BuildContext context, void Function() onTapButton) {
           ));
 }
 
+Widget bottomFinalSheetWidget(BuildContext context, void Function() onTapButton,
+    String time, String person){
+  return GetBuilder<RestaurantBookingController>(
+      builder: (controller) => Container(
+    height: Get.height * 0.6,
+    width: Get.width,
+    decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40))),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        verticalSpacing(30),
+        Container(
+          height: 50,
+          width: 50,
+          decoration:const BoxDecoration(
+            color: Color(0xff46d384),
+            shape: BoxShape.circle
+          ),
+          child:const Icon(Icons.check,color: Colors.white,),
+        ),
+        verticalSpacing(30),
+        Text(
+          AppText.yourBookingHasBeenConfirmed,
+          textAlign: TextAlign.center,
+          style: FontUtilities.h26(
+              fontColor: Colors.black,
+              fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(30),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          height: 1,
+          width: Get.width,
+          color: Color(0xffEEEEEE),
+        ),
+
+        verticalSpacing(40),
+        Text("McDonald's",
+          textAlign: TextAlign.center,
+          style: FontUtilities.h20(
+              fontColor: Colors.black,
+              fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(10),
+        Text("16 July 2023 - "+time+" am"+" - "+person+" Persons,\nBooking No: HRT4454",
+          textAlign: TextAlign.center,
+          style: FontUtilities.h12(
+              fontColor: Colors.black, fontWeight: FWT.semiBold),
+        ),
+        verticalSpacing(30),
+        customButton(AppText.shareWithFriends, context, onTapButton),
+      ],
+    ),
+  ));
+}
+
 Widget bottomSheet(BuildContext context, void Function() onMinusTap,
     void Function() onPlusTap, void Function() onTapButton) {
   return GetBuilder<ProductDetailsController>(

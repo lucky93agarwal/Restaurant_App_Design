@@ -48,6 +48,7 @@ class AppText {
   static const String myFavouriteRestaurant = 'My Favourite Restaurant';
 
   static const String quantity = "Quantity";
+  static const String yourBookingHasBeenConfirmed = "Your Booking has been confirmed";
   static const String thankYouForYourOrder = "Thank you\nfor your order";
   static const String trackYourOrder = "Track Your Order";
   static const String totalPrice = "Total Price";
@@ -56,6 +57,7 @@ class AppText {
   static const String preparingYourOrder = 'Preparing your order';
   static const String bookATable = 'Book a Table';
   static const String continues = "Continue";
+  static const String shareWithFriends = "Share with Friends";
 
   static const String filter = 'Filter';
   static const String sort = 'Sort';
