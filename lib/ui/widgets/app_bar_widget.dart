@@ -136,7 +136,11 @@ Widget preparingYourOrder(
 }
 
 Widget restaurantBookingDateWidget(BuildContext context, int type, Function(String) onTabTime,String time,
-    void Function() onTabPlus,void Function() onTabMinus, int person) {
+    void Function() onTabPlus,void Function() onTabMinus, int person,
+    TextEditingController emailController,
+    TextEditingController firstNameController,
+    TextEditingController lastNameController,
+    TextEditingController phoneController) {
   return Column(
     children: [
       appBarTwoWidget(
@@ -153,8 +157,56 @@ Widget restaurantBookingDateWidget(BuildContext context, int type, Function(Stri
       verticalSpacing(50),
       Visibility(visible: type == 2?true:false,child: restaurantTime(context,onTabTime,time)),
       Visibility(visible: type == 3?true:false,child: restaurantPerson(context,onTabPlus,onTabMinus,person)),
+
+      Visibility(visible: type == 4?true:false,child: restaurantYourInfoWidget(context,
+          emailController,firstNameController,lastNameController,phoneController),),
     ],
   );
+}
+
+Widget restaurantYourInfoWidget(BuildContext context,
+    TextEditingController emailController,
+    TextEditingController firstNameController,
+    TextEditingController lastNameController,
+    TextEditingController phoneController){
+  return Container(margin: const EdgeInsets.symmetric(horizontal: 0),
+  child: Column(children: [
+    AppTextField(
+        ctrl: emailController,
+        hintText: AppText.email,
+        textInputType:TextInputType.emailAddress,
+        icons: AppText.messageTextPrefixIconEditText,
+        iconsTwo: AppText.hideSuffixIconEditText,
+        checkVerify:false
+    ),
+    verticalSpacing(10),
+    AppTextField(
+        ctrl: firstNameController,
+        hintText: AppText.firstName,
+        textInputType:TextInputType.visiblePassword,
+        icons: AppText.userTextPrefixIconEditText,
+        iconsTwo: AppText.hideSuffixIconEditText,
+        checkVerify:false
+    ),
+    verticalSpacing(10),
+    AppTextField(
+        ctrl: lastNameController,
+        hintText: AppText.lastName,
+        textInputType:TextInputType.emailAddress,
+        icons: AppText.userTextPrefixIconEditText,
+        iconsTwo: AppText.hideSuffixIconEditText,
+        checkVerify:false
+    ),
+    verticalSpacing(10),
+    AppTextField(
+        ctrl: phoneController,
+        hintText: AppText.phone,
+        textInputType:TextInputType.visiblePassword,
+        icons: AppText.phoneTextPrefixIconEditText,
+        iconsTwo: AppText.hideSuffixIconEditText,
+        checkVerify:false
+    ),
+  ],),);
 }
 
 Widget restaurantPerson(BuildContext context, void Function() onTabPlus,void Function() onTabMinus,int person){
