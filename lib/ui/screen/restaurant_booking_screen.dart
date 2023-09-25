@@ -17,7 +17,8 @@ class RestaurantBookingScreen extends GetView<RestaurantBookingController> {
   void onTapButtons(){
     cPrint("onTapButtons");
 
-    Get.toNamed(RoutePath.review);
+   /* Get.toNamed(RoutePath.review);*/
+    Get.toNamed(RoutePath.profile);
   }
   void onTapMoveNextButton(){
     if(StateChange.date == controller.myEnum.value){

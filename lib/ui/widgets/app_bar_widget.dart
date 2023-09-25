@@ -2391,6 +2391,99 @@ Widget restaurantListWidget(BuildContext context, Restaurant model) {
     ],
   );
 }
+Widget profileRowDataWidget(BuildContext context){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+    child: Column(
+      children: [
+        profileRowWidget(context,AppText.profile,Icons.person),
+        profileRowWidget(context,AppText.orderHistory,Icons.shopping_bag),
+        profileRowWidget(context,AppText.deliveryAddress,Icons.location_on),
+        profileRowWidget(context,AppText.setting,Icons.settings),
+        profileRowWidget(context,AppText.signOut,Icons.shopping_bag_outlined),
+      ],
+    ),
+  );
+}
+Widget profileRowWidget(BuildContext context, String title,IconData img){
+  return Column(
+    children: [
+      verticalSpacing(15),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(img,color: const Color(0xffe6e3f5),size: 20,),
+              horizontalSpacing(10),
+              Text(title,      style: FontUtilities.h14(
+                  fontColor:const Color(0xffe6e3f5), fontWeight: FWT.semiBold),),
+            ],
+          ),
+         const Icon(Icons.arrow_forward_ios_rounded,color: const Color(0xffe6e3f5),size: 15,)
+        ],
+      ),
+      verticalSpacing(15),
+      horizontalLineTwo(context)
+    ],
+  );
+}
+Widget profileHeader(BuildContext context,String img){
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    padding: const EdgeInsets.all(15),
+    decoration:const BoxDecoration(
+      color:  Color(0xff542c6b),
+      borderRadius: BorderRadius.all(Radius.circular(50))
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 60,
+              width: 60,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  image: DecorationImage(
+                      image: AssetImage(img.isEmpty?AppImages.userImg:img),
+                      fit: BoxFit.cover)),
+            ),
+            horizontalSpacing(15),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("John Doe",      style: FontUtilities.h24(
+                    fontColor: Colors.white, fontWeight: FWT.semiBold),),
+                Text("johndoe@gmail.com",      style: FontUtilities.h14(
+                    fontColor: Colors.white, fontWeight: FWT.semiBold),),
+              ],)
+          ],
+        ),
+        Stack(
+          alignment: Alignment.topRight,
+          children: [
+          const Icon(Icons.notifications,color: Colors.white,),
+          Container(height: 13,width: 13,
+          alignment: Alignment.center,
+          decoration:const BoxDecoration(
+            color: Colors.red,
+            shape: BoxShape.circle
+          ),
+            child: Text("1",textAlign: TextAlign.center,style: FontUtilities.h8(
+                fontColor: Colors.white, fontWeight: FWT.extraBold),),
+          ),
+        ],)
+
+    ],),
+  );
+}
 
 Widget restaurantAddressWidget(BuildContext context, Restaurant model) {
   return Container(

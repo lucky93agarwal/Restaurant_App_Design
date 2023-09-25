@@ -10,6 +10,7 @@ import 'package:restaurant_app_design/ui/screen/list_screen.dart';
 import 'package:restaurant_app_design/ui/screen/order_summary_screen.dart';
 import 'package:restaurant_app_design/ui/screen/payment_method_screen.dart';
 import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
+import 'package:restaurant_app_design/ui/screen/profile_screen.dart';
 import 'package:restaurant_app_design/ui/screen/promocode_screen.dart';
 import 'package:restaurant_app_design/ui/screen/restaurant_booking_screen.dart';
 import 'package:restaurant_app_design/ui/screen/restaurant_details_screen.dart';
@@ -105,6 +106,10 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.review, page: () =>const ReviewScreen()),
+
+
+    GetPage(
+        name: RoutePath.profile, page: () =>const ProfileScreen()),
   ];
 
 }

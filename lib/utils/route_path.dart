@@ -20,4 +20,5 @@ class RoutePath {
   static String restaurantDetails = '/restaurantDetails';
   static String bookRestaurant = '/bookRestaurant';
   static String review = '/review';
+  static String profile = '/profile';
 }
