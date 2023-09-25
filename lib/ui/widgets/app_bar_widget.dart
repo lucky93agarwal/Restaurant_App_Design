@@ -12,6 +12,7 @@ import 'package:restaurant_app_design/model/filter_list.dart';
 import 'package:restaurant_app_design/model/nearby_best_restaurant.dart';
 import 'package:restaurant_app_design/model/popular_food.dart';
 import 'package:restaurant_app_design/model/recent_search.dart';
+import 'package:restaurant_app_design/model/review_list.dart';
 import 'package:restaurant_app_design/model/sort_list.dart';
 import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
 import 'package:restaurant_app_design/ui/widgets/text_field.dart';
@@ -413,6 +414,43 @@ Widget restaurantObx(int type, int icon, String data,BuildContext context) {
   );
 }
 
+Widget reviewAppBar(){
+  return  Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text("78 Review",style: FontUtilities.h12(
+            fontColor: Colors.white,
+            fontWeight: FWT.semiBold),),
+
+        Row(
+          children: [
+            Container(
+              decoration:const BoxDecoration(
+                border: Border(
+                  bottom:  BorderSide(
+                    color: const Color(0xffa8006d),
+                    width: 2.0
+                  )
+                )
+              ),
+              child: Text(AppText.write,style: FontUtilities.h12(
+                  fontColor: const Color(0xffa8006d),
+                  fontWeight: FWT.semiBold),),
+            ),
+            horizontalSpacing(10),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(height: 12,width: 2,color:  const Color(0xffa8006d),),
+                Container(height: 2,width: 12,color:  const Color(0xffa8006d),),
+              ],),
+          ],
+        ),
+      ],),
+  );
+}
 Widget centerContainer() {
   return Container(
     width: 4,
@@ -421,6 +459,69 @@ Widget centerContainer() {
     decoration:
         const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
   );
+}
+
+Widget reviewListTwo(BuildContext context){
+  return Expanded(
+    flex: 1,
+    child: Container(margin: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(children: List.generate(reviewList.length, (index) => reviewColumn(reviewList[index].img,reviewList[index].name,reviewList[index].review,context,reviewList[index].note
+        )),)),
+  );
+}
+
+Widget reviewColumn(String img,String title,String review,BuildContext context,String note){
+  return Column(children: [
+    verticalSpacing(20),
+    Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    image: DecorationImage(
+                        image: AssetImage(img.isEmpty?AppImages.userImg:img),
+                    fit: BoxFit.cover)),
+              ),
+              horizontalSpacing(10),
+              Text(title,style: FontUtilities.h16(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),),
+            ],),
+          Row(
+            children: [
+              Row(
+                children: List.generate(5, (index) => index==4?Row(children: [
+                 const Icon(Icons.star,color: Color(0xff583035),size: 10,),
+                  horizontalSpacing(2),
+                ],):Row(children: [
+                  const Icon(Icons.star,color: Colors.yellow,size: 10,),
+                  horizontalSpacing(2),
+                ],)),
+              ),
+              horizontalSpacing(5),
+              Text(review,style: FontUtilities.h11(
+                  fontColor: Colors.white, fontWeight: FWT.semiBold),),
+            ],)
+        ],
+      ),
+    ),
+    Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: Text(note, style: FontUtilities.h10(
+          fontColor: Colors.white, fontWeight: FWT.regular),),
+    ),
+
+    verticalSpacing(20),
+    horizontalLineTwo(context),
+  ],);
 }
 
 Widget appBarTwoWidget(String title, bool rightIcon) {
@@ -2359,13 +2460,23 @@ Widget restaurantAddressWidget(BuildContext context, Restaurant model) {
               style: FontUtilities.h13(
                   fontColor: Colors.white, fontWeight: FWT.regular),
             ),
-            Text(
-              "www.mslgoel.com",
-              textAlign: TextAlign.start,
-              style: FontUtilities.h14(
-                  decorationColor: Colors.blue,
-                  fontColor: Colors.white,
-                  fontWeight: FWT.bold),
+            Container(
+              decoration:const BoxDecoration(
+                  border: Border(
+                      bottom:  BorderSide(
+                          color: Colors.white,
+                          width: 1.0
+                      )
+                  )
+              ),
+              child: Text(
+                "www.mslgoel.com",
+                textAlign: TextAlign.start,
+                style: FontUtilities.h14(
+                    decorationColor: Colors.blue,
+                    fontColor: Colors.white,
+                    fontWeight: FWT.bold),
+              ),
             ),
           ],
         ),
@@ -2420,13 +2531,22 @@ Widget restaurantTitleWidget(BuildContext context, Restaurant model) {
                 ),
               ],
             ),
-            Text(
-              model.review,
-              textAlign: TextAlign.start,
-              style: FontUtilities.h12(
-                  decorationColor: Colors.white,
-                  fontColor: Colors.white,
-                  fontWeight: FWT.regular),
+            Container(
+              decoration:const BoxDecoration(
+                  border: Border(
+                      bottom:  BorderSide(
+                          color: Colors.white,
+                          width: 1.0
+                      )
+                  )
+              ),
+              child: Text(
+                model.review,
+                textAlign: TextAlign.start,
+                style: FontUtilities.h12(
+                    fontColor: Colors.white,
+                    fontWeight: FWT.regular),
+              ),
             ),
           ],
         )

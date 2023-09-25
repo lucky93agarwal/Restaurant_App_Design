@@ -13,6 +13,7 @@ import 'package:restaurant_app_design/ui/screen/product_details_screen.dart';
 import 'package:restaurant_app_design/ui/screen/promocode_screen.dart';
 import 'package:restaurant_app_design/ui/screen/restaurant_booking_screen.dart';
 import 'package:restaurant_app_design/ui/screen/restaurant_details_screen.dart';
+import 'package:restaurant_app_design/ui/screen/review_screen.dart';
 import 'package:restaurant_app_design/ui/screen/search_screen.dart';
 import 'package:restaurant_app_design/ui/screen/signup_screen.dart';
 import 'package:restaurant_app_design/ui/screen/sliding_screen.dart';
@@ -100,6 +101,10 @@ class ScreenRouter {
 
     GetPage(
         name: RoutePath.bookRestaurant, page: () =>const RestaurantBookingScreen()),
+
+
+    GetPage(
+        name: RoutePath.review, page: () =>const ReviewScreen()),
   ];
 
 }

@@ -121,6 +121,8 @@ class FontUtilities {
       fontFamily: "Mukta",
       decorationColor: decorationColor,
       decorationThickness: 3,
+      decorationStyle:
+      TextDecorationStyle.dashed,
     );
   }
   /// FONTSTYLE FOR FONT SIZE 12
@@ -237,13 +239,16 @@ class FontUtilities {
     FWT fontWeight = FWT.regular,
     TextDecoration? decoration,
     double letterSpacing = 0.5,
+    Color? decorationColor,
   }) {
     return TextStyle(
       color: fontColor,
       fontWeight: getFontWeight(fontWeight),
       fontSize: 20,
       letterSpacing: letterSpacing,
+      decorationColor: decorationColor,
       decoration: decoration,
+      decorationThickness: 2,
       fontFamily: "Mukta",
     );
   }

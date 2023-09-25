@@ -32,4 +32,14 @@ class AppImages {
 
   static const String visaIcon = 'assets/images/visa_icon.png';
   static const String paypalImg = 'assets/images/paypal_img.png';
+
+
+
+  static const String girlOne = 'assets/images/girlone.jpg';
+  static const String girlTwo = 'assets/images/girltwo.jpg';
+  static const String girlThree = 'assets/images/girlthree.jpg';
+
+  static const String manOne = 'assets/images/manone.jpg';
+  static const String manTwo = 'assets/images/mantwo.jpg';
+  static const String manThree = 'assets/images/manthree.jpg';
 }
