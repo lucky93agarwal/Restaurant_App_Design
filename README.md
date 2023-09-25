@@ -27,13 +27,19 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/2fb46014-77a0-44ab-b7c1-edf6bd278d11" width="200" title="Order Summary Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/752a2ac0-49de-413f-8eec-ea838c055667" width="200" title="Thanks Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/adbe91e0-7fa6-4327-8766-10dededa1ad5" width="200" title="Track Order Screen"/>
-<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/f583921a-d98b-4fd6-a470-c3030ee63853" width="200" title="Restaurant Details Screen"/>
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/8d37e58d-4e01-4765-a373-5786ed2c77b9" width="200" title="Restaurant Details Screen"/>
 
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/ff0147aa-2df1-446c-b977-47a05002e0ec" width="200" title="Select Time Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/873a1a7a-1498-4838-bfb4-f6ccca2f2ec6" width="200" title="Select Person Screen"/>
 
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/0c8e50eb-130f-4771-a095-f11b6f9fa0d3" width="200" title="Your Information Screen"/>
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/74fa284f-84ca-4c77-9253-930622c2d316" width="200" title="Restaurant Booking Bottom Sheet Screen"/>
+
+
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/30c8f7ac-87b2-4441-8051-8f85fb16dcb3" width="200" title="Review Screen"/>
+
+
+
 
 ## Download App
 <a href="https://play.google.com/store/apps/details?id=com.thealphamerc.flutter_twitter_clone"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a>
@@ -65,6 +71,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Select Time Screen
 * Your Information Screen"
 * Select Person Screen
+* Review Screen
 * Custom Paint
 * GetX State Management
 * Custom Button
