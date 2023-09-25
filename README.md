@@ -165,6 +165,11 @@ signingConfigs {
        }
    }
 ```
+Step 4. Build App Bundle :
+```
+flutter build appbundle
+```
+
 ## Folder Structure
 
 
