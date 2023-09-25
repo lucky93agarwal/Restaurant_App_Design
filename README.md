@@ -38,6 +38,7 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 
 <img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/30c8f7ac-87b2-4441-8051-8f85fb16dcb3" width="200" title="Review Screen"/>
 
+<img src="https://github.com/lucky93agarwal/Restaurant_App_Design/assets/53622073/36c22436-5631-4bac-bf01-327e3d63723e" width="200" title="Profile Screen"/>
 
 
 
@@ -69,8 +70,9 @@ A working Restaurant Mobile App clone built in Flutter using Firebase auth,realt
 * Track Order Screen
 * Restaurant Details Screen
 * Select Time Screen
-* Your Information Screen"
+* Your Information Screen
 * Select Person Screen
+* Profile Screen
 * Review Screen
 * Custom Paint
 * GetX State Management
