@@ -127,7 +127,8 @@ coverage/
 
 # Symbols
 app.*.symbols
-
+upload-keystore.jks
+uploadInfo.txt
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
